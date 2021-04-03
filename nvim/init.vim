@@ -13,10 +13,11 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'Yggdroot/indentLine'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'SirVer/ultisnips'
 Plug 'jvanja/vim-bootstrap4-snippets'
 Plug 'tomlion/vim-solidity'
+Plug 'preservim/NERDTree'
 Plug 'mbbill/undotree'
 Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()

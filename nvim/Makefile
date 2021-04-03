@@ -14,7 +14,7 @@ MKDIR_P = mkdir -p
 FOLDERS :=  plugin after/plugin lua
 
 LNK = ln -sf
-FILES := $(wildcard *.vim plugin/*.vim lua/*.lua)
+FILES := $(wildcard *.vim plugin/*.vim lua/*.lua coc-settings.json)
 
 all: dir install
 
@@ -27,7 +27,7 @@ $(addprefix ${DST}/,${FOLDERS}):
 .PHONY: install
 install: $(addprefix ${DST}/,${FILES})
 	[ -f ${PLUG} ] && exit 0 || curl -fLo ${PLUG} --create-dirs ${PLUG_URL}
-	nvim +PlugInstall +GoInstallBinaries +qall
+	nvim --headless +PlugInstall +qall
 
 $(addprefix ${DST}/,${FILES}):
 	${LNK} $(subst ${DST},$(CURDIR),$@) $@
