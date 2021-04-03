@@ -25,9 +25,11 @@ $(addprefix ${DST}/,${FOLDERS}):
 	${MKDIR_P} $@
 	
 .PHONY: install
-install: $(addprefix ${DST}/,${FILES})
-	[ -f ${PLUG} ] && exit 0 || curl -fLo ${PLUG} --create-dirs ${PLUG_URL}
+install: ${PLUG} $(addprefix ${DST}/,${FILES}) 
 	nvim --headless +PlugInstall +qall
+
+${PLUG}:
+	curl -fLo ${PLUG} --create-dirs ${PLUG_URL}
 
 $(addprefix ${DST}/,${FILES}):
 	${LNK} $(subst ${DST},$(CURDIR),$@) $@
