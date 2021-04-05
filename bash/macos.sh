@@ -50,4 +50,4 @@ osascript <<EOF
 EOF
 }
 
-alias q='qa chrome && pmset displaysleepnow'
+alias q='pmset displaysleepnow'
