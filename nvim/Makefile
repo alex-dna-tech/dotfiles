@@ -7,11 +7,11 @@ else
 endif
 
 DST = $(HOME)/.config/nvim
-PLUG = $(HOME)/.vim/plugged/plug.vim
+PLUG = $(DST)/autoload/plug.vim
 PLUG_URL = https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 MKDIR_P = mkdir -p
-FOLDERS :=  plugin after/plugin lua
+FOLDERS := autoload plugin after/plugin lua
 
 LNK = ln -sf
 FILES := $(wildcard *.vim plugin/*.vim lua/*.lua coc-settings.json)
