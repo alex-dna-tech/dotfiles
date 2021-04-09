@@ -20,6 +20,10 @@ Plug 'tomlion/vim-solidity'
 Plug 'preservim/NERDTree'
 Plug 'mbbill/undotree'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-projectionist'
+Plug 'noahfrederick/vim-composer'
+Plug 'noahfrederick/vim-laravel'
 call plug#end()
 
 let mapleader = " "
@@ -29,10 +33,10 @@ nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>bs /<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :Ex<CR>
-nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
-nnoremap <Leader>rp :resize 100<CR>
+nnoremap <leader><CR> :so ~/.config/nvim/init.vim<CR>
+nnoremap <leader>+ :vertical resize +5<CR>
+nnoremap <leader>- :vertical resize -5<CR>
+nnoremap <leader>rp :resize 100<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
