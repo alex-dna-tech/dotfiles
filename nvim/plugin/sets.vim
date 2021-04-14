@@ -35,7 +35,6 @@ set expandtab
 set smartindent
 set nu
 set nowrap
-set undodir=~/.vim/undodir
 set undofile
 set termguicolors
 set scrolloff=8
