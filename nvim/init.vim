@@ -24,6 +24,7 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 call plug#end()
 
 let mapleader = " "
+set clipboard+=unnamedplus
 
 nnoremap <leader>ghw :h <C-R>=expand("<cword>")<CR><CR>
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
