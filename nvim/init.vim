@@ -32,17 +32,18 @@ nnoremap <leader>bs /<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :Ex<CR>
 nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
-nnoremap <Leader>+ :vertical resize +5<CR>
-nnoremap <Leader>- :vertical resize -5<CR>
+nnoremap <silent> <C-Left> :vertical resize +3<CR>
+nnoremap <silent> <C-Right> :vertical resize -3<CR>
+nnoremap <silent> <C-Down> :resize +3<CR>
+nnoremap <silent> <C-Up> :resize -3<CR>
 nnoremap <Leader>rp :resize 100<CR>
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+
+map <leader>tr :new term://bash<CR>i<CR><C-\><C-n><C-w>k
 
 vnoremap <leader>p "_dP
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
-nnoremap <leader>d "_d
 vnoremap <leader>d "_d
 
 inoremap <C-c> <esc>
