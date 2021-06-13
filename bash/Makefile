@@ -1,6 +1,6 @@
 .DEFAULT: install
 
-LNK_PATH=${HOME}/.bash
+LNK_PATH=$(HOME)/dotfiles/bash
 
 ifeq ($(OS),Windows_NT)
     DETECTED_OS := Windows
@@ -10,7 +10,5 @@ endif
 
 .PHONY: install
 install: 
-	ln -sf ${PWD} ${LNK_PATH}
-
-	# echo "source ${LNK_PATH}/aliases.sh" >> ${HOME}/.bash_profile
-	
+	[ "$(DETECTED_OS)" = "Darwin" ] \
+		&& echo "source $(LNK_PATH)/aliases.sh" >> $(HOME)/.bash_profile \                                                                          || echo "source $(LNK_PATH)/aliases.sh" >> $(HOME)/.bashrc 
