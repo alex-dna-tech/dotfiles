@@ -44,8 +44,10 @@ let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <c-@> to trigger completion.
+" Use <M-space> to trigger completion.
 if has('nvim')
+inoremap <silent><expr> <M-space> coc#refresh()
+else
 inoremap <silent><expr> <c-@> coc#refresh()
 endif
 
@@ -60,10 +62,10 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <leader>bd <Plug>(coc-definition)
-nmap <leader>bt <Plug>(coc-type-definition)
-nmap <leader>bi <Plug>(coc-implementation)
-nmap <leader>br <Plug>(coc-references)
+nmap <leader>gd <Plug>(coc-definition)
+nmap <leader>gt <Plug>(coc-type-definition)
+nmap <leader>gi <Plug>(coc-implementation)
+nmap <leader>gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -142,6 +144,9 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
+" Add `:Prettier` command to format current buffer.
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
@@ -164,6 +169,8 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" Project search word
+nnoremap <leader>psw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " Multicursors
 nmap <expr> <silent> <C-h> <SID>select_current_word()

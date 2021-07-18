@@ -6,6 +6,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'sainnhe/gruvbox-material'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc-vetur'
 Plug 'airblade/vim-gitgutter'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'AndrewRadev/splitjoin.vim'
@@ -13,9 +14,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'Yggdroot/indentLine'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'SirVer/ultisnips'
+Plug 'voronkovich/ultisnips-vue'
 Plug 'jvanja/vim-bootstrap4-snippets'
 Plug 'tomlion/vim-solidity'
 Plug 'preservim/NERDTree'
@@ -31,8 +32,7 @@ let mapleader = " "
 set clipboard+=unnamedplus
 
 nnoremap <leader>ghw :h <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
-nnoremap <leader>bs /<C-R>=escape(expand("<cWORD>"), "/")<CR><CR>
+nnoremap <leader>bs /<C-R>=escape(expand("<cword>"), "/")<CR><CR>
 nnoremap <leader>u :UndotreeShow<CR>
 nnoremap <leader>pv :Ex<CR>
 
@@ -51,7 +51,7 @@ vnoremap <leader>y "+y
 nnoremap <leader>Y gg"+yG
 vnoremap <leader>d "_d
 
-inoremap <C-c> <esc>
+inoremap <C-c> <esc>l
 inoremap jj <esc>
 
 fun! EmptyRegisters()
@@ -63,4 +63,3 @@ endfun
 
 " ES
 com! W w
-

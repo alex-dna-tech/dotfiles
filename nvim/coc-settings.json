@@ -1,15 +1,32 @@
 {
+  "suggest.noselect": false,
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "!",
+  "diagnostic.infoSign": "?",
+  "diagnostic.checkCurrentLine": true,
   "coc.preferences.formatOnSaveFiletypes": [
     "css",
+    "go",
     "graphql",
+    "html",
+    "vue",
     "javascript",
     "javascriptreact",
     "json",
     "less",
     "markdown",
-    "rust",
     "scss",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "languageserver": {
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "filetypes": ["go"]
+    }
+  },
+  "go.goplsOptions": {
+    "staticcheck": true
+  }
 }

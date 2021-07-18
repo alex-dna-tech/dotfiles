@@ -3,10 +3,10 @@ nnoremap <leader>grum :Git rebase upstream/master<CR>
 nnoremap <leader>grom :Git rebase origin/master<CR>
 
 nnoremap <silent> <leader>gs :Git<CR>
-nnoremap <silent> <leader>gf :Gdiff<CR>
+nnoremap <silent> <leader>gf :Git diff<CR>
 nnoremap <silent> <leader>gc :Git commit<CR>
 nnoremap <silent> <leader>gb :Git blame<CR>
-nnoremap <silent> <leader>gl :Gclog<CR>
+nnoremap <silent> <leader>gl :Git log<CR>
 nnoremap <silent> <leader>gp :Git push<CR>
 nnoremap <silent> <leader>gr :Gread<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>

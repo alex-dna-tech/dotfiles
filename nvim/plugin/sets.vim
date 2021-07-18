@@ -1,7 +1,7 @@
 syntax on
 set mouse=a                     " Automatically enable mouse usage
 set mousehide                   " Hide the mouse cursor while typing
-set laststatus=2                " Show status line always
+" set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
 set autoindent                  " Enabile Autoindent
@@ -19,6 +19,7 @@ set autowrite                   " Automatically save before :next, :make etc.
 set hidden                      " Buffer should still exist if window is closed
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 set noshowmatch                 " Do not show matching brackets by flickering
+" set noshowmode                " We show the mode with airline or lightline
 set ignorecase                  " Search case insensitive...
 set smartcase                   " ... but not it begins with upper case
 set completeopt=menu,menuone    " Show popup menu, even if there is one entry
@@ -30,7 +31,7 @@ set shiftwidth=4
 set expandtab
 set smartindent
 set nu
-set nowrap
+" set nowrap
 set undofile
 set termguicolors
 set scrolloff=8
