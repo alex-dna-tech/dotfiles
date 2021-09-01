@@ -2,7 +2,7 @@ set -o vi
 bind -m vi-insert "\C-l":clear-screen
 
 export VISUAL=vim
-alias vim=nvim
+#alias vim=nvim
 
 #source $HOME/dotfiles/bash/arch.sh
 source $HOME/dotfiles/bash/macos.sh
