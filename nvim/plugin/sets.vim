@@ -1,7 +1,7 @@
 syntax on
 set mouse=a                     " Automatically enable mouse usage
 set mousehide                   " Hide the mouse cursor while typing
-" set laststatus=2                " Show status line always
+set laststatus=2                " Show status line always
 set encoding=utf-8              " Set default encoding to UTF-8
 set autoread                    " Automatically read changed files
 set autoindent                  " Enabile Autoindent
@@ -15,7 +15,7 @@ set noswapfile                  " Don't use swapfile
 set nobackup                    " Don't create annoying backup files
 set splitright                  " Vertical windows should be split to right
 set splitbelow                  " Horizontal windows should split to bottom
-set autowrite                   " Automatically save before :next, :make etc.
+set autowriteall                " Automatically save before :next, :make etc.
 set hidden                      " Buffer should still exist if window is closed
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 set noshowmatch                 " Do not show matching brackets by flickering

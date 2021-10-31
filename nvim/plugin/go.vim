@@ -73,3 +73,4 @@ function! s:build_go_files()
 endfunction
 "}
 
+autocmd Filetype go nmap <leader>fx :w <cr> :!go mod tidy <cr> :<C-u>CocRestart <cr>
