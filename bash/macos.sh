@@ -1,8 +1,6 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
 alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
-alias mup='brew services start denji/nginx/nginx-full && brew services start php && brew services start mysql'
-alias mdown='brew services stop denji/nginx/nginx-full && brew services stop php && brew services stop mysql'
 
 function pfd() {
   osascript 2>/dev/null <<EOF

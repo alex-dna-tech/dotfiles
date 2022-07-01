@@ -15,3 +15,13 @@ alias dirarch='find . -maxdepth 1 -type d ! -name . -exec tar -zcvf '{}'.tar.gz 
 
 
 bind 'set completion-ignore-case on'
+
+tmux has-session 2> /dev/null
+if [[ $? -ne 0 ]]; then
+  TMUX='' tmux new-session -d 
+fi
+if [[ -z "$TMUX" ]]; then
+  tmux attach 
+else
+  tmux switch-client 
+fi

@@ -11,4 +11,5 @@ endif
 .PHONY: install
 install: 
 	[ "$(DETECTED_OS)" = "Darwin" ] \
-		&& echo "source $(LNK_PATH)/aliases.sh" >> $(HOME)/.bash_profile \                                                                          || echo "source $(LNK_PATH)/aliases.sh" >> $(HOME)/.bashrc 
+		&& echo "source $(LNK_PATH)/aliases.sh" >> $(HOME)/.bash_profile \
+		|| echo "source $(LNK_PATH)/aliases.sh" >> $(HOME)/.bashrc 
