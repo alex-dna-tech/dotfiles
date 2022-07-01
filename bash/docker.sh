@@ -22,3 +22,5 @@ alias drd='docker run -d --rm'
 alias de='docker exec -it'
 alias dl='docker logs'
 alias dsp='docker system prune'
+
+alias laws='docker run --network localstack --rm -it amazon/aws-cli --endpoint-url=http://localstack:4566'
