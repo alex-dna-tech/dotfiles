@@ -1,5 +1,6 @@
-.DEFAULT: install
+$(HOME)/.tmux.conf: 
+	ln -sf $(PWD)/tmux.conf $(HOME)/.tmux.conf
 
-.PHONY: install
-install: 
-	ln -sf $(PWD)/.tmux.conf $(HOME)/.tmux.conf
+.PHONY: clean
+clean:
+	rm $(HOME)/.tmux.conf
