@@ -117,7 +117,7 @@ local mappings = {
     p = { "<cmd>Git push<cr>", "Push" },
     l = { name = "+Log" },
     ["ll"] = { "<cmd>Git log<cr>", "Log" },
-    ["lo"] = { "<cmd>Git log<cr>", "Log oneline" },
+    ["lo"] = { "<cmd>Git log --oneline<cr>", "Log oneline" },
   },
 
   l = {
