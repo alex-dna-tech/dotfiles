@@ -25,3 +25,7 @@ if [[ -z "$TMUX" ]]; then
 else
   tmux switch-client 
 fi
+
+# TODO: fix text glitch when history scroll
+# PS1="\e[1;33m\u@\h \e[1;32m\W\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\\$\[$(tput sgr0)\]\e[0m "
+PS1="\u@\h \W\$(git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/')\\$\[$(tput sgr0)\] "
