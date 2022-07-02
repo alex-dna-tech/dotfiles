@@ -1,22 +1,23 @@
 .DEFAULT: install
 
-LNK_PATH=$(HOME)/dotfiles/bash
-
-ifeq ($(OS),Windows_NT)
-    DETECTED_OS := Windows
+DETECTED_OS = $(shell uname)
+ifeq ($(DETECTED_OS), Darwin)
+	TARGET = $(HOME)/.bash_profile
 else
-    DETECTED_OS := $(shell uname)
+	TARGET = $(HOME)/.bashrc
 endif
+
+LNK_PATH = $(HOME)/dotfiles/bash
+SOURCE = source $(LNK_PATH)/aliases.sh
+GREP_COUNT = $(shell grep -c "aliases.sh" $(TARGET))
 
 .PHONY: install
 install: 
-	[ "$(DETECTED_OS)" = "Darwin" ] \
-		&& echo "source $(LNK_PATH)/aliases.sh" >> $(HOME)/.bash_profile \
-		|| echo "source $(LNK_PATH)/aliases.sh" >> $(HOME)/.bashrc 
+		echo $(SOURCE) >> $(TARGET)
 
 .PHONY: clean
 clean:
-	[ "$(DETECTED_OS)" = "Darwin" ] \
-		&& cat $(HOME)/.bash_profile | grep -v "aliases.sh" >$(HOME)/.bash_profile \
-		|| cat $(HOME)/.bashrc | grep -v "aliases.sh" >$(HOME)/.bashrc
+		[ $(GREP_COUNT) -ne 0 ] \
+			&& grep -v "aliases.sh" $(TARGET) > tmp.bashrc~ \
+			&& mv tmp.bashrc~ $(TARGET) || echo "Nothing to do"
 
