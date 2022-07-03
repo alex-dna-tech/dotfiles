@@ -49,3 +49,5 @@ EOF
 }
 
 alias q='pmset displaysleepnow'
+alias dsclean='find . -type f -name .DS_Store -print0 | xargs -0 rm'
+
