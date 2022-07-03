@@ -44,5 +44,4 @@ end
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd "com! W w"
-vim.cmd "set autowriteall"
 vim.cmd "set completeopt=noinsert,menuone,noselect"
