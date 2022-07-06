@@ -1,7 +1,9 @@
-SUBDIRS = bash nvim tmux
+SUBDIRS = bash git nvim tmux
 
+.PHONY: all
 all: $(SUBDIRS)
-$(SUBDIRS):
-        $(MAKE) -C $@
 
-.PHONY: all $(SUBDIRS)
+.PHONY: $(SUBDIRS)
+$(SUBDIRS):
+	@$(MAKE) -C $@
+

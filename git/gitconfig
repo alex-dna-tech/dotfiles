@@ -1,0 +1,5 @@
+[user]
+	email = alex@dna.tech
+	name = Alex Serheyev
+[pull]
+	ff = only
