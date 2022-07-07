@@ -56,7 +56,12 @@ Next we need to install python support (node is optional)
   ```
   npm i -g neovim
   ```
+
 ---
+
+Telescope search support
+
+- [ripgrep](https://github.com/BurntSushi/ripgrep/releases)
 
 **NOTE** make sure you have [node](https://nodejs.org/en/) installed, I recommend a node manager like [fnm](https://github.com/Schniz/fnm).
 
