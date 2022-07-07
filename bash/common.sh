@@ -21,5 +21,5 @@ if [[ $? -ne 0 ]]; then
   TMUX='' tmux new-session -d 
 fi
 if [[ -z "$TMUX" ]]; then
-  tmux attach 
+  tmux a -d
 fi
