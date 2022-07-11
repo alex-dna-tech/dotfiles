@@ -1,5 +1,5 @@
 $(HOME)/.gitconfig: helper
-	ln -sf $(PWD)/gitconfig  $(HOME)/.gitconfig
+	ln -sf $(PWD)/gitconfig  $(HOME)/.gitconfig && chmod 0664 $(HOME)/.gitconfig
 
 .PHONY: helper
 helper:
