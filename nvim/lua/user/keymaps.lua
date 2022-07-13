@@ -42,7 +42,10 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 -- Copy
 keymap("n", "<leader>y", "+y", opts)
 keymap("v", "<leader>y", "+y", opts)
-keymap("v", "<leader>Y", 'gg0"+yG', opts)
+keymap("n", "<leader>Y", 'gg0"+yG', opts)
+keymap("v", "<leader>tmc", 'y<cr>:call system("tmux load-buffer -", @0)<cr>gv', opts)
+keymap("n", "<leader>tmc", ':call system("tmux load-buffer -", @0)', opts)
+keymap("n", "<leader>tmp", ':let @0 = system("tmux save-buffer -")<cr>"0p<cr>g;', opts)
 
 -- Insert --
 -- Press jj,kk fast to enter
