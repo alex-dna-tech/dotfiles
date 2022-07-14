@@ -12,7 +12,7 @@ SOURCE = source $(LNK_PATH)/aliases.sh
 GREP_COUNT = $(shell grep -c "aliases.sh" $(TARGET))
 
 .PHONY: install
-install: 
+install: clean 
 		echo $(SOURCE) >> $(TARGET)
 
 .PHONY: clean
