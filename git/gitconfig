@@ -3,3 +3,5 @@
 	name = Alex Serheyev
 [pull]
 	ff = only
+[core]
+	excludesFile = ~/.gitignore
