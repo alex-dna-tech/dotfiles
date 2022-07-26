@@ -5,3 +5,5 @@
 	ff = only
 [core]
 	excludesFile = ~/.gitignore
+[credential]
+	helper = store
