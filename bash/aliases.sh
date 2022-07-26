@@ -9,4 +9,5 @@ source $HOME/dotfiles/bash/composer.sh
 source $HOME/dotfiles/bash/symfony.sh
 source $HOME/dotfiles/bash/tmux.sh
 source $HOME/dotfiles/bash/ansible.sh
+source $HOME/dotfiles/bash/k8s.sh
 
