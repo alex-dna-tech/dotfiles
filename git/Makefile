@@ -1,4 +1,4 @@
-$(HOME)/.gitconfig: helper
+$(HOME)/.gitconfig: 
 	ln -sf $(PWD)/gitconfig  $(HOME)/.gitconfig && \
 	ln -sf $(PWD)/gitignore  $(HOME)/.gitignore && \
 	chmod 0664 $(HOME)/.gitconfig $(HOME)/.gitignore
