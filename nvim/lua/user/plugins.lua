@@ -60,7 +60,7 @@ return packer.startup(function(use)
   use "tpope/vim-surround"
   use "AndrewRadev/splitjoin.vim"
   use { "numtostr/BufOnly.nvim", cmd={"BufOnly"} }
-  use "Pocco81/AutoSave.nvim"
+  use "pocco81/auto-save.nvim"
 
 
   -- Colorschemes
