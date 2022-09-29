@@ -136,3 +136,16 @@ alias kgsecwl='kubectl get secret --watch -l'
 alias kgnowl='kubectl get nodes --watch -l'
 alias kgnswl='kubectl get namespaces --watch -l'
 
+if [[ -x "$(command -v k3d)" ]]; then
+  source <(kubectl completion bash)
+fi
+
+if [[ -x "$(command -v helm)" ]]; then
+  source <(helm completion bash)
+fi
+
+if [[ -x "$(command -v k3d)" ]]; then
+  source <(k3d completion bash)
+fi
+
+
