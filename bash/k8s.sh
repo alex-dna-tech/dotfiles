@@ -135,9 +135,9 @@ alias kgcmwl='kubectl get configmap --watch -l'
 alias kgsecwl='kubectl get secret --watch -l'
 alias kgnowl='kubectl get nodes --watch -l'
 alias kgnswl='kubectl get namespaces --watch -l'
-alias kpft="kubectl port-forward -n kube-system '$(kubectl get pods -n kube-system | grep '^traefik-' | awk '{print $1}')' 9000:9000"
+alias kpft='kubectl port-forward -n kube-system "$(kubectl get pods -n kube-system | grep "^traefik-" | awk "{print $1}")" 9000:9000'
 
-if [[ -x "$(command -v k3d)" ]]; then
+if [[ -x "$(command -v kubectl)" ]]; then
   source <(kubectl completion bash)
 fi
 
@@ -149,4 +149,6 @@ if [[ -x "$(command -v k3s)" ]]; then
   source <(k3s completion bash)
 fi
 
-
+if [[ -x "$(command -v k3d)" ]]; then
+  source <(k3d completion bash)
+fi
