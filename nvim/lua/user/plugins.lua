@@ -53,6 +53,7 @@ return packer.startup(function(use)
   use "AndrewRadev/splitjoin.vim"
   use { "numtostr/BufOnly.nvim", cmd={"BufOnly"} }
   use "pocco81/auto-save.nvim"
+  use "norcalli/nvim-colorizer.lua"
 
 
   -- Colorschemes
