@@ -5,5 +5,8 @@
 	ff = only
 [core]
 	excludesFile = ~/.gitignore
+	editor = vim
 [credential]
 	helper = store
+[init]
+	defaultBranch = master
