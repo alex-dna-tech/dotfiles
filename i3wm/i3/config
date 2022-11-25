@@ -283,13 +283,12 @@ assign [class="Microsoft-edge-dev"]                                             
 # Workspace 2 text editor related
 #assign [class="sublime-text|sublime_text|Sublime_text|subl|Subl|subl3|Subl3"]      → 2
 #assign [class="Xed|xed|Brackets|Atom|Code|Geany"]                                  → 2
-assign [class="Gnome-terminal"]                                                     → 2
+# assign [class="Gnome-terminal"]                                                   → 2
 
 # Workspace 3 Messagers
 assign [class="Viber"] → 3
 assign [class="Telegram"] → 3
 assign [class="Conversations"] → 3
-assign [class="Microsoft Teams"] → 3
 
 # Workspace 4 Gimp
 #assign [class="Gimp"]                                                               → 4
@@ -303,12 +302,11 @@ assign [class="Meld"]                                                           
 assign [class="Vlc|vlc|obs"]                                                         → 6
 
 # Workspace 7 virtual machines and settings
-assign [class="Vmplayer|VirtualBox"]                                                → 7
+assign [class="Vmplayer|VirtualBox"]                                                 → 7
 
-assign [class="Com.cisco.anyconnect.gui"]                                           → 7
 
 # Workspace 8 file managers
-assign [class="Nemo|Thunar|Caja|nautilus|Nautilus"]                                 → 8
+assign [class="Nemo|Thunar|Caja|nautilus|Nautilus"]                                  → 8
 
 # Workspace 9 email clients
 #assign [class="Geary|Evolution"]                                                    → 9
@@ -328,21 +326,23 @@ for_window [class="Spotify"] move to workspace 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-# Cisco AnyConnect
-exec --no-startup-id /opt/cisco/anyconnect/bin/vpnui
-
-# Browser
-exec --no-startup-id microsoft-edge-dev
-
 # File manager
 #exec --no-startup-id thunar
 
 # Messager clients
-exec --no-startup-id teams &
+# exec --no-startup-id i3-msg 'workspace 3; exec teams'
+assign [class="Microsoft Teams"] → 3
+
+# Cisco AnyConnect
+# exec --no-startup-id i3-msg 'workspace 7; exec /opt/cisco/anyconnect/bin/vpnui'
+assign [class="Com.cisco.anyconnect.gui"] → 7
+for_window [class="Com.cisco.anyconnect.gui"] floating enable, move absolute position center
 
 # Terminal
-exec --no-startup-id gnome-terminal;focus
+exec --no-startup-id i3-msg 'workspace 2; exec gnome-terminal'
 
+# Browser
+exec --no-startup-id i3-msg 'workspace 1; exec microsoft-edge-dev'
 
 # TRAY APPLICATIONS
 
@@ -357,20 +357,17 @@ exec --no-startup-id gnome-terminal;focus
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --color=161616
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --image=/usr/share/backgrounds/kali/kali-actiniaria-16x9.png && echo "freeze mem disk" > /sys/power/state &
 
 # network
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet &
 
 # volume
 #exec --no-startup-id pasystray
 # exec --no-startup-id volumeicon
 
 #variety
-exec --no-startup-id variety
-
-# clipman
-exec --no-startup-id xfce4-clipman
+exec --no-startup-id variety &
 
 #Conky
 exec --no-startup-id conky -c ~/.config/i3/system-overview.lua &
@@ -383,13 +380,10 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh &
 #####################################################################################################################
 
 exec --no-startup-id thunar --daemon &
-exec --no-startup-id xfce4-power-manager &
 exec --no-startup-id pulseaudio &
-exec --no-startup-id rclone --vfs-cache-mode writes mount "OneDrive": ~/oneDrive &
-# ommitted next line to get super key to bring up the menu in xfce and avoid error then in i3
-# activate again if errors occurr
-#exec --no-startup-id xfsettingsd &
+# exec --no-startup-id xfsettingsd &
 # exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd &
+# exec --no-startup-id xfce4-power-manager &
 
 
 #####################################################################################################################
@@ -402,36 +396,22 @@ exec --no-startup-id rclone --vfs-cache-mode writes mount "OneDrive": ~/oneDrive
 bindsym Mod1+Return exec --no-startup-id gnome-terminal;focus
 
 # System monitor
-bindsym control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
+bindsym Control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
 
 # Settings
-bindsym control+mod1+m exec --no-startup-id xfce4-settings-manager;focus
+bindsym Control+Mod1+m exec --no-startup-id xfce4-settings-manager;focus
 
 # Catfish
-bindsym control+mod1+c exec --no-startup-id catfish;focus
+bindsym Control+Mod1+c exec --no-startup-id catfish;focus
 
+
+bindsym Mod1+Shift+o exec --no-startup-id rclone --vfs-cache-mode writes mount "OneDrive": ~/oneDrive &
 # Slimlock
 #bindsym Mod1+k exec slimlock
 #use super + X to get to slimlock
 
 # Rofi theme selector
-#bindsym control+mod1+r exec --no-startup-id rofi-theme-selector
-
-# Pavucontrol
-bindsym control+mod1+u exec --no-startup-id pavucontrol;focus
-
-# Start xfce-appfinder
-bindsym control+mod1+a exec --no-startup-id xfce4-appfinder;focus
-
-#workspace related
-bindsym Mod1+w exec --no-startup-id exo-open --launch webbrowser;focus
-
-#workspace 5 related
-bindsym Mod1+F5 exec --no-startup-id meld;focus
-bindsym control+mod1+i exec --no-startup-id nitrogen;focus
-
-#workspace 6 related
-bindsym Mod1+F6 exec --no-startup-id vlc;focus
+#bindsym control+mod1+r exec --no-startup-id rofi-theme-selecto
 
 #workspace 7 related
 bindsym Mod1+F7 exec --no-startup-id virtualbox;focus
@@ -444,23 +424,23 @@ bindsym Mod1+Shift+Return exec --no-startup-id thunar;focus
 
 #workspace 9 related
 bindsym Mod1+F9 exec --no-startup-id evolution;focus
-bindsym control+mod1+e exec --no-startup-id evolution;focus
+bindsym Control+mod1+e exec --no-startup-id evolution;focus
 #bindsym Mod1+F9 exec --no-startup-id geary;focus
-#bindsym control+mod1+e exec --no-startup-id geary;focus
+#bindsym Control+Mod1+e exec --no-startup-id geary;focus
 
 #workspace 10 related
 bindsym Mod1+F10 exec --no-startup-id spotify;focus
-bindsym control+mod1+s exec --no-startup-id spotify;focus
+bindsym Control+Mod1+s exec --no-startup-id spotify;focus
 
 #####################################################################################################################
 #################                          Scratch Pad                                              #################
 #####################################################################################################################
 
 # Make the currently focused window a scratchpad
-bindsym mod1+Shift+minus move scratchpad
+bindsym Mod1+Shift+minus move scratchpad
 
 # Show the first scratchpad window
-bindsym mod1+minus scratchpad show
+bindsym Mod1+minus scratchpad show
 
 #####################################################################################################################
 #################                          Screenshots                                              #################
@@ -469,7 +449,7 @@ bindsym mod1+minus scratchpad show
 bindsym Print exec --no-startup-id scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
 bindsym Control+Print exec --no-startup-id xfce4-screenshooter
 bindsym Control+Shift+Print exec --no-startup-id gnome-screenshot -i
-#bindsym shift+Print exec --no-startup-id shutter
+#bindsym Shift+Print exec --no-startup-id shutter
 
 #####################################################################################################################
 #################                          Floating or tiled                                        #################
@@ -503,7 +483,6 @@ for_window [class="Xfce4-taskmanager"] floating enable
 for_window [class="Viber"] floating disable
 for_window [class="Empathy"] floating disable
 for_window [class="Add new account"] floating disable
-for_window [class="Com.cisco.anyconnect.gui"] floating enable, move absolute position center
 for_window [class="Network Connections"] floating enable, move absolute position left center
 
 
@@ -547,19 +526,18 @@ bindsym control+mod1+f exec --no-startup-id variety -f
 #####################################################################################################################
 #################                          Audio settings                                           #################
 #####################################################################################################################
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 #####################################################################################################################
 #################                          Xbacklight                                               #################
 #####################################################################################################################
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-bindsym shift+XF86MonBrightnessUp exec xbacklight -inc 10
+bindsym Shift+XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
-bindsym shift+XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym Shift+XF86MonBrightnessDown exec xbacklight -dec 10
 
 #####################################################################################################################
 #################                          Popups  control                                          #################

@@ -11,5 +11,5 @@ clean:
 .PHONY: install
 install:
 	sudo apt update && sudo apt install -y \
-		i3 x11-xserver-utils rofi polybar compton xfce4-power-manager xfce4-appfinder \
+		i3 x11-xserver-utils rofi polybar compton dunst xfce4-power-manager xfce4-appfinder \
 		thunar variety conky feh xclip scrot vlc xsel dex
