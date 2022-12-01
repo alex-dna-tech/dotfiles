@@ -18,6 +18,10 @@
 #################                          Define the movements keys - variables                    #################
 #####################################################################################################################
 
+# main and second btn
+set $main   Mod1
+set $second  Mod4
+
 #This is setup for dvorak
 set $up k
 set $down j
@@ -70,47 +74,47 @@ workspace 9 output $secondMonitor
 workspace 10 output $secondMonitor
 
 # switch to workspace
-bindsym Mod1+1 workspace 1
-bindsym Mod1+2 workspace 2
-bindsym Mod1+3 workspace 3
-bindsym Mod1+4 workspace 4
-bindsym Mod1+5 workspace 5
-bindsym Mod1+6 workspace 6
-bindsym Mod1+7 workspace 7
-bindsym Mod1+8 workspace 8
-bindsym Mod1+9 workspace 9
-bindsym Mod1+0 workspace 10
+bindsym $main+1 workspace 1
+bindsym $main+2 workspace 2
+bindsym $main+3 workspace 3
+bindsym $main+4 workspace 4
+bindsym $main+5 workspace 5
+bindsym $main+6 workspace 6
+bindsym $main+7 workspace 7
+bindsym $main+8 workspace 8
+bindsym $main+9 workspace 9
+bindsym $main+0 workspace 10
 
 # move focused container to workspace
-bindsym Mod1+Shift+1 move container to workspace 1; workspace 1
-bindsym Mod1+Shift+2 move container to workspace 2; workspace 2
-bindsym Mod1+Shift+3 move container to workspace 3; workspace 3
-bindsym Mod1+Shift+4 move container to workspace 4; workspace 4
-bindsym Mod1+Shift+5 move container to workspace 5; workspace 5
-bindsym Mod1+Shift+6 move container to workspace 6; workspace 6
-bindsym Mod1+Shift+7 move container to workspace 7; workspace 7
-bindsym Mod1+Shift+8 move container to workspace 8; workspace 8
-bindsym Mod1+Shift+9 move container to workspace 9; workspace 9
-bindsym Mod1+Shift+0 move container to workspace 10; workspace 10
+bindsym $main+Shift+1 move container to workspace 1; workspace 1
+bindsym $main+Shift+2 move container to workspace 2; workspace 2
+bindsym $main+Shift+3 move container to workspace 3; workspace 3
+bindsym $main+Shift+4 move container to workspace 4; workspace 4
+bindsym $main+Shift+5 move container to workspace 5; workspace 5
+bindsym $main+Shift+6 move container to workspace 6; workspace 6
+bindsym $main+Shift+7 move container to workspace 7; workspace 7
+bindsym $main+Shift+8 move container to workspace 8; workspace 8
+bindsym $main+Shift+9 move container to workspace 9; workspace 9
+bindsym $main+Shift+0 move container to workspace 10; workspace 10
 
 #####################################################################################################################
 #################                          3 menu's in arcolinux                                     #################
 #####################################################################################################################
 
-bindsym Mod4+d exec --no-startup-id rofi -show drun -font "monospace 13"
+bindsym $main+d exec --no-startup-id rofi -show drun -font "monospace 13"
 
 # start dmenu
-#bindsym Mod1+shift+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+#bindsym $main+shift+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
 
 #####################################################################################################################
 #################                          how to exit, logoff, suspend, ...                        #################
 #####################################################################################################################
 
 # exit i3 (logs you out of your X session)
-# bindsym Mod1+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# bindsym $main+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-#Press Mod1 (super) and X to exit - check toolbar for next choices
-bindsym Mod1+x mode "System: (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown"
+#Press $main (super) and X to exit - check toolbar for next choices
+bindsym $main+x mode "System: (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown"
 
 mode "System: (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) shutdown" {
     bindsym k exec --no-startup-id i3lock -c 161616 -f, mode "default"
@@ -130,51 +134,51 @@ mode "System: (k) lock, (l) logout, (u) suspend, (h) hibernate, (r) reboot, (s) 
 #####################################################################################################################
 
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym Mod1+Shift+r restart
+bindsym $main+Shift+r restart
 
 #####################################################################################################################
 #################                          Stopping an application                                  #################
 #####################################################################################################################
 
 # kill focused window
-bindsym Mod1+Shift+q kill
+bindsym $main+Shift+q kill
 
 #####################################################################################################################
 #################                          Moving around in i3                                      #################
 #####################################################################################################################
 
-# Use Mouse+Mod1 to drag floating windows to their wanted position
+# Use Mouse+$main to drag floating windows to their wanted position
 floating_modifier Control
 
 # toggle tiling / floating
-bindsym Mod1+Shift+t floating toggle
+bindsym $main+Shift+t floating toggle
 
 # change focus
-bindsym Mod1+$left focus left
-bindsym Mod1+$down focus down
-bindsym Mod1+$up focus up
-bindsym Mod1+$right focus right
+bindsym $main+$left focus left
+bindsym $main+$down focus down
+bindsym $main+$up focus up
+bindsym $main+$right focus right
 
 # alternatively, you can use the cursor keys:
-bindsym Mod1+Left focus left
-bindsym Mod1+Down focus down
-bindsym Mod1+Up focus up
-bindsym Mod1+Right focus right
+bindsym $main+Left focus left
+bindsym $main+Down focus down
+bindsym $main+Up focus up
+bindsym $main+Right focus right
 
 # move focused window
-bindsym Mod1+Shift+$left move left
-bindsym Mod1+Shift+$down move down
-bindsym Mod1+Shift+$up move up
-bindsym Mod1+Shift+$right move right
+bindsym $main+Shift+$left move left
+bindsym $main+Shift+$down move down
+bindsym $main+Shift+$up move up
+bindsym $main+Shift+$right move right
 
 # alternatively, you can use the cursor keys:
-bindsym Mod1+Shift+Left move left
-bindsym Mod1+Shift+Down move down
-bindsym Mod1+Shift+Up move up
-bindsym Mod1+Shift+Right move right
+bindsym $main+Shift+Left move left
+bindsym $main+Shift+Down move down
+bindsym $main+Shift+Up move up
+bindsym $main+Shift+Right move right
 
 # Move floating container to the center of all outputs
-bindsym Mod1+Shift+c move absolute position center
+bindsym $main+Shift+c move absolute position center
 
 
 #####################################################################################################################
@@ -183,13 +187,13 @@ bindsym Mod1+Shift+c move absolute position center
 
 # next/previous workspace
 
-bindsym Mod4+Tab workspace next
-bindsym Mod4+Shift+Tab workspace prev
-bindsym Mod1+Tab workspace back_and_forth
+bindsym $second+Tab workspace next
+bindsym $second+Shift+Tab workspace prev
+bindsym $main+Tab workspace back_and_forth
 
 #navigate workspaces next / previous
-bindsym Mod4+Ctrl+Right workspace next
-bindsym Mod4+Ctrl+Left workspace prev
+bindsym $second+Ctrl+Right workspace next
+bindsym $second+Ctrl+Left workspace prev
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -202,40 +206,40 @@ for_window [urgent=latest] focus
 default_orientation horizontal
 
 # split in horizontal orientation
-#bindsym Mod1+h split h
-bindsym Mod1+Shift+v split h
+#bindsym $main+h split h
+bindsym $main+Shift+v split h
 
 # split in vertical orientation
-bindsym Mod1+v split v
+bindsym $main+v split v
 
 # enter fullscreen mode for the focused container
 # Alt+f in arcolinux is execute thunar
-bindsym Mod1+f fullscreen toggle
+bindsym $main+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # qwerty/azerty issue for letter z
-bindsym Mod1+s layout stacking
-bindsym Mod1+t layout tabbed
-bindsym Mod1+e layout toggle split
+bindsym $main+s layout stacking
+bindsym $main+t layout tabbed
+bindsym $main+e layout toggle split
 
 # toggle tiling / floating
-bindsym Mod1+Shift+space floating toggle
+bindsym $main+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym Mod1+space focus mode_toggle
+bindsym $main+space focus mode_toggle
 
 # focus the parent container
-bindsym Mod1+a focus parent
+bindsym $main+a focus parent
 
 # focus the child container
-#bindsym Mod1+d focus child
+#bindsym $main+d focus child
 
 #####################################################################################################################
 #################                          resize                                                   #################
 #####################################################################################################################
 # resize window (you can also use the mouse for that)
 
-bindsym Mod1+r mode "Resize Window"
+bindsym $main+r mode "Resize Window"
 mode "Resize Window" {
 # These bindings trigger as soon as you enter the resize mode
 
@@ -360,7 +364,7 @@ exec --no-startup-id i3-msg 'workspace 1; exec microsoft-edge-dev'
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --image=/usr/share/backgrounds/kali/kali-actiniaria-16x9.png && echo "freeze mem disk" > /sys/power/state &
 
 # network
-exec --no-startup-id nm-applet &
+exec --no-startup-id nm-applet
 
 # volume
 #exec --no-startup-id pasystray
@@ -393,54 +397,54 @@ exec --no-startup-id pulseaudio &
 #not workspace related
 
 # Terminal
-bindsym Mod1+Return exec --no-startup-id gnome-terminal;focus
+bindsym $main+Return exec --no-startup-id gnome-terminal;focus
 
 # System monitor
 bindsym Control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
 
 # Settings
-bindsym Control+Mod1+m exec --no-startup-id xfce4-settings-manager;focus
+bindsym Control+$main+m exec --no-startup-id xfce4-settings-manager;focus
 
 # Catfish
-bindsym Control+Mod1+c exec --no-startup-id catfish;focus
+bindsym Control+$main+c exec --no-startup-id catfish;focus
 
 
-bindsym Mod1+Shift+o exec --no-startup-id rclone --vfs-cache-mode writes mount "OneDrive": ~/oneDrive &
+bindsym $main+Shift+o exec --no-startup-id rclone --vfs-cache-mode writes mount "OneDrive": ~/oneDrive &
 # Slimlock
-#bindsym Mod1+k exec slimlock
+#bindsym $main+k exec slimlock
 #use super + X to get to slimlock
 
 # Rofi theme selector
 #bindsym control+mod1+r exec --no-startup-id rofi-theme-selecto
 
 #workspace 7 related
-bindsym Mod1+F7 exec --no-startup-id virtualbox;focus
+bindsym $main+F7 exec --no-startup-id virtualbox;focus
 
 #workspace 8 related
-bindsym Mod1+F8 exec --no-startup-id thunar;focus
+bindsym $main+F8 exec --no-startup-id thunar;focus
 for_window [class="Thunar"] move absolute position center
-bindsym Mod1+Shift+Return exec --no-startup-id thunar;focus
+bindsym $main+Shift+Return exec --no-startup-id thunar;focus
 #bindsym control+mod1+b exec --no-startup-id thunar;focus
 
 #workspace 9 related
-bindsym Mod1+F9 exec --no-startup-id evolution;focus
+bindsym $main+F9 exec --no-startup-id evolution;focus
 bindsym Control+mod1+e exec --no-startup-id evolution;focus
-#bindsym Mod1+F9 exec --no-startup-id geary;focus
-#bindsym Control+Mod1+e exec --no-startup-id geary;focus
+#bindsym $main+F9 exec --no-startup-id geary;focus
+#bindsym Control+$main+e exec --no-startup-id geary;focus
 
 #workspace 10 related
-bindsym Mod1+F10 exec --no-startup-id spotify;focus
-bindsym Control+Mod1+s exec --no-startup-id spotify;focus
+bindsym $main+F10 exec --no-startup-id spotify;focus
+bindsym Control+$main+s exec --no-startup-id spotify;focus
 
 #####################################################################################################################
 #################                          Scratch Pad                                              #################
 #####################################################################################################################
 
 # Make the currently focused window a scratchpad
-bindsym Mod1+Shift+minus move scratchpad
+bindsym $main+Shift+minus move scratchpad
 
 # Show the first scratchpad window
-bindsym Mod1+minus scratchpad show
+bindsym $main+minus scratchpad show
 
 #####################################################################################################################
 #################                          Screenshots                                              #################
