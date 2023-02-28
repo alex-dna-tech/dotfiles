@@ -25,3 +25,4 @@ vim.cmd [[
     autocmd VimResized * tabdo wincmd = 
   augroup end
 ]]
+

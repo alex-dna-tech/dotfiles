@@ -1,15 +1,3 @@
-local opts = { noremap = true, silent = true }
-
-local term_opts = { silent = true }
-
--- Shorten function name
-local keymap = vim.api.nvim_set_keymap
-
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -17,6 +5,17 @@ vim.g.maplocalleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
+
+local opts = { noremap = true, silent = true }
+local term_opts = { silent = true }
+
+-- Shorten function name
+local keymap = vim.keymap.set
+
+--Remap space as leader key
+vim.g.mapleader = " "
+vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+keymap("", "<Space>", "<Nop>", opts)
 
 -- Normal --
 -- Better window navigation
@@ -43,9 +42,9 @@ keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 keymap("n", "<leader>y", "+y", opts)
 keymap("v", "<leader>y", "+y", opts)
 keymap("n", "<leader>Y", 'gg0"+yG', opts)
-keymap("v", "<leader>tmc", 'y<cr>:call system("tmux load-buffer -", @0)<cr>gv', opts)
-keymap("n", "<leader>tmc", ':call system("tmux load-buffer -", @0)', opts)
-keymap("n", "<leader>tmp", ':let @0 = system("tmux save-buffer -")<cr>"0p<cr>g;', opts)
+keymap("v", "<leader>tc", 'y<cr>:call system("tmux load-buffer -", @0)<cr>gv', opts)
+keymap("n", "<leader>tc", ':call system("tmux load-buffer -", @0)', opts)
+keymap("n", "<leader>tp", ':let @0 = system("tmux save-buffer -")<cr>"0p<cr>g;', opts)
 
 -- Insert --
 -- Press jj,kk fast to enter

@@ -1,8 +1,3 @@
-local status_ok, which_key = pcall(require, "which-key")
-if not status_ok then
-  return
-end
-
 local setup = {
   plugins = {
     marks = true, -- shows a list of your marks on ' and `
@@ -83,9 +78,9 @@ local mappings = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
-  ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+  ["c"] = { "<cmd>bdelete<CR>", "Close Buffer" },
   ["x"] = { "<cmd>BufOnly<CR>", "Only Current Buffer" },
-  ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
+  ["e"] = { "<cmd>Ex<cr>", "Explorer" },
   ["w"] = { "<cmd>w!<CR>", "Save" },
   ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
@@ -123,30 +118,18 @@ local mappings = {
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    d = {
-      "<cmd>Telescope lsp_document_diagnostics<cr>",
-      "Document Diagnostics",
-    },
     w = {
       "<cmd>Telescope lsp_workspace_diagnostics<cr>",
       "Workspace Diagnostics",
     },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
-    I = { "<cmd>LspInstallInfo<cr>", "Installer Info" },
-    j = {
-      "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>",
-      "Next Diagnostic",
-    },
-    k = {
-      "<cmd>lua vim.lsp.diagnostic.goto_prev()<cr>",
-      "Prev Diagnostic",
-    },
+    I = { "<cmd>Mason<cr>", "Installer Info" },
     l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
     q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
     r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
-    S = {
+    d = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",
     },
@@ -162,7 +145,6 @@ local mappings = {
     C = { "<cmd>Telescope colorscheme<cr>", "Colorscheme" },
     s = { name = "+Symbols" },
     ["se"] = { "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji'} }<cr>", "Emoji" },
-    ["sk"] = { "<cmd>lua require'telescope.builtin'.symbols{ sources = {'kaomoji'} }<cr>", "Kaomoji" },
     ["sg"] = { "<cmd>lua require'telescope.builtin'.symbols{ sources = {'gitmoji'} }<cr>", "Gitmoji" },
   },
   t = {
@@ -178,5 +160,7 @@ local mappings = {
   },
 }
 
-which_key.setup(setup)
-which_key.register(mappings, opts)
+local wk = require("which-key")
+
+wk.setup(setup)
+wk.register(mappings, opts)
