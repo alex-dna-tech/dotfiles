@@ -13,6 +13,11 @@ alias hg='history | grep -i'
 alias ag='alias | grep -i'
 alias dirarch='find . -maxdepth 1 -type d ! -name . -exec tar -zcvf '{}'.tar.gz '{}'/ \; -exec rm -rf '{}' \;'
 
+gp()
+{
+  date +%s | sha256sum | base64 | head -c ${1:-64} ; echo
+}
+
 
 bind 'set completion-ignore-case on'
 
