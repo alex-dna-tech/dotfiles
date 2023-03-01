@@ -1,14 +1,6 @@
 local lsp = require('lsp-zero')
 lsp.preset("recommended")
 
-lsp.ensure_installed({
-	'emmet_ls',
-	'eslint',
-	'gopls',
-	'html',
-	'tsserver',
-})
-
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -24,7 +16,7 @@ lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr, remap = false, silent = true }
 
   vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
