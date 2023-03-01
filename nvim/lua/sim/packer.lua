@@ -43,12 +43,7 @@ return require('packer').startup(function(use)
   use "AndrewRadev/splitjoin.vim"
 
   use "windwp/nvim-autopairs"
-  use {
-      "numToStr/Comment.nvim",
-      config = function()
-          require("Comment").setup()
-      end
-  }
+  use "numToStr/Comment.nvim"
   use "mbbill/undotree"
   use "lukas-reineke/indent-blankline.nvim"
 
