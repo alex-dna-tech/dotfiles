@@ -18,7 +18,6 @@ gp()
   date +%s | sha256sum | base64 | head -c ${1:-64} ; echo
 }
 
-
 bind 'set completion-ignore-case on'
 
 set -o vi
@@ -26,8 +25,12 @@ bind -m vi-insert "\C-l":clear-screen
 
 export EDITOR=vim
 export VISUAL=vim
+export PAGER=less
+export TERMINAL=kitty
+
 export LC_ALL=en_US.utf-8
 export LC_CTYPE=UTF-8
+
 if [[ -x "$(command -v nvim)" ]]; then
   alias  vim=nvim
 fi

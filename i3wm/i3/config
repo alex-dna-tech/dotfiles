@@ -343,7 +343,7 @@ assign [class="Com.cisco.anyconnect.gui"] → 7
 for_window [class="Com.cisco.anyconnect.gui"] floating enable, move absolute position center
 
 # Terminal
-exec --no-startup-id i3-msg 'workspace 2; exec gnome-terminal'
+exec --no-startup-id i3-msg 'workspace 2; exec i3-sensible-terminal'
 
 # Browser
 exec --no-startup-id i3-msg 'workspace 1; exec microsoft-edge-dev'
@@ -397,7 +397,7 @@ exec --no-startup-id pulseaudio &
 #not workspace related
 
 # Terminal
-bindsym $main+Return exec --no-startup-id gnome-terminal;focus
+bindsym $main+Return exec --no-startup-id i3-sensible-terminal;focus
 
 # System monitor
 bindsym Control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
