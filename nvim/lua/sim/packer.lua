@@ -23,7 +23,7 @@ return require('packer').startup(function(use)
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
   -- UI
-  use "ellisonleao/gruvbox.nvim"
+  use "morhetz/gruvbox"
   use "norcalli/nvim-colorizer.lua"
   use "akinsho/bufferline.nvim"
   use "kyazdani42/nvim-web-devicons"
