@@ -74,7 +74,7 @@ local opts = {
 }
 
 local mappings = {
-  ["u"] = {
+  ["b"] = {
     "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
     "Buffers",
   },
@@ -90,7 +90,6 @@ local mappings = {
   },
   ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
-
   p = {
     name = "Packer",
     c = { "<cmd>PackerCompile<cr>", "Compile" },
@@ -99,7 +98,6 @@ local mappings = {
     S = { "<cmd>PackerStatus<cr>", "Status" },
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
-
   g = {
     name = "Git",
     s = { "<cmd>Git<cr>", "Status" },
@@ -114,7 +112,6 @@ local mappings = {
     ["ll"] = { "<cmd>Git log<cr>", "Log" },
     ["lo"] = { "<cmd>Git log --oneline<cr>", "Log oneline" },
   },
-
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
