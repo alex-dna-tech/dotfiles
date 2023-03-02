@@ -19,8 +19,8 @@
 #####################################################################################################################
 
 # main and second btn
-set $main   Mod1
-set $second  Mod4
+set $main   Mod4
+set $second  Mod1
 
 #This is setup for dvorak
 set $up k
@@ -98,13 +98,12 @@ bindsym $main+Shift+9 move container to workspace 9; workspace 9
 bindsym $main+Shift+0 move container to workspace 10; workspace 10
 
 #####################################################################################################################
-#################                          3 menu's in arcolinux                                     #################
+#################                          3 menu's in arcolinux                                    #################
 #####################################################################################################################
-
-bindsym $main+d exec --no-startup-id rofi -show drun -font "monospace 13"
 
 # start dmenu
 #bindsym $main+shift+d exec --no-startup-id dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'NotoMonoRegular:bold:pixelsize=14'
+bindsym $main+d exec --no-startup-id rofi -show drun -font "monospace 13"
 
 #####################################################################################################################
 #################                          how to exit, logoff, suspend, ...                        #################
@@ -217,7 +216,6 @@ bindsym $main+v split v
 bindsym $main+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-# qwerty/azerty issue for letter z
 bindsym $main+s layout stacking
 bindsym $main+t layout tabbed
 bindsym $main+e layout toggle split
@@ -270,50 +268,56 @@ mode "Resize Window" {
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # choose your font
-font pango:monospace 13
+font pango:monospace 12
 
 #####################################################################################################################
-#################                          assign applications to workspaces                       #################
+#################                          assign applications to workspaces                        #################
 #####################################################################################################################
 
 # Assign application to start on a specific workspace
 # you can find the class with the program xprop
+# command show WM_CLASS property (use second value)
+# WM_CLASS(STRING) = "gnome-terminal-server", "Gnome-terminal"
 
 # Workspace 1 browser related
 assign [class="Microsoft-edge-dev"]                                                 → 1
-# assign [class="Firefox|Vivaldi-stable|Vivaldi-snapshot|Opera"]                    → 1
-#assign [class="Chromium|Google-chrome"]                                            → 1
+assign [class="Firefox|Vivaldi-stable|Vivaldi-snapshot|Opera"]                      → 1
+assign [class="Chromium|Google-chrome"]                                             → 1
 
 # Workspace 2 text editor related
-#assign [class="sublime-text|sublime_text|Sublime_text|subl|Subl|subl3|Subl3"]      → 2
-#assign [class="Xed|xed|Brackets|Atom|Code|Geany"]                                  → 2
-# assign [class="Gnome-terminal"]                                                   → 2
+assign [class="sublime-text|sublime_text|Sublime_text|subl|Subl|subl3|Subl3"]       → 2
+assign [class="Xed|xed|Brackets|Atom|Code|Geany"]                                   → 2
+assign [class="Gnome-terminal"]                                                     → 2
+assign [class="kitty"]                                                              → 2
 
 # Workspace 3 Messagers
-assign [class="Viber"] → 3
-assign [class="Telegram"] → 3
-assign [class="Conversations"] → 3
+assign [class="Viber"]                                                              → 3
+assign [class="Telegram"]                                                           → 3
+assign [class="Conversations"]                                                      → 3
+assign [class="Microsoft Teams"]                                                    → 3
 
 # Workspace 4 Gimp
-#assign [class="Gimp"]                                                               → 4
+assign [class="Gimp-*"]                                                             → 4
 
 # Workspace 5 Images and meld
-#assign [class="ristretto|Ristretto|shotwell|Shotwell|Xviewer|Nitrogen"]             → 5
-#assign [class="feh|gthumb|Gthumb|eog|Eog|Pinta|pixeluvo|Pixeluvo"]                  → 5
-assign [class="Meld"]                                                                → 5
+assign [class="ristretto|Ristretto|shotwell|Shotwell|Xviewer|Nitrogen"]             → 5
+assign [class="feh|gthumb|Gthumb|eog|Eog|Pinta|pixeluvo|Pixeluvo"]                  → 5
+assign [class="Meld"]                                                               → 5
 
 # Workspace 6 all video related software
-assign [class="Vlc|vlc|obs"]                                                         → 6
+assign [class="Vlc|vlc|obs"]                                                        → 6
 
 # Workspace 7 virtual machines and settings
-assign [class="Vmplayer|VirtualBox"]                                                 → 7
+assign [class="Vmplayer|VirtualBox"]                                                → 7
+assign [class="Com.cisco.anyconnect.gui"] → 7
+for_window [class="Com.cisco.anyconnect.gui"] floating enable, move absolute position center
 
 
 # Workspace 8 file managers
-assign [class="Nemo|Thunar|Caja|nautilus|Nautilus"]                                  → 8
+assign [class="Nemo|Thunar|Caja|nautilus|Nautilus"]                                 → 8
 
 # Workspace 9 email clients
-#assign [class="Geary|Evolution"]                                                    → 9
+assign [class="Geary|Evolution"]                                                    → 9
 
 # Workspace 10 music related
 assign [class="Spotify|spotify"]                                                    → 10
@@ -335,12 +339,9 @@ exec --no-startup-id dex --autostart --environment i3
 
 # Messager clients
 # exec --no-startup-id i3-msg 'workspace 3; exec teams'
-assign [class="Microsoft Teams"] → 3
 
 # Cisco AnyConnect
 # exec --no-startup-id i3-msg 'workspace 7; exec /opt/cisco/anyconnect/bin/vpnui'
-assign [class="Com.cisco.anyconnect.gui"] → 7
-for_window [class="Com.cisco.anyconnect.gui"] floating enable, move absolute position center
 
 # Terminal
 exec --no-startup-id i3-msg 'workspace 2; exec i3-sensible-terminal'
@@ -370,7 +371,7 @@ exec --no-startup-id nm-applet
 #exec --no-startup-id pasystray
 # exec --no-startup-id volumeicon
 
-#variety
+#Variety
 exec --no-startup-id variety &
 
 #Conky
@@ -402,17 +403,7 @@ bindsym $main+Return exec --no-startup-id i3-sensible-terminal;focus
 # System monitor
 bindsym Control+Shift+Escape exec --no-startup-id xfce4-taskmanager;focus
 
-# Settings
-bindsym Control+$main+m exec --no-startup-id xfce4-settings-manager;focus
-
-# Catfish
-bindsym Control+$main+c exec --no-startup-id catfish;focus
-
-
-bindsym $main+Shift+o exec --no-startup-id rclone --vfs-cache-mode writes mount "OneDrive": ~/oneDrive &
-# Slimlock
-#bindsym $main+k exec slimlock
-#use super + X to get to slimlock
+bindsym $main+Shift+o exec --no-startup-id rclone --vfs-cache-mode writes mount OneDrive: ~/oneDrive &
 
 # Rofi theme selector
 #bindsym control+mod1+r exec --no-startup-id rofi-theme-selecto
@@ -424,17 +415,13 @@ bindsym $main+F7 exec --no-startup-id virtualbox;focus
 bindsym $main+F8 exec --no-startup-id thunar;focus
 for_window [class="Thunar"] move absolute position center
 bindsym $main+Shift+Return exec --no-startup-id thunar;focus
-#bindsym control+mod1+b exec --no-startup-id thunar;focus
 
 #workspace 9 related
 bindsym $main+F9 exec --no-startup-id evolution;focus
 bindsym Control+mod1+e exec --no-startup-id evolution;focus
-#bindsym $main+F9 exec --no-startup-id geary;focus
-#bindsym Control+$main+e exec --no-startup-id geary;focus
 
 #workspace 10 related
 bindsym $main+F10 exec --no-startup-id spotify;focus
-bindsym Control+$main+s exec --no-startup-id spotify;focus
 
 #####################################################################################################################
 #################                          Scratch Pad                                              #################
