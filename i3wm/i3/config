@@ -43,24 +43,12 @@ set $right l
 # use xrandr and/or arandr to know the names of your monitors
 # use this line to tell which monitor is on the right
 # xrandr --output DVI-I-2 --right-of DVI-I-1 --auto
-exec --no-startup-id xrandr --output eDP-1 --right-of HDMI-1 --auto
-
 
 # my current setup
 set $firstMonitor eDP-1
 set $secondMonitor HDMI-1
 
-#set $firstMonitor LVDS1
-#set $secondMonitor LVDS1
-
-#set $firstMonitor DVI-I-2
-#set $secondMonitor VGA-0
-
-#set $firstMonitor DVI-I-2
-#set $secondMonitor DVI-I-3
-
-#set $firstMonitor DVI-0
-#set $secondMonitor DVI-1
+exec --no-startup-id xrandr --output $firstMonitor --right-of $secondMonitor --auto
 
 workspace 1 output $firstMonitor
 workspace 2 output $firstMonitor
@@ -360,9 +348,18 @@ exec --no-startup-id i3-msg 'workspace 1; exec microsoft-edge-dev'
 # bluetooth
 #exec --no-startup-id blueberry-tray
 
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# xautolock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork --image=/usr/share/backgrounds/kali/kali-actiniaria-16x9.png && echo "freeze mem disk" > /sys/power/state &
+# exec_always xautolock -time 10 -locker "xset dpms force off" -notify 5 -notifier "${HOME}/.config/i3/lockScreen.sh && systemctl suspend" & 
+
+# TODO: check https://github.com/jD91mZM2/xidlehook
+# cargo install xidlehook --bins
+# sudo ln -s /usr/lib/x86_64-linux-gnu/libxcb-screensaver.so.0 /usr/lib/x86_64-linux-gnu/libxcb-screensaver.so
+
+# exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer normal 600 '${HOME}/.config/i3/lockScreen.sh && systemctl suspend' ''
+
+# Run xidlehook
+exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 60 'xrandr --output "$firstMonitor" --brightness .1' 'xrandr --output "$firstMonitor" --brightness 1' --timer 10 'xrandr --output "$firstMonitor" --brightness 1; ${HOME}/.config/i3/lockScreen.sh' '' --timer 3600 'systemctl suspend' ''
 
 # network
 exec --no-startup-id nm-applet
