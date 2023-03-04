@@ -31,9 +31,8 @@ lsp.on_attach(function(_, bufnr)
   vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next({ border = "rounded" }) end, opts)
   vim.keymap.set("n", "gl", function() vim.diagnostic.open_float({ border = "rounded" }) end, opts)
   vim.keymap.set("n", "<leader>q", function() vim.diagnostic.setloclist() end, opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format()' ]]
-  vim.keymap.set("n", "<leader>d", function() vim.lsp.buf.workspace_symbol() end, opts) -- TODO: is needed?
-  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+  vim.keymap.set("n", "<leader>d", function() vim.lsp.buf.workspace_symbol() end, opts)
+  vim.keymap.set("i", "<leader>h", function() vim.lsp.buf.signature_help() end, opts)
 end)
 
 lsp.setup()
