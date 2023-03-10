@@ -76,4 +76,5 @@ return require('packer').startup(function(use)
 
   -- Code helpers
   -- use("github/copilot.vim")
+  use "olexsmir/gopher.nvim"
 end)
