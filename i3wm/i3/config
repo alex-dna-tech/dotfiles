@@ -1,4 +1,4 @@
-#####################################################################################################################
+####################################################################################################################
 #################                          Start of all the settings                                #################
 #####################################################################################################################
 
@@ -359,7 +359,7 @@ exec --no-startup-id i3-msg 'workspace 1; exec microsoft-edge-dev'
 # exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer normal 600 '${HOME}/.config/i3/lockScreen.sh && systemctl suspend' ''
 
 # Run xidlehook
-exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 30 'xrandr --output "$firstMonitor" --brightness 1; ${HOME}/.config/i3/lockScreen.sh' '' --timer 10 'xrandr --output "$firstMonitor" --brightness .1' 'xrandr --output "$firstMonitor" --brightness 1' --timer 30 'systemctl suspend' ''
+exec --no-startup-id xidlehook --not-when-fullscreen --not-when-audio --timer 180 'xrandr --output "$firstMonitor" --brightness 1; ${HOME}/.config/i3/lockScreen.sh' '' --timer 30 'xrandr --output "$firstMonitor" --brightness .1' 'xrandr --output "$firstMonitor" --brightness 1' --timer 600 'systemctl suspend' 'xrandr --output "$firstMonitor" --brightness 1'
 
 # network
 exec --no-startup-id nm-applet
