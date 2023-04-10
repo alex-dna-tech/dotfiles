@@ -1,3 +1,5 @@
+# TODO: create build from source target
+NVIM = /usr/local/bin/nvim
 SRC = $(HOME)/dotfiles/nvim
 DST = $(HOME)/.config/nvim
 LNK = ln -sf
