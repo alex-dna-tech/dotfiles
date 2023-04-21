@@ -6,3 +6,4 @@ alias sst='sudo systemctl stop'
 alias sse='sudo systemctl enable'
 alias ssd='sudo systemctl disable'
 
+alias kitty-ssh="kitty +kitten ssh"

@@ -45,8 +45,8 @@ set $right l
 # xrandr --output DVI-I-2 --right-of DVI-I-1 --auto
 
 # my current setup
-set $firstMonitor eDP-1
-set $secondMonitor HDMI-1
+set $firstMonitor HDMI-0
+set $secondMonitor DVI-D-0
 
 exec --no-startup-id xrandr --output $firstMonitor --right-of $secondMonitor --auto
 
@@ -335,7 +335,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id i3-msg 'workspace 2; exec i3-sensible-terminal'
 
 # Browser
-exec --no-startup-id i3-msg 'workspace 1; exec microsoft-edge-dev'
+# exec --no-startup-id i3-msg 'workspace 1; exec microsoft-edge-dev'
 
 # TRAY APPLICATIONS
 
@@ -350,7 +350,7 @@ exec --no-startup-id i3-msg 'workspace 1; exec microsoft-edge-dev'
 
 # xautolock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-# exec_always xautolock -time 10 -locker "xset dpms force off" -notify 5 -notifier "${HOME}/.config/i3/lockScreen.sh && systemctl suspend" & 
+# exec_always xautolock -time 10 -locker "xset dpms force off" -notify 5 -notifier "${HOME}/.config/i3/lockScreen.sh && systemctl suspend" &
 
 # TODO: check https://github.com/jD91mZM2/xidlehook
 # cargo install xidlehook --bins
@@ -514,7 +514,7 @@ bindsym control+mod1+f exec --no-startup-id variety -f
 #####################################################################################################################
 #################                          Audio settings                                           #################
 #####################################################################################################################
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% 
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
@@ -546,7 +546,8 @@ exec_always --no-startup-id compton --config ~/.config/i3/compton.conf
 #####################################################################################################################
 
 # Language switch
-exec_always --no-startup-id setxkbmap -layout "us,ua" -variant "dvorak,," -option "grp:caps_toggle,grp_led:scroll,compose:ralt"
+exec_always --no-startup-id setxkbmap -layout "us,ua" -variant "dvorak,," -option "grp:caps_toggle,grp_led:caps,grp:switch"
+
 #exec --no-startup-id gxkb
 
 #####################################################################################################################
