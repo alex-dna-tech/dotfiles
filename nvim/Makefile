@@ -4,10 +4,22 @@ SRC = $(HOME)/dotfiles/nvim
 DST = $(HOME)/.config/nvim
 LNK = ln -sf
 
-${DST}:
+$(NVIM): install-dep $(DST) $(DST)/neovim-git
+		cd $(DST)/neovim && make CMAKE_BUILD_TYPE=Release && \
+		sudo make install
+
+install-dep:
+	sudo apt -y install ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
+.PHONY: install-dep
+
+$(DST):
 	mkdir -p $(shell dirname ${DST}) && ${LNK} ${SRC} ${DST}
 
-	
-.PHONY: clean
+$(DST)/neovim-git:
+	git clone https://github.com/neovim/neovim $(DST)/neovim-git
+
+
 clean:
-	rm -rf ${DST} $(HOME)/.cache/nvim
+	rm -rf $(DST) $(HOME)/.cache/nvim
+.PHONY: clean
+
