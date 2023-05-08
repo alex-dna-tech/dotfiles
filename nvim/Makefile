@@ -1,11 +1,12 @@
 # TODO: create build from source target
 NVIM = /usr/local/bin/nvim
+DST_GIT = /tmp/neovim-git
 SRC = $(HOME)/dotfiles/nvim
 DST = $(HOME)/.config/nvim
 LNK = ln -sf
 
-$(NVIM): install-dep $(DST) $(DST)/neovim-git
-		cd $(DST)/neovim && make CMAKE_BUILD_TYPE=Release && \
+$(NVIM): install-dep $(DST) $(DST_GIT)
+		cd $(DST_GIT) && make CMAKE_BUILD_TYPE=Release && \
 		sudo make install
 
 install-dep:
@@ -13,13 +14,12 @@ install-dep:
 .PHONY: install-dep
 
 $(DST):
-	mkdir -p $(shell dirname ${DST}) && ${LNK} ${SRC} ${DST}
+	${LNK} ${SRC} ${DST}
 
-$(DST)/neovim-git:
-	git clone https://github.com/neovim/neovim $(DST)/neovim-git
-
+$(DST_GIT):
+	git clone https://github.com/neovim/neovim $(DST_GIT)
 
 clean:
-	rm -rf $(DST) $(HOME)/.cache/nvim
+	rm -rf $(DST) $(HOME)/.cache/nvim $(DST_GIT)
 .PHONY: clean
 
