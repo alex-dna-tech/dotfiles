@@ -144,6 +144,24 @@ local mappings = {
     ["se"] = { "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji'} }<cr>", "Emoji" },
     ["sg"] = { "<cmd>lua require'telescope.builtin'.symbols{ sources = {'gitmoji'} }<cr>", "Gitmoji" },
   },
+  o = {
+    name = "OpenAI ChatGPT",
+    c = { "<cmd>ChatGPT<cr>", "Chat v3.5-turbo" },
+    a = { "<cmd>ChatGPTActAs<cr>", "Act As" },
+    i = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit With Instructions (code-davinci-edit-002)" },
+    r = { name = "Run Action" },
+    ["rg"] = { "<cmd>ChatGPTRun grammar_correction<cr>", "Grammar Correction" },
+    ["rl"] = { "<cmd>ChatGPTRun translate<cr>", "Translate" },
+    ["rk"] = { "<cmd>ChatGPTRun keywords<cr>", "Keywords" },
+    ["rd"] = { "<cmd>ChatGPTRun docstring<cr>", "Documentation String" },
+    ["rt"] = { "<cmd>ChatGPTRun add_tests<cr>", "Add Test" },
+    ["ro"] = { "<cmd>ChatGPTRun optimize_code<cr>", "Optimize Code" },
+    ["rs"] = { "<cmd>ChatGPTRun summarize<cr>", "Summarize" },
+    ["rf"] = { "<cmd>ChatGPTRun fix_bugs<cr>", "Fix Bug" },
+    ["rx"] = { "<cmd>ChatGPTRun explain_code<cr>", "Explain Code" },
+    ["rr"] = { "<cmd>ChatGPTRun roxygen_edit<cr>", "Roxygen Edit" },
+    ["rc"] = { "<cmd>ChatGPTRun code_readability_analysis<cr>", "Code Readability Analysis" },
+  }
 }
 
 local wk = require("which-key")

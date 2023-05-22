@@ -74,6 +74,19 @@ return require('packer').startup(function(use)
   }
 
   -- Code helpers
-  -- use("github/copilot.vim")
   use "olexsmir/gopher.nvim"
+
+  -- use("github/copilot.vim")
+
+  use({
+    "jackMort/ChatGPT.nvim",
+    config = function()
+      require("chatgpt").setup()
+    end,
+    requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    }
+  })
 end)
