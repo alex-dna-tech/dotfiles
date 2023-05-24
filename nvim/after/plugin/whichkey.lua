@@ -111,6 +111,7 @@ local mappings = {
     ["dh"] = { "<cmd>diffget //2<cr>", "Merge diff left" },
     ["dl"] = { "<cmd>diffget //3<cr>", "Merge diff right" },
     p = { "<cmd>Git push<cr>", "Push" },
+    u = { "<cmd>Git pull<cr>", "Pull" },
     l = { name = "+Log" },
     ["ll"] = { "<cmd>Git log<cr>", "Log" },
     ["lo"] = { "<cmd>Git log --oneline<cr>", "Log oneline" },
