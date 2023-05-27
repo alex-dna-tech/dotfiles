@@ -1,21 +1,6 @@
 local lsp = require('lsp-zero')
 lsp.preset("recommended")
 
-local cmp = require('cmp')
-local cmp_select = { behavior = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-  ["<C-Space>"] = cmp.mapping.complete(),
-})
-
-vim.cmd "set completeopt=noinsert,menuone,noselect"
-
-lsp.setup_nvim_cmp({
-  mapping = cmp_mappings
-})
-
 lsp.on_attach(function(_, bufnr)
   local opts = { buffer = bufnr, remap = false, silent = true }
 
@@ -37,9 +22,60 @@ end)
 
 lsp.setup()
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  buffer = buffer,
-  callback = function()
-    vim.lsp.buf.format { async = false }
-  end
+local cmp = require('cmp')
+local cmp_select = { behavior = cmp.SelectBehavior.Select }
+local cmp_mappings = lsp.defaults.cmp_mappings({
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+  ["<C-Space>"] = cmp.mapping.complete(),
+})
+
+vim.cmd "set completeopt=noinsert,menuone,noselect"
+
+lsp.setup_nvim_cmp({
+  mapping = cmp_mappings
+})
+
+local lspconfig = require("lspconfig")
+local mason_lsp_config = require("mason-lspconfig")
+
+local capabilities =
+    require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+local on_attach = function(client, bufnr)
+  -- Disabled lsp formatting
+  client.server_capabilities.document_formatting = false
+  client.server_capabilities.document_range_formatting = false
+
+  require("mappings").lsp_on_attach(bufnr)
+end
+
+mason_lsp_config.setup_handlers({
+  function(server_name)
+    lspconfig[server_name].setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+  end,
+  ["lua_ls"] = function(_)
+    lspconfig.lua_ls.setup({
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+          workspace = {
+            library = {
+              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+              [vim.fn.stdpath("config") .. "/lua"] = true,
+            },
+          },
+        },
+      },
+    })
+  end,
 })
