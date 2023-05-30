@@ -1,1 +1,2 @@
-require("gopher")
+require('go').setup()
+-- require("gopher")

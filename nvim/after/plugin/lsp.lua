@@ -33,6 +33,18 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 
 vim.cmd "set completeopt=noinsert,menuone,noselect"
 
+-- Run gofmt + goimport on save
+local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+    require('go.format').goimport()
+  end,
+  group = format_sync_grp,
+})
+
+-- autocmd BufWritePre (InsertLeave?) <buffer> lua vim.lsp.buf.formatting_sync(nil,500)
+
 lsp.setup_nvim_cmp({
   mapping = cmp_mappings
 })
