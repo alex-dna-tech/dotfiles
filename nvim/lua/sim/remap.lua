@@ -1,10 +1,11 @@
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
+--[[ Modes
+  normal_mode = "n",
+  insert_mode = "i",
+  visual_mode = "v",
+  visual_block_mode = "x",
+  term_mode = "t",
+  command_mode = "c",
+-- ]]
 
 local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
