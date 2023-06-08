@@ -1,3 +1,35 @@
+# MNEMONICS(k-prefix+action+object+option):
+# ACTIONS:
+# ---
+# a - apply
+# d - describe
+# ex - exec
+# g - get
+# run - run
+# rm - delete
+
+# OBJECTS:
+# ---
+# cm - configmap
+# dep - deployment
+# ing - ingress
+# lo - logs
+# no - nodes
+# ns - namespaces
+# p - proxy
+# pf - port-forward
+# po - pods
+# sec - secret
+# sts - statefulset
+# svc - service
+
+# OPTIONS:
+# ---
+# w - watch
+# all - all-namespaces
+# f - file resource
+# l - label
+
 if [[ -x "$(command -v kubectl)" ]]; then
 	alias k='kubectl'
 	alias ka='kubectl apply --recursive -f'
