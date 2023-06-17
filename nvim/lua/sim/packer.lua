@@ -47,12 +47,16 @@ return require("packer").startup(function(use)
   use "lukas-reineke/indent-blankline.nvim"
 
   -- Git
-  use "tpope/vim-fugitive"
+  use {
+    "tpope/vim-fugitive",
+    requires = {
+      { "tpope/vim-rhubarb" },
+    },
+  }
 
   -- LSP
   use {
     "VonHeikemen/lsp-zero.nvim",
-    branch = "v1.x",
     requires = {
       -- LSP Support
       { "neovim/nvim-lspconfig" },             -- Required
@@ -60,15 +64,20 @@ return require("packer").startup(function(use)
       { "williamboman/mason-lspconfig.nvim" }, -- Optional
 
       -- Autocompletion
-      { "hrsh7th/nvim-cmp" },         -- Required
-      { "hrsh7th/cmp-nvim-lsp" },     -- Required
-      { "hrsh7th/cmp-buffer" },       -- Optional
-      { "hrsh7th/cmp-nvim-lua" },     -- Optional
-      { "hrsh7th/cmp-path" },         -- Optional
-      { "saadparwaiz1/cmp_luasnip" }, -- Optional
+      { "hrsh7th/nvim-cmp" },                    -- Required
+      { "hrsh7th/cmp-nvim-lsp" },                -- Required
+      { "hrsh7th/cmp-buffer" },                  -- Optional
+      { "hrsh7th/cmp-nvim-lua" },                -- Optional
+      { "hrsh7th/cmp-path" },                    -- Optional
+      { "hrsh7th/cmp-nvim-lsp-signature-help" }, -- Optional
+      { "saadparwaiz1/cmp_luasnip" },            -- Optional
 
       -- Snippets
-      { "L3MON4D3/LuaSnip" },             -- Required
+      {
+        "L3MON4D3/LuaSnip",
+        tag = "v1.*",
+        run = "make install_jsregexp",
+      },
       { "rafamadriz/friendly-snippets" }, -- Optional
     }
   }
@@ -76,32 +85,29 @@ return require("packer").startup(function(use)
   -- Code helpers
   use({
     "ray-x/go.nvim",
-    config = function()
-      require("go").setup()
-    end,
     requires = { "ray-x/guihua.lua" }
   })
 
   use({
     "jackMort/ChatGPT.nvim",
-    config = function()
-      require("chatgpt").setup()
-    end,
     requires = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-telescope/telescope.nvim"
-    }
+    },
+    config = function()
+      require("chatgpt").setup()
+    end
   })
 
   use {
-    'Exafunction/codeium.vim',
-    -- config = function()
-    --   -- Change '<C-g>' here to any keycode you like.
-    --   vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-    --   vim.keymap.set('i', '<c-;>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-    --   vim.keymap.set('i', '<c-,>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-    --   vim.keymap.set('i', '<c-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-    -- end
+    "jcdickinson/codeium.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({})
+    end
   }
 end)

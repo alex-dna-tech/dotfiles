@@ -106,6 +106,7 @@ local mappings = {
     r = { "<cmd>Gread<cr>", "Read" },
     w = { "<cmd>Gwrite<cr>", "Write" },
     e = { "<cmd>Gedit<cr>", "Edit" },
+    g = { "<cmd>GBrowse<cr>", "Open in Browser" },
     d = { name = "+Diff" },
     ["dd"] = { "<cmd>Gvdiffsplit<cr>", "Verticaly 3 way" },
     ["dh"] = { "<cmd>diffget //2<cr>", "Merge diff left" },
@@ -119,16 +120,10 @@ local mappings = {
   l = {
     name = "LSP",
     a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code Action" },
-    w = {
-      "<cmd>Telescope lsp_workspace_diagnostics<cr>",
-      "Workspace Diagnostics",
-    },
     f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format" },
     i = { "<cmd>LspInfo<cr>", "Info" },
     I = { "<cmd>Mason<cr>", "Installer Info" },
-    l = { "<cmd>lua vim.lsp.codelens.run()<cr>", "CodeLens Action" },
-    q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<cr>", "Quickfix" },
-    r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+    q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
     d = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
@@ -150,9 +145,9 @@ local mappings = {
   },
   o = {
     name = "OpenAI ChatGPT",
-    c = { "<cmd>ChatGPT<cr>", "Chat v3.5-turbo" },
+    c = { "<cmd>ChatGPT<cr>", "Chat (v3.5-turbo)" },
     a = { "<cmd>ChatGPTActAs<cr>", "Act As" },
-    i = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit With Instructions (code-davinci-edit-002)" },
+    i = { "<cmd>ChatGPTEditWithInstructions<cr>", "Edit With Instructions (code-davinci)" },
     r = { name = "Run Action" },
     ["rg"] = { "<cmd>ChatGPTRun grammar_correction<cr>", "Grammar Correction" },
     ["rl"] = { "<cmd>ChatGPTRun translate<cr>", "Translate" },
