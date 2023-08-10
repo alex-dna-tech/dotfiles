@@ -14,4 +14,7 @@ if [[ -x "$(command -v git)" ]]; then
   alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
   alias grom='git fetch origin && git reset --hard origin/master && git clean -f -d'
   alias grum='git fetch upstream && git reset --hard upstream/master && git clean -f -d'
+  alias gt='git tag'
+  alias gta='git tag -a'
+  alias gtl='git tag -l'
 fi
