@@ -85,7 +85,11 @@ return require("packer").startup(function(use)
   -- Code helpers
   use({
     "ray-x/go.nvim",
-    requires = { "ray-x/guihua.lua" }
+    requires = {
+      "ray-x/guihua.lua",
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui",
+    }
   })
 
   use({
