@@ -76,7 +76,7 @@ keymap("n", "<Leader><CR>", ":so $MYVIMRC<CR>", term_opts)
 keymap("c", "w!!", "w !sudo tee % >/dev/null", term_opts)
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd "set iskeyword+=-"
+-- vim.cmd "set iskeyword+=-"
 vim.cmd "com! W w"
 vim.cmd "com! Wq wq"
 vim.cmd "com! Q q"
