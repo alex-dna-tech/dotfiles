@@ -12,6 +12,7 @@ alias h='history'
 alias hg='history | grep -i'
 alias ag='alias | grep -i'
 alias dirarch='find . -maxdepth 1 -type d ! -name . -exec tar -zcvf '{}'.tar.gz '{}'/ \; -exec rm -rf '{}' \;'
+alias src='source $HOME/.bashrc'
 
 gp()
 {
@@ -26,7 +27,10 @@ bind -m vi-insert "\C-l":clear-screen
 export EDITOR=vim
 export VISUAL=vim
 export PAGER=less
-export TERMINAL=kitty
+
+if [[ -x "$(command -v kitty)" ]]; then
+  export TERMINAL=kitty
+fi
 
 export LC_ALL=en_US.utf-8
 export LC_CTYPE=UTF-8
