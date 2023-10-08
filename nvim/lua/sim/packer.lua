@@ -21,6 +21,7 @@ return require("packer").startup(function(use)
 
   -- Language syntax
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use "MunifTanjim/prettier.nvim"
 
   -- UI
   use "morhetz/gruvbox"
