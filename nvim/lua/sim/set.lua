@@ -15,7 +15,7 @@ local options = {
   numberwidth = 4,           -- set number column width to 2 {default 4}
   pumheight = 10,            -- pop up menu height
   relativenumber = true,     -- set relative numbered lines
-  scrolloff = 8,             -- is one of my fav
+  scrolloff = 8,             -- keep 8 lines above and below the cursor
   shiftwidth = 2,            -- the number of spaces inserted for each indentation
   showmode = false,          -- we don't need to see things like -- INSERT -- anymore
   showtabline = 2,           -- always show tabs
@@ -31,7 +31,7 @@ local options = {
   timeoutlen = 100,          -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,           -- enable persistent undo
   updatetime = 50,           -- faster completion (4000ms default)
-  wrap = false,              -- display lines as one long line
+  wrap = true,               -- wrap long lines
   writebackup = false,       -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 }
 
