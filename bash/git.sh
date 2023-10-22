@@ -17,4 +17,8 @@ if [[ -x "$(command -v git)" ]]; then
   alias gt='git tag'
   alias gta='git tag -a'
   alias gtl='git tag -l'
+  alias glch='git config --local credential.helper ""'
+  gclun() { git config --local user.name "$1"; }
+  gclue() { git config --local user.email "$1"; }
+  gra() { git rebase -r ${1:-HEAD~1} --exec 'git commit --amend --no-edit --reset-author'; }
 fi
