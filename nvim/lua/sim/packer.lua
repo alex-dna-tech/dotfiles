@@ -21,6 +21,7 @@ return require("packer").startup(function(use)
 
   -- Language syntax
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  -- "prettier/vim-prettier"
   use "MunifTanjim/prettier.nvim"
 
   -- UI
@@ -80,6 +81,7 @@ return require("packer").startup(function(use)
         run = "make install_jsregexp",
       },
       { "rafamadriz/friendly-snippets" }, -- Optional
+      { "mattn/emmet-vim" },              -- Optional
     }
   }
 
