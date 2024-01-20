@@ -27,12 +27,17 @@ local rep = extras.rep
 -- local ms = ls.multi_snippet
 -- local k = require("luasnip.nodes.key_indexer").new_key
 
-ls.add_snippets("go", {
+ls.add_snippets("lua", {
   parse(
     'abc',
     'alphabet ${1}(${2}) \n{\n\t${3}\n}'),
 })
 
-require("luasnip.loaders.from_vscode").lazy_load()
-require("luasnip.loaders.from_snipmate").lazy_load({ path = "~/dotfiles/nvim/snippets" })
-require("luasnip.loaders.from_lua").load({ paths = { "~/dotfiles/nvim/luasnippets" } })
+require("luasnip.loaders.from_vscode").lazy_load({
+  -- exclude = { "javascript" },
+})
+
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" }, })
+require("luasnip.loaders.from_snipmate").lazy_load({ path = "./snippets" })
+
+vim.cmd "command! LuaSnipEdit :lua require(\"luasnip.loaders\").edit_snippet_files()"
