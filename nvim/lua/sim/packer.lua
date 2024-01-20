@@ -21,8 +21,6 @@ return require("packer").startup(function(use)
 
   -- Language syntax
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  -- "prettier/vim-prettier"
-  use "MunifTanjim/prettier.nvim"
 
   -- UI
   use "morhetz/gruvbox"
@@ -57,6 +55,10 @@ return require("packer").startup(function(use)
   }
 
   -- LSP
+  use "neovim/nvim-lspconfig"
+  use "jose-elias-alvarez/null-ls.nvim"
+  use "MunifTanjim/prettier.nvim"
+
   use {
     "VonHeikemen/lsp-zero.nvim",
     requires = {
@@ -95,6 +97,22 @@ return require("packer").startup(function(use)
     }
   })
 
+  use({
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+    -- optionally, override the default options:
+    config = function()
+      require("tailwindcss-colorizer-cmp").setup({
+        color_square_width = 2,
+      })
+    end
+  })
+
+  use {
+    'laytan/tailwind-sorter.nvim',
+    requires = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
+    config = function() require('tailwind-sorter').setup() end,
+    run = 'cd formatter && npm i && npm run build',
+  }
   -- use({
   --   "jackMort/ChatGPT.nvim",
   --   requires = {

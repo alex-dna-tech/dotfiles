@@ -59,16 +59,20 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = cmp.config.sources({
-    { name = 'luasnip', keyword_length = 2, option = { show_autosnippets = true } },
-    { name = 'nvim_lua' },
-    { name = 'nvim_lsp' },
-    { name = 'path' },
-    { name = "codeium" },
-  }, {
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'buffer',                 keyword_length = 3 },
-  })
+      { name = 'luasnip',  keyword_length = 2, option = { show_autosnippets = true }, priority = 1000 },
+      { name = 'nvim_lsp', keyword_length = 3, priority = 900 },
+      { name = 'path',     keyword_length = 2, priority = 800 },
+    },
+    {
+      { name = 'nvim_lsp_signature_help' },
+      { name = 'buffer',                 keyword_length = 3, priority = 700 },
+    })
 })
+
+cmp.config.formatting = {
+  format = require("tailwindcss-colorizer-cmp").formatter
+}
+
 vim.cmd [[
 autocmd FileType TelescopePrompt lua require("cmp").setup.buffer { enabled = false }
 ]]
