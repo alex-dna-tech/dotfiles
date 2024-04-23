@@ -7,6 +7,8 @@ alias mkdir='mkdir -pv'                     # Preferred 'mkdir' implementation
 md() { mkdir -p "$1" && cd "$1"; }          # md: Makes new Dir and jumps inside
 alias less='less -FSRXc'
 alias du='du -h'
+alias df='df -h'
+alias l='ls -lAh'
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 alias h='history'
 alias hg='history | grep -i'
