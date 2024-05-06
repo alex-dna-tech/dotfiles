@@ -92,6 +92,8 @@ return require("packer").startup(function(use)
     "ray-x/go.nvim",
     requires = {
       "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
     }
@@ -113,6 +115,7 @@ return require("packer").startup(function(use)
     config = function() require('tailwind-sorter').setup() end,
     run = 'cd formatter && npm i && npm run build',
   }
+
   -- use({
   --   "jackMort/ChatGPT.nvim",
   --   requires = {

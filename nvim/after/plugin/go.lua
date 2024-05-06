@@ -9,7 +9,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 require('go').setup({
   luasnip = true,
-  max_line_len = 80,
   lsp_inlay_hints = {
     enable = true,
   },
