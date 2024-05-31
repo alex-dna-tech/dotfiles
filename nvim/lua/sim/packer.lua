@@ -89,6 +89,10 @@ return require("packer").startup(function(use)
 
   -- Code helpers
   use({
+    "mg979/vim-visual-multi"
+  })
+
+  use({
     "ray-x/go.nvim",
     requires = {
       "ray-x/guihua.lua",

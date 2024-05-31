@@ -1,11 +1,11 @@
 local ls = require("luasnip")
-local s = ls.snippet
-local t = ls.text_node
-local i = ls.insert_node
-local fmt = require("luasnip.extras.fmt").fmt
+-- local s = ls.snippet
+-- local t = ls.text_node
+-- local i = ls.insert_node
+-- local fmt = require("luasnip.extras.fmt").fmt
 local parse = require("luasnip.util.parser").parse_snippet
 local extras = require("luasnip.extras")
-local rep = extras.rep
+-- local rep = extras.rep
 
 -- local sn = ls.snippet_node
 -- local isn = ls.indent_snippet_node
@@ -27,6 +27,7 @@ local rep = extras.rep
 -- local ms = ls.multi_snippet
 -- local k = require("luasnip.nodes.key_indexer").new_key
 
+-- test function
 ls.add_snippets("lua", {
   parse(
     'abc',

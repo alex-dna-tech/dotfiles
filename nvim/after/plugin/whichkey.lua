@@ -31,7 +31,7 @@ local setup = {
   icons = {
     breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
     separator = "➜", -- symbol used between a key and it's label
-    group = "+",      -- symbol prepended to a group
+    group = "+", -- symbol prepended to a group
   },
   popup_mappings = {
     scroll_down = "<c-d>", -- binding to scroll down inside the popup
@@ -125,6 +125,7 @@ local mappings = {
     I = { "<cmd>Mason<cr>", "Installer Info" },
     q = { "<cmd>lua vim.diagnostic.setloclist()<cr>", "Quickfix" },
     s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+    r = { "<cmd>LspRestart<cr>", "Document Symbols" },
     d = {
       "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
       "Workspace Symbols",

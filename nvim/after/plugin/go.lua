@@ -15,5 +15,5 @@ require('go').setup({
   lsp_cfg = true,
 })
 
-vim.cmd("autocmd FileType go nmap nl :GoLint")
-vim.cmd("autocmd FileType go nmap nc :lua require('go.comment').gen()")
+vim.cmd("autocmd FileType go nmap nl :GoLint<CR>")
+vim.cmd("autocmd FileType go nmap nc :lua require('go.comment').gen()<CR>")
