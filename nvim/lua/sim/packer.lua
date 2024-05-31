@@ -141,4 +141,26 @@ return require("packer").startup(function(use)
       vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
     end
   }
+
+  use({
+    "epwalsh/obsidian.nvim",
+    requires = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("obsidian").setup({
+        workspaces = {
+          {
+            name = "personal",
+            path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Trans",
+          },
+          {
+            name = "work",
+            path = "~/Nextcloud/Documents/Notes",
+          },
+        },
+      })
+    end,
+  })
 end)
