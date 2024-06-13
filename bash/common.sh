@@ -14,7 +14,12 @@ alias h='history'
 alias hg='history | grep -i'
 alias ag='alias | grep -i'
 alias dirarch='find . -maxdepth 1 -type d ! -name . -exec tar -zcvf '{}'.tar.gz '{}'/ \; -exec rm -rf '{}' \;'
-alias src='source $HOME/.bashrc'
+
+if [[ -f ~/.bash_profile ]]; then
+  alias so='source $HOME/.bash_profile'
+else
+  alias so='source $HOME/.bashrc'
+fi
 
 gp()
 {
@@ -26,8 +31,8 @@ bind 'set completion-ignore-case on'
 set -o vi
 bind -m vi-insert "\C-l":clear-screen
 
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=vi
+export VISUAL=vi
 export PAGER=less
 
 if [[ -x "$(command -v kitty)" ]]; then
