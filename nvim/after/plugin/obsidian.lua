@@ -9,15 +9,12 @@ require("obsidian").setup({
       path = "~/Nextcloud/Documents/Notes",
     },
   },
+
   daily_notes = {
     folder = "Calendar/Daily",
   },
-  mappings = {
-    ["fo"] = {
-      action = function()
-        return require("obsidian").util.gf_passthrough()
-      end,
-      opts = { noremap = false, expr = true, buffer = true },
-    },
+
+  attachments = {
+    img_folder = "Files", -- This is the default
   },
 })

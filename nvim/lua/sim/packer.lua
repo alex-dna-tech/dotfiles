@@ -148,19 +148,5 @@ return require("packer").startup(function(use)
       -- Required.
       "nvim-lua/plenary.nvim",
     },
-    config = function()
-      require("obsidian").setup({
-        workspaces = {
-          {
-            name = "personal",
-            path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Trans",
-          },
-          {
-            name = "work",
-            path = "~/Nextcloud/Documents/Notes",
-          },
-        },
-      })
-    end,
   })
 end)
