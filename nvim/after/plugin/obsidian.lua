@@ -14,6 +14,8 @@ require("obsidian").setup({
     folder = "Calendar/Daily",
   },
 
+  disable_frontmatter = true,
+
   attachments = {
     img_folder = "Files", -- This is the default
   },
