@@ -24,10 +24,19 @@ if [[ -x "$(command -v git)" ]]; then
   alias gcpn='git cherry-pick --no-commit'
   alias glchs='git config --local credential.helper store'
   alias glch='git config --local credential.helper ""'
-  alias gclun='git config --local user.name'
-  alias gclue='git config --local user.email'
-  alias gra='git rebase -r ${1:-HEAD~1} --exec "git commit --amend --no-edit --reset-author"'
-  gclun() { git config --local user.name "$1"; }
-  gclue() { git config --local user.email "$1"; }
-  gra() { git rebase -r ${1:-HEAD~1} --exec 'git commit --amend --no-edit --reset-author'; }
+
+  # Change local repo user name
+  function gclun() {
+    git config --local user.name "$1"
+  }
+
+  # Change local repo user email
+  function gclue() {
+      git config --local user.email "$1"
+  }
+
+  # Rebase commits weth current author
+  function gra() {
+      git rebase -r ${1:-HEAD~1} --exec 'git commit --amend --no-edit --reset-author'
+  }
 fi
