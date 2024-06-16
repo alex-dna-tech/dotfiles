@@ -35,8 +35,6 @@ cmp.setup({
       if cmp.visible() then
         cmp.select_next_item()
       elseif luasnip.expand_or_jumpable() then
-        -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-        -- the way you will only jump inside the snippet region
         luasnip.expand_or_jump()
       elseif has_words_before() then
         cmp.complete()
@@ -54,8 +52,9 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
+
     ['<C-e>'] = cmp.mapping.abort(),
-    -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+
     ['<CR>'] = cmp.mapping.confirm({ select = false }),
   },
   sources = cmp.config.sources({

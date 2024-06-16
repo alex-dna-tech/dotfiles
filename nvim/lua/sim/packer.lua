@@ -88,11 +88,11 @@ return require("packer").startup(function(use)
   }
 
   -- Code helpers
-  use({
+  use {
     "mg979/vim-visual-multi"
-  })
+  }
 
-  use({
+  use {
     "ray-x/go.nvim",
     requires = {
       "ray-x/guihua.lua",
@@ -101,9 +101,9 @@ return require("packer").startup(function(use)
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
     }
-  })
+  }
 
-  use({
+  use {
     "roobert/tailwindcss-colorizer-cmp.nvim",
     -- optionally, override the default options:
     config = function()
@@ -111,44 +111,21 @@ return require("packer").startup(function(use)
         color_square_width = 2,
       })
     end
-  })
+  }
 
   use {
     'laytan/tailwind-sorter.nvim',
     requires = { 'nvim-treesitter/nvim-treesitter', 'nvim-lua/plenary.nvim' },
-    config = function() require('tailwind-sorter').setup() end,
     run = 'cd formatter && npm i && npm run build',
   }
 
-  -- use({
-  --   "jackMort/ChatGPT.nvim",
-  --   requires = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "nvim-telescope/telescope.nvim"
-  --   },
-  --   config = function()
-  --     require("chatgpt").setup()
-  --   end
-  -- })
-
   use {
-    'Exafunction/codeium.vim',
-    config = function()
-      vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-      vim.keymap.set('i', '<C-n>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-      vim.keymap.set('i', '<C-p>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-      vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-    end
-  }
-
-  use({
     "epwalsh/obsidian.nvim",
     requires = {
       -- Required.
       "nvim-lua/plenary.nvim",
     },
-  })
+  }
 
-  use { 'jonarrien/telescope-cmdline.nvim' }
+
 end)
