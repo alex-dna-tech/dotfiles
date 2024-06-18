@@ -127,5 +127,35 @@ return require("packer").startup(function(use)
     },
   }
 
+  use {
+    "Exafunction/codeium.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "hrsh7th/nvim-cmp",
+    },
+    config = function()
+      require("codeium").setup({
+      })
+    end
+  }
+
+  use { "David-Kunz/gen.nvim",
+    config = function()
+      require('gen').setup({
+        model = 'llama3:8b-instruct-q8_0',
+        debug = true,
+      })
+    end
+  }
+
+  -- use {
+  --   'Exafunction/codeium.vim',
+  --   config = function()
+  --     vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
+  --     vim.keymap.set('i', '<C-n>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+  --     vim.keymap.set('i', '<C-p>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
+  --     vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
+  --   end
+  -- }
 
 end)
