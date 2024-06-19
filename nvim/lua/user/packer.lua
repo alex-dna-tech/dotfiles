@@ -17,7 +17,7 @@ end
 
 return require("packer").startup(function(use)
   -- Packer can manage itself
-  use "wbthomason/packer.nvim"
+  use { "wbthomason/packer.nvim" }
 
   -- Language syntax
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -37,14 +37,13 @@ return require("packer").startup(function(use)
   use { "numtostr/BufOnly.nvim", cmd = { "BufOnly" } }
   use "ahmedkhalf/project.nvim"
 
-  -- Edition
-  use "tpope/vim-surround"
-  use "AndrewRadev/splitjoin.vim"
-
-  use "windwp/nvim-autopairs"
-  use "numToStr/Comment.nvim"
-  use "mbbill/undotree"
-  use "lukas-reineke/indent-blankline.nvim"
+  use { "jonarrien/telescope-cmdline.nvim",
+    config = function()
+      require("telescope").load_extension('cmdline')
+      vim.api.nvim_set_keymap('n', '<leader><leader>',
+        ':Telescope cmdline<CR>', { noremap = true, desc = "Cmdline" })
+    end
+  }
 
   -- Git
   use {
@@ -55,42 +54,43 @@ return require("packer").startup(function(use)
   }
 
   -- LSP
-  use "neovim/nvim-lspconfig"
-  use "jose-elias-alvarez/null-ls.nvim"
-  use "MunifTanjim/prettier.nvim"
+  use { "neovim/nvim-lspconfig" }
+  use { "williamboman/mason.nvim" }
+  use { "williamboman/mason-lspconfig.nvim" }
 
+  -- Autocompletion
+  use { "hrsh7th/nvim-cmp" }
+  use { "hrsh7th/cmp-nvim-lsp" }
+  use { "hrsh7th/cmp-buffer" }
+  use { "hrsh7th/cmp-nvim-lua" }
+  use { "hrsh7th/cmp-path" }
+  use { "hrsh7th/cmp-nvim-lsp-signature-help" }
+  use { "saadparwaiz1/cmp_luasnip" }
+
+  -- Snippets
   use {
-    "VonHeikemen/lsp-zero.nvim",
-    requires = {
-      -- LSP Support
-      { "neovim/nvim-lspconfig" },             -- Required
-      { "williamboman/mason.nvim" },           -- Optional
-      { "williamboman/mason-lspconfig.nvim" }, -- Optional
-
-      -- Autocompletion
-      { "hrsh7th/nvim-cmp" },                    -- Required
-      { "hrsh7th/cmp-nvim-lsp" },                -- Required
-      { "hrsh7th/cmp-buffer" },                  -- Optional
-      { "hrsh7th/cmp-nvim-lua" },                -- Optional
-      { "hrsh7th/cmp-path" },                    -- Optional
-      { "hrsh7th/cmp-nvim-lsp-signature-help" }, -- Optional
-      { "saadparwaiz1/cmp_luasnip" },            -- Optional
-
-      -- Snippets
-      {
-        "L3MON4D3/LuaSnip",
-        tag = "v1.*",
-        run = "make install_jsregexp",
-      },
-      { "rafamadriz/friendly-snippets" }, -- Optional
-      { "mattn/emmet-vim" },              -- Optional
-    }
+    "L3MON4D3/LuaSnip",
+    tag = "v1.*",
+    run = "make install_jsregexp",
   }
 
-  -- Code helpers
+  use { "rafamadriz/friendly-snippets" }
+  use { "mattn/emmet-vim" }
+
+  -- Code Edition
+  use { "mbbill/undotree" }
+  use { "lukas-reineke/indent-blankline.nvim" }
+  use { "windwp/nvim-autopairs" }
+  use { "tpope/vim-surround" }
+  use { "AndrewRadev/splitjoin.vim" }
+
   use {
-    "mg979/vim-visual-multi"
+    "numToStr/Comment.nvim",
+    config = function()
+      require('Comment').setup()
+    end
   }
+  use { "mg979/vim-visual-multi" }
 
   use {
     "ray-x/go.nvim",
@@ -103,9 +103,30 @@ return require("packer").startup(function(use)
     }
   }
 
+  use { "MunifTanjim/prettier.nvim",
+    config = function()
+      require("prettier").setup({
+        bin = 'prettier',
+        filetypes = {
+          "css",
+          "graphql",
+          "html",
+          "javascript",
+          "javascriptreact",
+          "json",
+          "less",
+          "markdown",
+          "scss",
+          "typescript",
+          "typescriptreact",
+          "yaml",
+          "xhtml",
+        },
+      })
+    end }
+
   use {
     "roobert/tailwindcss-colorizer-cmp.nvim",
-    -- optionally, override the default options:
     config = function()
       require("tailwindcss-colorizer-cmp").setup({
         color_square_width = 2,
@@ -120,14 +141,6 @@ return require("packer").startup(function(use)
   }
 
   use {
-    "epwalsh/obsidian.nvim",
-    requires = {
-      -- Required.
-      "nvim-lua/plenary.nvim",
-    },
-  }
-
-  use {
     "Exafunction/codeium.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
@@ -139,33 +152,21 @@ return require("packer").startup(function(use)
     end
   }
 
+  -- Staff
   use { "David-Kunz/gen.nvim",
     config = function()
       require('gen').setup({
-        model = 'llama3:8b-instruct-q8_0', -- The default model to use.
-        display_mode = "split",            -- The display mode. Can be "float" or "split" or "horizontal-split".
-        show_prompt = true,                -- Shows the prompt submitted to Ollama.
-        show_model = true,                 -- Displays which model you are using at the beginning of your chat session.
-        no_auto_close = true,              -- Never closes the window automatically.
-        debug = true                       -- Prints errors and the command which is run.
+        model = 'llama3:8b-instruct-q8_0',
+        debug = true,
       })
     end
   }
 
-  -- use {
-  --   'Exafunction/codeium.vim',
-  --   config = function()
-  --     vim.keymap.set('i', '<C-g>', function() return vim.fn['codeium#Accept']() end, { expr = true })
-  --     vim.keymap.set('i', '<C-n>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
-  --     vim.keymap.set('i', '<C-p>', function() return vim.fn['codeium#CycleCompletions'](-1) end, { expr = true })
-  --     vim.keymap.set('i', '<C-x>', function() return vim.fn['codeium#Clear']() end, { expr = true })
-  --   end
-  -- }
-
-  use { "jonarrien/telescope-cmdline.nvim",
-    config = function()
-      require("telescope").load_extension('cmdline')
-      vim.api.nvim_set_keymap('n', '<leader><leader>',
-        ':Telescope cmdline<CR>', { noremap = true, desc = "Cmdline" })
-    end }
+  use {
+    "epwalsh/obsidian.nvim",
+    requires = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
+    },
+  }
 end)

@@ -1,9 +1,3 @@
-local lsp = require('lsp-zero').preset('recommended')
-lsp.on_attach(function(_, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-end)
-lsp.setup()
-
 -- NVIM cmp
 local has_words_before = function()
   unpack = unpack or table.unpack
@@ -42,8 +36,6 @@ cmp.setup({
         fallback()
       end
     end, { "i", "s" }),
-
-    ["<C-CR>"] = cmp.mapping.complete(),
 
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -110,6 +102,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Mason LSP
+require('mason').setup({})
 local mason_lsp_config = require("mason-lspconfig")
 local capabilities =
     require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
