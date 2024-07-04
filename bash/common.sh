@@ -26,6 +26,11 @@ gp()
   date +%s | sha256sum | base64 | head -c ${1:-64} ; echo
 }
 
+eg()
+{
+  env | grep "$1"
+}
+
 bind 'set completion-ignore-case on'
 
 set -o vi

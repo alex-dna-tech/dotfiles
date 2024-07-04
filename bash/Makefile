@@ -12,7 +12,7 @@ SOURCE = source $(LNK_PATH)/aliases.sh
 GREP_COUNT = $(shell grep -c "aliases.sh" $(TARGET))
 
 .PHONY: install
-install: clean 
+install: clean
 		echo $(SOURCE) >> $(TARGET)
 
 .PHONY: clean
@@ -20,4 +20,8 @@ clean:
 		[ $(GREP_COUNT) -ne 0 ] \
 			&& grep -v "aliases.sh" $(TARGET) > tmp.bashrc~ \
 			&& mv tmp.bashrc~ $(TARGET) || echo "Nothing to do"
+
+.PHONY: debug
+debug:
+	bash -v | ${PAGER:-more}
 

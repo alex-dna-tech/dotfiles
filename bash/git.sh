@@ -24,6 +24,7 @@ if [[ -x "$(command -v git)" ]]; then
   alias gcpn='git cherry-pick --no-commit'
   alias glchs='git config --local credential.helper store'
   alias glch='git config --local credential.helper ""'
+  alias gcll='git config --local --list'
 
   # Change local repo user name
   function gclun() {

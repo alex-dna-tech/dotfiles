@@ -18,6 +18,11 @@ function pe ()
 
 alias jl="jupyter lab"
 
+ipkn ()
+{
+  ipython kernel install --user --name=${1:-venv}
+}
+
 # Fabric
 function yts () {
   yt --transcript $1 | fabric -p ${3:-extract_wisdom} | save -s "${2:-youtube}"
