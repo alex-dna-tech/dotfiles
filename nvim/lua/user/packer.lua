@@ -156,8 +156,11 @@ return require("packer").startup(function(use)
   use { "David-Kunz/gen.nvim",
     config = function()
       require('gen').setup({
-        model = 'llama3:8b-instruct-q8_0',
-        debug = true,
+        model = 'codellama:13b-instruct-q5_K_M',
+        display_mode = "split",
+        show_prompt = false,
+        show_model = false,
+        no_auto_close = true,
       })
     end
   }

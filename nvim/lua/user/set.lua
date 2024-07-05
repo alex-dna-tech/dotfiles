@@ -40,3 +40,5 @@ vim.opt.shortmess:append "c"
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.cmd("let g:netrw_liststyle = 3")

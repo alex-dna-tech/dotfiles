@@ -53,9 +53,9 @@ cmp.setup({
   },
   sources = cmp.config.sources({
       { name = 'codeium' },
-      { name = 'luasnip',  keyword_length = 2, option = { show_autosnippets = true }, priority = 1000 },
-      { name = 'nvim_lsp', keyword_length = 3, priority = 900 },
       { name = 'path',     keyword_length = 2, priority = 800 },
+      { name = 'nvim_lsp', keyword_length = 1, priority = 900 },
+      { name = 'luasnip',  keyword_length = 2, option = { show_autosnippets = true }, priority = 1000 },
     },
     {
       { name = 'nvim_lsp_signature_help' },

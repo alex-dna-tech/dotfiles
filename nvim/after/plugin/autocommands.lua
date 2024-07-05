@@ -53,3 +53,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     })
   end,
 })
+
+-- Obsidian integration
+--- https://github.com/TheseusGrey/edit-in-neovim
+-- If you want to use "~", you need to prefix the vault path with vim.fn.expand "~"
+local vault_location = vim.fn.expand("~")
+    .. "Library/Mobile Documents/iCloud~md~obsidian/Documents/Trans"
+    .. "/**.md"
+local group = vim.api.nvim_create_augroup("obsidian_cmds", { clear = true })
+vim.api.nvim_create_autocmd("BufAdd", {
+  command = "ObsidianOpen",
+  pattern = { vault_location },
+  group = group,
+  desc = "Opens the current buffer in Obsidian",
+})
