@@ -4,13 +4,21 @@ DST_GIT = /tmp/neovim-git
 SRC = $(HOME)/dotfiles/nvim
 DST = $(HOME)/.config/nvim
 LNK = ln -sf
+OS = $(shell uname -s)
 
 $(NVIM): install-dep $(DST) $(DST_GIT)
 		cd $(DST_GIT) && make CMAKE_BUILD_TYPE=Release && \
 		sudo make install
 
 install-dep:
-	sudo apt -y install ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl
+	if [ "$(OS)" = "Darwin" ]; then \
+		brew install ninja cmake gettext curl; \
+	elif [ "$(OS)" = "Linux" ]; then \
+		sudo apt -y install ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl; \
+	else \
+		echo "Follow build instructions: https://github.com/neovim/neovim/blob/master/BUILD.md"; \
+		exit 1; \
+	fi
 .PHONY: install-dep
 
 $(DST):

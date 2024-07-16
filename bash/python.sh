@@ -40,6 +40,6 @@ ipkn ()
 
 # Fabric
 function yts () {
-  yt --transcript $1 | fabric -p ${3:-extract_wisdom} | save -s "${2:-youtube}"
+  yt --transcript "$1" | fabric -p "${3:-extract_wisdom}" | save -s "${2:-youtube}"
 }
 

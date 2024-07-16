@@ -1,6 +1,6 @@
 
 $(HOME)/.config/alacritty:
-	ln -sf $(HOME)/alacritty  $(HOME)/.config/alacritty
+	ln -sf $(PWD) $(HOME)/.config/alacritty
 
 clean:
 	rm -rf $(HOME)/.config/alacritty
