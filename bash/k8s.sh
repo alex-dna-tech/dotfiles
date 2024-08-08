@@ -32,6 +32,7 @@
 
 if [[ -x "$(command -v kubectl)" ]]; then
 	alias k='kubectl'
+  complete -F __start_kubectl k
 	alias ka='kubectl apply --recursive -f'
 	alias kak='kubectl apply -k'
 	alias kk='kubectl kustomize'
@@ -125,49 +126,6 @@ if [[ -x "$(command -v kubectl)" ]]; then
 	alias kgcmwall='kubectl get configmap --watch --all-namespaces'
 	alias kgsecwall='kubectl get secret --watch --all-namespaces'
 	alias kgnswall='kubectl get namespaces --watch --all-namespaces'
-	alias kgf='kubectl get --recursive -f'
-	alias kdf='kubectl describe --recursive -f'
-	alias krmf='kubectl delete --recursive -f'
-	alias kgwf='kubectl get --watch --recursive -f'
-	alias kgl='kubectl get -l'
-	alias kdl='kubectl describe -l'
-	alias krml='kubectl delete -l'
-	alias kgpol='kubectl get pods -l'
-	alias kdpol='kubectl describe pods -l'
-	alias krmpol='kubectl delete pods -l'
-	alias kgdepl='kubectl get deployment -l'
-	alias kddepl='kubectl describe deployment -l'
-	alias krmdepl='kubectl delete deployment -l'
-	alias kgstsl='kubectl get statefulset -l'
-	alias kdstsl='kubectl describe statefulset -l'
-	alias krmstsl='kubectl delete statefulset -l'
-	alias kgsvcl='kubectl get service -l'
-	alias kdsvcl='kubectl describe service -l'
-	alias krmsvcl='kubectl delete service -l'
-	alias kgingl='kubectl get ingress -l'
-	alias kdingl='kubectl describe ingress -l'
-	alias krmingl='kubectl delete ingress -l'
-	alias kgcml='kubectl get configmap -l'
-	alias kdcml='kubectl describe configmap -l'
-	alias krmcml='kubectl delete configmap -l'
-	alias kgsecl='kubectl get secret -l'
-	alias kdsecl='kubectl describe secret -l'
-	alias krmsecl='kubectl delete secret -l'
-	alias kgnol='kubectl get nodes -l'
-	alias kdnol='kubectl describe nodes -l'
-	alias kgnsl='kubectl get namespaces -l'
-	alias kdnsl='kubectl describe namespaces -l'
-	alias krmnsl='kubectl delete namespaces -l'
-	alias kgwl='kubectl get --watch -l'
-	alias kgpowl='kubectl get pods --watch -l'
-	alias kgdepwl='kubectl get deployment --watch -l'
-	alias kgstswl='kubectl get statefulset --watch -l'
-	alias kgsvcwl='kubectl get service --watch -l'
-	alias kgingwl='kubectl get ingress --watch -l'
-	alias kgcmwl='kubectl get configmap --watch -l'
-	alias kgsecwl='kubectl get secret --watch -l'
-	alias kgnowl='kubectl get nodes --watch -l'
-	alias kgnswl='kubectl get namespaces --watch -l'
 	alias kpft='kubectl port-forward -n kube-system "$(kubectl get pods -n kube-system | grep "^traefik-" | awk "{print $1}")" 9000:9000'
 
 	source <(kubectl completion bash)
@@ -184,3 +142,9 @@ fi
 if [[ -x "$(command -v k3d)" ]]; then
   source <(k3d completion bash)
 fi
+
+if [[ -x "$(command -v flux)" ]]; then
+  alias fxre='flux reconcile kustomization flux-system --with-source'
+fi
+
+
