@@ -10,7 +10,7 @@ return {
 			minimum_width = 50,
 			render = "compact",
 			stages = "static",
-			timeout = 2000,
+			timeout = 1500,
 		})
 
 		require("noice").setup({
