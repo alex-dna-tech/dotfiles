@@ -281,8 +281,9 @@ snippet ff "fmt.Printf(...)"
 
 
 # Fmt Printf debug with hash
+# fmt.Printf("$1 = %#v\n", ${1:${VISUAL}})
 snippet ffh "fmt.Printf(#...) hash"
-	fmt.Printf("$1 = %#v\n", ${1:${VISUAL}})
+	fmt.Printf("$1 = %#v\n", $1)
 
 
 # Fmt Println debug
@@ -445,7 +446,6 @@ snippet tt
 
 		})
 	}
-
 
 
 snippet hf "http.HandlerFunc"
