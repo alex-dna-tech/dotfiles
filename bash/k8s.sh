@@ -137,6 +137,7 @@ fi
 
 if [[ -x "$(command -v k3s)" ]]; then
   source <(k3s completion bash)
+  alias k3gc='k3s kubectl config view --raw > "$KUBECONFIG"'
 fi
 
 if [[ -x "$(command -v k3d)" ]]; then
