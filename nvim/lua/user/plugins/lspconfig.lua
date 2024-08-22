@@ -69,6 +69,7 @@ return {
 					capabilities = capabilities,
 					filetypes = {
 						"html",
+						"templ",
 						"typescriptreact",
 						"javascriptreact",
 						"css",
