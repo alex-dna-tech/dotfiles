@@ -21,7 +21,6 @@ return {
 
 		mason_lspconfig.setup({
 			ensure_installed = {
-				"cssls",
 				"emmet_ls",
 				"gopls",
 				"html",
@@ -42,6 +41,7 @@ return {
 				"prettier",
 				"pylint",
 				"stylua",
+				"gopls",
 			},
 		})
 	end,

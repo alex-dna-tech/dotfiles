@@ -94,6 +94,21 @@ return {
 					},
 				})
 			end,
+			["cssls"] = function()
+				lspconfig["cssls"].setup({
+					settings = {
+						css = { validate = true, lint = {
+							unknownAtRules = "ignore",
+						} },
+						scss = { validate = true, lint = {
+							unknownAtRules = "ignore",
+						} },
+						less = { validate = true, lint = {
+							unknownAtRules = "ignore",
+						} },
+					},
+				})
+			end,
 		})
 
 		local k = vim.keymap
