@@ -5,9 +5,10 @@ if [[ -x "$(command -v qemu-system-x86_64)" ]]; then
 
   qiso () {
     qemu-system-x86_64 \
+    -cpu host \
     -accel hvf \
-    -cdrom ${1:-./my.iso} \
-    -drive file=${2:-mydisk.qcow2},if=virtio \
+    -cdrom "${1:-./my.iso}" \
+    -drive file="${2:-mydisk.qcow2}",if=virtio \
     -smp ${3:-6} \
     -m ${4:-8}G \
     -vga virtio \
@@ -19,6 +20,7 @@ if [[ -x "$(command -v qemu-system-x86_64)" ]]; then
   # -cpu host,-rtdscp \
   qrun () {
     qemu-system-x86_64 \
+    -cpu host \
     -accel hvf \
     -drive file=${1:-mydisk.qcow2},if=virtio \
     -smp ${2:-6} \
