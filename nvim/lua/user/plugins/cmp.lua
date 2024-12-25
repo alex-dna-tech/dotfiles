@@ -31,6 +31,10 @@ return {
 		vim.cmd('command! LuaSnipEdit :lua require("luasnip.loaders").edit_snippet_files()')
 
 		cmp.setup({
+			preselect = "none",
+			completion = {
+				completeopt = "menu,menuone,noinsert",
+			},
 			snippet = {
 				expand = function(args)
 					luasnip.lsp_expand(args.body)
@@ -72,6 +76,7 @@ return {
 					end
 				end, { "i", "s" }),
 			}),
+
 			sources = cmp.config.sources({
 				{ name = "luasnip" },
 				{ name = "nvim_lsp" },
@@ -82,6 +87,7 @@ return {
 			}, {
 				{ name = "codeium" },
 			}),
+
 			---@diagnostic disable-next-line: missing-fields
 			formatting = {
 				format = require("lspkind").cmp_format({
