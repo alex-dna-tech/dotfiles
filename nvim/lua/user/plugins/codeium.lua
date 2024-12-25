@@ -5,7 +5,27 @@ return {
 		"hrsh7th/nvim-cmp",
 	},
 	config = function()
-		require("codeium").setup({})
+		require("codeium").setup({
+			virtual_text = {
+				filetypes = {
+					gitcommit = false,
+					markdown = false,
+					oil = false,
+				},
+				default_filetype_enabled = true,
+			},
+			workspace_root = {
+				use_lsp = true,
+				find_root = nil,
+				paths = {
+					".git",
+					"Makefile",
+					"go.mod",
+					"package.json",
+					"requiremets.txt",
+				},
+			},
+		})
 		local Source = require("codeium.source")
 
 		-- below is functionality to toggle the codeium_enabled variable
