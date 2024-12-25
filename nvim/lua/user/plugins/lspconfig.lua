@@ -16,7 +16,7 @@ return {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
 				local k = vim.keymap
-				local o = { buffer = ev.buf, silent = true }
+				local o = { buffer = ev.buf }
 
 				o.desc = "Show LSP references"
 				k.set("n", "gR", "<cmd>Telescope lsp_references<CR>", o)
@@ -27,11 +27,11 @@ return {
 				o.desc = "Show LSP definitions"
 				k.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", o)
 
-				o.desc = "Show LSP implementations"
-				k.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", o)
-
 				o.desc = "Show LSP type definitions"
 				k.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", o)
+
+				o.desc = "Show LSP implementations"
+				k.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", o)
 
 				o.desc = "Smart rename"
 				k.set("n", "<leader>rn", vim.lsp.buf.rename, o)
