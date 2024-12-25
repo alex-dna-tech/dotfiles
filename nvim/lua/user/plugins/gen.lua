@@ -2,13 +2,61 @@ return {
 	"David-Kunz/gen.nvim",
 	config = function()
 		local gen = require("gen")
+
+		-- Ollama config
 		gen.setup({
-			model = "codellama:13b-instruct-q5_K_M",
+			-- model = "codellama:13b-instruct-q5_K_M",
+			model = "qwen2.5-coder:14b-instruct-q6_K",
 			display_mode = "split",
 			show_prompt = true,
 			show_model = true,
 			no_auto_close = true,
+			debug = true,
 		})
+
+		-- G4f config
+		-- gen.setup({
+		-- 	model = "gpt-4o",
+		-- 	host = "10.8.1.118",
+		-- 	port = "1337",
+		-- 	command = function(options)
+		-- 		local body = {
+		-- 			model = options.model,
+		-- 			-- stream = false,
+		-- 			messages = {
+		-- 				{ role = "user", content = "${CONTENT}" },
+		-- 			},
+		-- 		}
+		-- 		return "CONTENT=$prompt && curl -sN -H 'Content-Type: application/json' -d '"
+		-- 			.. vim.fn.json_encode(body)
+		-- 			.. "' http://"
+		-- 			.. options.host
+		-- 			.. ":"
+		-- 			.. options.port
+		-- 			.. "/v1/chat/completions"
+		-- 	end,
+		-- 	list_models = function(options)
+		-- 		local response = vim.fn.systemlist(
+		-- 			"curl -sN -H 'Content-Type: application/json' http://"
+		-- 				.. options.host
+		-- 				.. ":"
+		-- 				.. options.port
+		-- 				.. "/v1/models"
+		-- 		)
+		-- 		local list = vim.fn.json_decode(response)
+		-- 		local models = {}
+		-- 		for key, _ in list do
+		-- 			table.insert(models, key.id)
+		-- 		end
+		-- 		table.sort(models)
+		-- 		return models
+		-- 	end,
+		-- 	display_mode = "split",
+		-- 	show_prompt = true,
+		-- 	show_model = true,
+		-- 	no_auto_close = true,
+		-- 	debug = true,
+		-- })
 
 		gen.prompts.Create_Commit_Message_For_Code = {
 			prompt = "I want you to act as a commit message generator. I will provide you with the final $filetype code output, and I want you to create a corresponding commit message using the normal commit format. Do not write any explanations or other words, just reply with a commit message.\n```$filetype\n$text\n```",
