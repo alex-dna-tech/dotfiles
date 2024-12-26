@@ -1,7 +1,9 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-alias f='open -a Finder ./'                 # f:            Opens current directory in MacOS Finder
+# Opens current directory in MacOS Finder
+alias f='open -a Finder ./'                 
 
+# Paste Finder directory
 function pfd() {
   osascript 2>/dev/null <<EOF
     tell application "Finder"
@@ -10,34 +12,39 @@ function pfd() {
 EOF
 }
 
+# Paste Finder selection
 function pfs() {
   osascript 2>/dev/null <<EOF
     set output to ""
     tell application "Finder" to set the_selection to selection
-    set item_count to count the_selection
+    set item_count to count of the_selection
     repeat with item_index from 1 to count the_selection
-      if item_index is less than item_count then set the_delimiter to "\n"
-      if item_index is item_count then set the_delimiter to ""
-      set output to output & ((item item_index of the_selection as alias)'s POSIX path) & the_delimiter
+      if item_index < item_count then
+        set the_delimiter to linefeed
+      else
+        set the_delimiter to ""
+      end if
+      set output to output & (POSIX path of (item item_index of the_selection as alias)) & the_delimiter
     end repeat
+    return output
 EOF
 }
 
+# Change directory to the current Finder directory.
 function cdf() {
   cd "$(pfd)"
 }
 
+# Push a Finder directory onto the stack of dirs
 function pushdf() {
   pushd "$(pfd)"
 }
 
-ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
+# Opens any file in MacOS Quicklook Preview
+ql () { qlmanage -p "$*" >& /dev/null; }
 
-function quick-look() {
-  (( $# > 0 )) && qlmanage -p $* &>/dev/null &
-}
-
-function man-preview() {
+# Opens any file in MacOS Preview application
+function mp() {
   man -t "$@" | open -f -a Preview
 }
 #compdef _man man-preview
@@ -51,3 +58,5 @@ EOF
 alias q='pmset displaysleepnow'
 alias dsclean='find . -type f -name .DS_Store -print0 | xargs -0 rm'
 
+alias p=pbpaste
+alias c=pbcopy
