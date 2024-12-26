@@ -10,9 +10,11 @@ source $HOME/dotfiles/bash/common.sh
 source $HOME/dotfiles/bash/docker.sh
 source $HOME/dotfiles/bash/git.sh
 source $HOME/dotfiles/bash/golang.sh
-source $HOME/dotfiles/bash/composer.sh
 source $HOME/dotfiles/bash/python.sh
+# source $HOME/dotfiles/bash/composer.sh
 # source $HOME/dotfiles/bash/symfony.sh
 source $HOME/dotfiles/bash/tmux.sh
+source $HOME/dotfiles/bash/ssh.sh
 source $HOME/dotfiles/bash/ansible.sh
 source $HOME/dotfiles/bash/k8s.sh
+source $HOME/dotfiles/bash/fabric.sh
