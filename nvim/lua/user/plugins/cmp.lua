@@ -31,7 +31,7 @@ return {
 		vim.cmd('command! LuaSnipEdit :lua require("luasnip.loaders").edit_snippet_files()')
 
 		cmp.setup({
-			preselect = "none",
+			preselect = "None",
 			completion = {
 				completeopt = "menu,menuone,noinsert",
 			},
@@ -107,8 +107,11 @@ return {
 			},
 		})
 
-		vim.cmd([[
-		    autocmd FileType TelescopePrompt lua require("cmp").setup.buffer { enabled = false }
-		]])
+		vim.api.nvim_create_autocmd("FileType", {
+			pattern = "TelescopePrompt,help,markdown,oil",
+			callback = function()
+				require("cmp").setup.buffer({ enabled = false })
+			end,
+		})
 	end,
 }
