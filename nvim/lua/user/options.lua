@@ -42,3 +42,4 @@ for k, v in pairs(options) do
 end
 
 vim.cmd("let g:netrw_liststyle = 3")
+vim.opt.shell = "bash --login -c"

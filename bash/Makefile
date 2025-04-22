@@ -23,5 +23,5 @@ clean:
 
 .PHONY: debug
 debug:
-	bash -v | ${PAGER:-more}
+	bash -v
 

@@ -9,7 +9,6 @@ alias less='less -FSRXc'
 alias du='du -h'
 alias df='df -h'
 alias l='ls -lAh'
-alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
 alias h='history'
 alias hg='history | grep -i'
 alias ag='alias | grep -i'
@@ -32,7 +31,6 @@ eg()
 }
 
 bind 'set completion-ignore-case on'
-
 set -o vi
 bind -m vi-insert "\C-l":clear-screen
 
