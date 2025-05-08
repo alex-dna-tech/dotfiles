@@ -1,18 +1,8 @@
 return {
 	"folke/trouble.nvim",
-	opts = {}, -- for default options, refer to the configuration section for custom setup.
+	opts = {},
 	cmd = "Trouble",
 	dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },
-	-- config = function()
-	-- 	local k = vim.keymap
-	-- 	k.set("n", "<leader>x", "", { desc = "+Trouble" })
-	-- 	k.set("n", "<leader>xx", "<cmd>TroubleToggle<CR>", { desc = "Toggle Trouble List" })
-	-- 	k.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<CR>", { desc = "Workspace Diagnostics" })
-	-- 	k.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<CR>", { desc = "Document Diagnostics" })
-	-- 	k.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<CR>", { desc = "Quickfix List" })
-	-- 	k.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<CR>", { desc = "Location List" })
-	-- 	k.set("n", "<leader>xt", "<cmd>TodoTrouble<CR>", { desc = "Todos Trouble" })
-	-- end,
 	keys = {
 		{
 			"<leader>xx",

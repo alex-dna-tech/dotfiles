@@ -29,13 +29,17 @@ return {
 
 		-- set keymaps
 		local k = vim.keymap
+		local builtin = require("telescope.builtin")
+
 		k.set("n", "<leader>f", "", { desc = "+Files" })
-		k.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
-		k.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find Recent Files" })
-		k.set("n", "<leader>fs", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find String" })
-		-- k.set("n", "<leader>F", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find Text" })
-		k.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find String Under Cursor" })
-		k.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find Todos" })
+		k.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
+		k.set("n", "<leader>fr", builtin.oldfiles, { desc = "Find Recent Files" })
+		k.set("n", "<leader>fs", function()
+			local ivy = require("telescope.themes").get_ivy()
+			builtin.live_grep(ivy)
+		end, { desc = "Find String" })
+		k.set("n", "<leader>fc", builtin.grep_string, { desc = "Find String Under Cursor" })
+		-- k.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find Todos" })
 
 		k.set(
 			"n",
@@ -57,13 +61,12 @@ return {
 
 		-- Search
 		k.set("n", "<leader>s", "", { desc = "+Search" })
-		k.set("n", "<leader>sh", "<cmd>Telescope help_tags<cr>", { desc = "Find Help" })
-		k.set("n", "<leader>sM", "<cmd>Telescope man_pages<cr>", { desc = "Man Pages" })
-		k.set("n", "<leader>sr", "<cmd>Telescope registers<cr>", { desc = "Registers" })
-		k.set("n", "<leader>sR", "<cmd>Telescope oldfiles<cr>", { desc = "Open Recent File" })
-		k.set("n", "<leader>sk", "<cmd>Telescope keymaps<cr>", { desc = "Keymaps" })
-		k.set("n", "<leader>sc", "<cmd>Telescope commands<cr>", { desc = "Commands" })
-		k.set("n", "<leader>sC", "<cmd>Telescope colorscheme<cr>", { desc = "Colorscheme" })
+		k.set("n", "<leader>sh", builtin.help_tags, { desc = "Find Help" })
+		k.set("n", "<leader>sM", builtin.man_pages, { desc = "Man Pages" })
+		k.set("n", "<leader>sr", builtin.registers, { desc = "Registers" })
+		k.set("n", "<leader>sk", builtin.keymaps, { desc = "Keymaps" })
+		k.set("n", "<leader>sc", builtin.commands, { desc = "Commands" })
+		k.set("n", "<leader>sC", builtin.colorscheme, { desc = "Colorscheme" })
 		-- +Symbols
 		k.set("n", "<leader>ss", "", { desc = "+Symbols" })
 		k.set(

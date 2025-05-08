@@ -30,6 +30,7 @@ return {
 				"package.json",
 				"docker-compose.yml",
 				"compose.yml",
+				"compose.yml",
 				"main.go",
 				"requirements.txt",
 				"README.md",
