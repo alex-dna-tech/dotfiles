@@ -2,7 +2,6 @@ return {
 	"epwalsh/obsidian.nvim",
 	event = { "BufReadPre", "BufNewFile" },
 	version = "*",
-	lazy = false,
 	ft = "markdown",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
@@ -26,6 +25,7 @@ return {
 			},
 
 			disable_frontmatter = true,
+			ui = { enable = false },
 		})
 
 		-- Obsidian integration

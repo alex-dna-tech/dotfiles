@@ -20,6 +20,11 @@ node() {
   command node "$@"
 }
 
+tm() {
+  lazy_load_nvm
+  task-master "$@"
+}
+
 nvm() {
   lazy_load_nvm
   nvm "$@"

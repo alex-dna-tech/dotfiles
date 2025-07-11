@@ -6,7 +6,6 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		"nvim-tree/nvim-web-devicons",
-		"folke/todo-comments.nvim",
 		"nvim-telescope/telescope-symbols.nvim",
 	},
 	config = function()
@@ -39,8 +38,6 @@ return {
 			builtin.live_grep(ivy)
 		end, { desc = "Find String" })
 		k.set("n", "<leader>fc", builtin.grep_string, { desc = "Find String Under Cursor" })
-		-- k.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find Todos" })
-
 		k.set(
 			"n",
 			"<leader>b",

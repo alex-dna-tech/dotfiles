@@ -6,6 +6,7 @@ if [[ -x "$(command -v docker-compose)" ]]; then
   alias dcr='docker-compose run'
   alias dcu='docker-compose up -d --remove-orphans'
   alias dcur='docker-compose up -d --force-recreate --remove-orphans'
+  alias dcurl='docker-compose up -d --force-recreate --remove-orphans && docker-compose logs --tail 100 -f'
 fi
 if [[ -x "$(command -v docker)" ]]; then
   alias d='docker'

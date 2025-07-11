@@ -2,15 +2,28 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		{ "folke/neodev.nvim", opts = {} },
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason.nvim",
+		"mason-org/mason-lspconfig.nvim",
 	},
 	config = function()
-		local lspconfig = require("lspconfig")
-		local mason_lspconfig = require("mason-lspconfig")
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		require("mason").setup()
+		require("mason-lspconfig").setup({
+			automatic_enable = {
+				"lua_ls",
+				"vimls",
+			},
+		})
+
+		--
+		-- These GLOBAL keymaps are created unconditionally when Nvim starts:
+		-- - "grn" is mapped in Normal mode to |vim.lsp.buf.rename()|
+		-- - "gra" is mapped in Normal and Visual mode to |vim.lsp.buf.code_action()|
+		-- - "grr" is mapped in Normal mode to |vim.lsp.buf.references()|
+		-- - "gri" is mapped in Normal mode to |vim.lsp.buf.implementation()|
+		-- - "gO" is mapped in Normal mode to |vim.lsp.buf.document_symbol()|
+		-- - CTRL-S is mapped in Insert mode to |vim.lsp.buf.signature_help()|
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -39,76 +52,54 @@ return {
 				o.desc = "Show buffer diagnostics"
 				k.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", o)
 
-				o.desc = "Show line diagnostics"
-				k.set("n", "<leader>d", vim.diagnostic.open_float, o)
-
 				o.desc = "Show documentation for what is under cursor"
 				k.set("n", "K", vim.lsp.buf.hover, o)
 			end,
 		})
 
-		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		-- Config files: https://github.com/neovim/nvim-lspconfig/tree/master/lsp
+		vim.lsp.config("emmet_ls", {
+			filetypes = {
+				"html",
+				"htmlhugo",
+				"templ",
+				"typescriptreact",
+				"javascriptreact",
+				"css",
+				"sass",
+				"scss",
+				"less",
+			},
+		})
 
-		-- Change the Diagnostic symbols in the sign column (gutter)
-		local signs = { Error = " ", Warn = " ", Hint = "", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			-- TODO: check health vim.deprecated fix required
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+		vim.lsp.config("lua_ls", {
+			settings = {
+				Lua = {
+					runtime = {
+						version = "LuaJIT",
+					},
+					diagnostics = {
+						globals = { "vim" },
+					},
+					completion = {
+						callSnippet = "Replace",
+					},
+				},
+			},
+		})
 
-		mason_lspconfig.setup_handlers({
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["emmet_ls"] = function()
-				lspconfig["emmet_ls"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"templ",
-						"typescriptreact",
-						"javascriptreact",
-						"css",
-						"sass",
-						"scss",
-						"less",
-					},
-				})
-			end,
-			["lua_ls"] = function()
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				})
-			end,
-			["cssls"] = function()
-				lspconfig["cssls"].setup({
-					settings = {
-						css = { validate = true, lint = {
-							unknownAtRules = "ignore",
-						} },
-						scss = { validate = true, lint = {
-							unknownAtRules = "ignore",
-						} },
-						less = { validate = true, lint = {
-							unknownAtRules = "ignore",
-						} },
-					},
-				})
-			end,
+		vim.lsp.config("cssls", {
+			settings = {
+				css = { validate = true, lint = {
+					unknownAtRules = "ignore",
+				} },
+				scss = { validate = true, lint = {
+					unknownAtRules = "ignore",
+				} },
+				less = { validate = true, lint = {
+					unknownAtRules = "ignore",
+				} },
+			},
 		})
 
 		local k = vim.keymap

@@ -14,6 +14,11 @@ alias hg='history | grep -i'
 alias ag='alias | grep -i'
 alias dirarch='find . -maxdepth 1 -type d ! -name . -exec tar -zcvf '{}'.tar.gz '{}'/ \; -exec rm -rf '{}' \;'
 
+fnd()
+{
+  find . -name "$1" 2>/dev/null
+}
+
 if [[ -f ~/.bash_profile ]]; then
   alias so='source $HOME/.bash_profile'
 else

@@ -22,11 +22,11 @@ return {
 			capabilities = capabilities,
 		})
 
-		lspconfig.tailwindcss.setup({
-			capabilities = capabilities,
-			filetypes = { "templ", "astro", "javascript", "typescript", "react" },
-			init_options = { userLanguages = { templ = "html" } },
-		})
+		-- lspconfig.tailwindcss.setup({
+		-- 	capabilities = capabilities,
+		-- 	filetypes = { "templ", "astro", "javascript", "typescript", "react" },
+		-- 	init_options = { userLanguages = { templ = "html" } },
+		-- })
 
 		lspconfig.html.setup({
 			capabilities = capabilities,
