@@ -1,3 +1,5 @@
+alias python='python3'
+
 function penv()
 {
   python3 -m venv "${1:-venv}"
@@ -7,13 +9,16 @@ function penv()
 
 alias pi="pip install -r requirements.txt"
 alias pu="pip uninstall -r requirements.txt -y"
-function pe ()
+
+pe() 
 {
-  if [[ -d "${HOME}/.venv" ]]; then
-    source "${HOME}/.venv/bin/activate"
-  else
-    penv "${HOME}/.venv"
+  local venv_path="${HOME}/.venv"
+
+  if [[ ! -d "$venv_path" ]]; then
+    penv "$venv_path"
   fi
+
+  source "$venv_path/bin/activate"
 }
 
 pmd () {

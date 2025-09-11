@@ -4,6 +4,16 @@ alias www='go-readability'
 alias fb='fabric'
 alias fbu='fabric -g=uk'
 
+
+fabric_update(){
+go install github.com/danielmiessler/fabric/cmd/fabric@latest
+go install github.com/danielmiessler/fabric/cmd/code_helper@latest
+go install github.com/danielmiessler/fabric/cmd/generate_changelog@latest
+go install github.com/JohannesKaufmann/html-to-markdown/v2/cli/html2markdown@latest
+go install github.com/go-shiori/go-readability/cmd/go-readability@latest
+curl -fsSL https://raw.githubusercontent.com/danielmiessler/Fabric/refs/heads/main/completions/setup-completions.sh | sh
+}
+
 ytwe(){
 if [[ -z $1 ]]; then
   echo "You must set Youtube URL as argument"

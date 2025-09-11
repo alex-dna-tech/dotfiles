@@ -59,6 +59,6 @@ alias q='pmset displaysleepnow'
 alias dsclean='find . -type f -name .DS_Store -print0 | xargs -0 rm'
 
 alias p=pbpaste
-alias c=pbcopy
+alias c='tee >(pbcopy)'
 
 alias sed='gsed'

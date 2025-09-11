@@ -30,6 +30,11 @@ gp()
   date +%s | sha256sum | base64 | head -c ${1:-64} ; echo
 }
 
+random() 
+{ 
+  cat /dev/urandom | base64 | head -c "${1:-64}" | tr -d +/ ; 
+}
+
 eg()
 {
   env | grep "$1"
