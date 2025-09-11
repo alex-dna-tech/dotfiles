@@ -13,6 +13,9 @@ return {
 			automatic_enable = {
 				"lua_ls",
 				"vimls",
+				"tailwindcss",
+				"ts_ls",
+				"css-lsp",
 			},
 		})
 

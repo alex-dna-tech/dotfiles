@@ -23,7 +23,7 @@ return {
 		k.set("n", "<leader>gdh", "<cmd>diffget //2<cr>", { desc = "Merge diff left" })
 		k.set("n", "<leader>gdl", "<cmd>diffget //3<cr>", { desc = "Merge diff right" })
 		-- Log
-		k.set("n", "<leader>gl", "", { desc = "+Log" })
+		k.set("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "Log" })
 		k.set("n", "<leader>gll", "<cmd>Git log<cr>", { desc = "Log" })
 		k.set("n", "<leader>glo", "<cmd>Git log --oneline<cr>", { desc = "Log oneline" })
 	end,
