@@ -24,6 +24,7 @@ k.set("n", "<A-Right>", ":vertical resize -2<cr>", opts)
 -- Navigate buffers
 k.set("n", "<S-l>", ":bnext<cr>", opts)
 k.set("n", "<S-h>", ":bprevious<cr>", opts)
+k.set("n", "<leader>o", ":%bd|e#<cr>")
 
 -- Move text up and down
 k.set("n", "<A-j>", "<Esc>:m .+1<cr>==gi", opts)
