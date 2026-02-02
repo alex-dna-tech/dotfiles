@@ -1,6 +1,5 @@
 return {
 	"ray-x/go.nvim",
-	event = { "CmdlineEnter" },
 	ft = { "go", "gomod" },
 	build = ':lua require("go.install").update_all_sync()',
 	dependencies = {
@@ -24,14 +23,20 @@ return {
 		})
 
 		require("go").setup({
-			luasnip = true,
-			lsp_inlay_hints = {
-				enable = true,
-			},
-			lsp_cfg = true,
-			only_current_line = true,
-			lsp_keymaps = false,
+			goimports = "gopls", -- if set to 'gopls' will use golsp format
+			gofmt = "gopls", -- if set to gopls will use golsp format
+			tag_transform = false,
+			test_dir = "",
+			comment_placeholder = "   ",
+			lsp_cfg = true, -- false: use your own lspconfig
+			lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
+			lsp_on_attach = true, -- use on_attach from go.nvim
+			dap_debug = true,
 		})
+		local gopls_cfg = require("go.lsp").config()
+		-- gopls_cfg.filetypes = { 'go', 'gomod'}, -- override settings
+		vim.lsp.config.gopls = gopls_cfg
+		vim.lsp.enable("gopls")
 
 		local k = vim.keymap
 		k.set("n", "<leader><leader>a", "<cmd>GoAlt<cr>", { desc = "Go Alternative File" })
@@ -44,9 +49,7 @@ return {
 		k.set("n", "<leader><leader>b", "<cmd>GoBreakToggle<CR>", { desc = "Go Breack Toggle" })
 		k.set("n", "<leader><leader>r", "<cmd>GoGenReturn<CR>", { desc = "Go Gen Return" })
 		k.set("n", "<leader><leader>m", "<cmd>GoMockGen<CR>", { desc = "Go Mock Gen" })
-		k.set("n", "<leader><leader>c", function()
-			require("go.comment").gen()
-		end, { desc = "Go Generate Comment" })
+		k.set("n", "<leader><leader>c", "<cmd>GoCmt<CR>", { desc = "Go Generate Comment" })
 		k.set("n", "<leader>godt", function()
 			require("dap-go").debug_test()
 		end, { desc = "Go Debug Test" })

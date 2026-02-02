@@ -18,22 +18,22 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-		lspconfig.templ.setup({
+		vim.lsp.config("templ", {
 			capabilities = capabilities,
 		})
 
-		-- lspconfig.tailwindcss.setup({
+		-- vim.lsp.config("tailwindcss", {
 		-- 	capabilities = capabilities,
 		-- 	filetypes = { "templ", "astro", "javascript", "typescript", "react" },
 		-- 	init_options = { userLanguages = { templ = "html" } },
 		-- })
 
-		lspconfig.html.setup({
+		vim.lsp.config("html", {
 			capabilities = capabilities,
 			filetypes = { "html", "templ" },
 		})
 
-		lspconfig.htmx.setup({
+		vim.lsp.config("htmx", {
 			capabilities = capabilities,
 			filetypes = { "html", "templ" },
 		})
