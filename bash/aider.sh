@@ -71,6 +71,19 @@ phi-4"
     fi
 }
 
+aider-dev-gemini-flash() {
+  aider-base \
+    --watch-files \
+    --cache-prompts \
+    --no-stream \
+    --model "gemini/gemini-3-flash" \
+    --weak-model "gemini/gemini-2.5-flash-lite" \
+    --no-detect-urls \
+    --no-auto-commit \
+    --no-auto-lint \
+    "$@"
+}
+
 aider-dev-gemini() {
   aider-base \
     --watch-files \
@@ -89,9 +102,9 @@ aider-dev-arch() {
   aider-base \
     --architect \
     --watch-files \
-    --model "openai/deepseek-r1" \
+    --model "gemini/gemini-3-flash" \
     --editor-model "gemini/gemini-2.0-flash" \
-    --weak-model "openai/gpt-4o-mini" \
+    --weak-model "gemini/gemini-2.5-flash-lite" \
     --no-detect-urls \
     --no-auto-commit \
     --no-auto-lint \
@@ -107,17 +120,3 @@ aider-ollama() {
             "$@"
 }
 
-aider-ollama-srv-llama() {
-  OLLAMA_API_BASE=http://10.8.1.117:11434 aider-base \
-            --model "ollama_chat/llama3.2:latest" \
-            --detect-urls --no-git --no-auto-commits --yes \
-            --message "$@"
-}
-
-
-aider-ollama-srv-deepseek() {
-  OLLAMA_API_BASE=http://10.8.1.117:11434 aider-base \
-            --model "ollama_chat/deepseek-r1:latest" \
-            --detect-urls --no-git --no-auto-commits --yes \
-            --message "$@"
-}

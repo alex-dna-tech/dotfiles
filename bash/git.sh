@@ -4,7 +4,9 @@ if [[ -x "$(command -v git)" ]]; then
   alias gco='git checkout'
   alias gcm='git checkout master'
   alias gc='git commit'
+  alias gca='git commit --amend'
   alias ga='git add'
+  alias garch='git archive --format=zip --output=project.zip HEAD'
   alias gb='git branch -a'
   alias gl='git log --stat'
   alias glg='git log --graph --decorate --all'
@@ -27,12 +29,12 @@ if [[ -x "$(command -v git)" ]]; then
   alias gcll='git config --local --list'
 
   # Change local repo user name
-  function gclun() {
+  function gcun() {
     git config --local user.name "$1"
   }
 
   # Change local repo user email
-  function gclue() {
+  function gcue() {
       git config --local user.email "$1"
   }
 
@@ -40,4 +42,7 @@ if [[ -x "$(command -v git)" ]]; then
   function gra() {
       git rebase -r ${1:-HEAD~1} --exec 'git commit --amend --no-edit --reset-author'
   }
+
+  alias gr='git rebase'
+  alias grc='git rebase --continue'
 fi
