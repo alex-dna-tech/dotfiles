@@ -27,8 +27,8 @@ return {
 		require("luasnip.loaders.from_vscode").lazy_load({
 			exclude = { "javascript", "golang" },
 		})
-		require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
-		require("luasnip.loaders.from_snipmate").lazy_load({ path = "./snippets" })
+		-- require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./snippets" } })
+		-- require("luasnip.loaders.from_snipmate").lazy_load({ path = "./snippets" })
 
 		vim.cmd('command! LuaSnipEdit :lua require("luasnip.loaders").edit_snippet_files()')
 
