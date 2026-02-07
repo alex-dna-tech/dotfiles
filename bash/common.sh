@@ -40,7 +40,9 @@ eg()
   env | grep "$1"
 }
 
-bind 'set completion-ignore-case on'
+if [[ $- == *i* ]]; then
+    bind 'set completion-ignore-case on'
+fi
 set -o vi
 bind -m vi-insert "\C-l":clear-screen
 
