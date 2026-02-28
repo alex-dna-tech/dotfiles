@@ -110,8 +110,9 @@ decorations = "None"
 startup_mode = "Maximized"
 padding = { x = 5, y = 5 }
 dynamic_padding = true
-# opacity = 0.92
+opacity = 0.97
 
 [window.class]
 general = "Alacritty"
 instance = "Alacritty"
+
