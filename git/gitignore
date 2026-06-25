@@ -1,7 +1,8 @@
 .DS_Store
+.aider*
 .idea/
 bin/console
-tags
-node_modules/
-vendor/
 launch.json
+node_modules/
+tags
+vendor/

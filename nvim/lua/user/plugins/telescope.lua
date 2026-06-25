@@ -45,7 +45,7 @@ return {
 			{ desc = "Buffers" }
 		)
 		k.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
-		k.set("n", "<leader>e", "<cmd>Oil<cr>", { desc = "Files Explorer" })
+		k.set("n", "<leader>o", "<cmd>Oil<cr>", { desc = "Files Explorer", nowait = true })
 		k.set("n", "<leader>w", "<cmd>w!<CR>", { desc = "Write" })
 		k.set("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
 		k.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" })

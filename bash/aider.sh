@@ -76,8 +76,7 @@ aider-dev-gemini-flash() {
     --watch-files \
     --cache-prompts \
     --no-stream \
-    --model "gemini/gemini-3-flash" \
-    --weak-model "gemini/gemini-2.5-flash-lite" \
+    --model "gemini/gemini-3.1-flash" \
     --no-detect-urls \
     --no-auto-commit \
     --no-auto-lint \
@@ -96,6 +95,20 @@ aider-dev-gemini() {
     --no-auto-lint \
     "$@"
 }
+
+aider-dev-qwen-ollama() {
+  aider-base \
+    --watch-files \
+    --cache-prompts \
+    --no-stream \
+    --model "ollama_chat/qwen3.5:9b" \
+    --weak-model "ollama_chat/qwen3.5:0.8b" \
+    --no-detect-urls \
+    --no-auto-commit \
+    --no-auto-lint \
+    "$@"
+}
+
 
 
 aider-dev-arch() {
@@ -120,3 +133,6 @@ aider-ollama() {
             "$@"
 }
 
+gemini-list-models() {
+  curl -q https://generativelanguage.googleapis.com/v1beta/models?key=$GEMINI_API_KEY
+}

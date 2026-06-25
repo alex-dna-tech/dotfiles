@@ -8,8 +8,9 @@ fi
 # source $HOME/dotfiles/bash/symfony.sh
 # source $HOME/dotfiles/bash/qemu.sh
 # source $HOME/dotfiles/bash/k8s.sh
-source $HOME/dotfiles/bash/aider.sh
-source $HOME/dotfiles/bash/ansible.sh
+# source $HOME/dotfiles/bash/aider.sh
+# source $HOME/dotfiles/bash/ansible.sh
+source $HOME/dotfiles/bash/claude.sh
 source $HOME/dotfiles/bash/common.sh
 source $HOME/dotfiles/bash/docker.sh
 source $HOME/dotfiles/bash/git.sh
