@@ -33,7 +33,11 @@ size = 15.5
 
 [font.normal]
 family = "FiraCode Nerd Font"
-style = "Retina"
+style = "Regular"
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Bold"
 
 [font.offset]
 x = 0
