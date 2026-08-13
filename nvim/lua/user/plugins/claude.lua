@@ -1,16 +1,33 @@
 return {
 	"coder/claudecode.nvim",
 	dependencies = { "folke/snacks.nvim" },
-	-- opts = {
-	-- terminal_cmd = "ccg",
-	-- models = {
-	-- 	{ name = "or-ring", value = "or-ring" },
-	-- 	{ name = "Claude Sonnet 4.5 (Latest)", value = "sonnet" },
-	-- 	{ name = "Opusplan: Claude Opus 4.1 (Latest) + Sonnet 4.5 (Latest)", value = "opusplan" },
-	-- 	{ name = "Claude Haiku 4.5 (Latest)", value = "haiku" },
-	-- },
-	-- },
 	config = true,
+	opts = {
+		models = {
+			{ name = "Claude Opus (Latest)", value = "opus" },
+			{ name = "Claude Opus (Latest, 1M context)", value = "opus[1m]" },
+			{ name = "Claude Sonnet (Latest)", value = "sonnet" },
+			{ name = "Claude Sonnet (Latest, 1M context)", value = "sonnet[1m]" },
+			{ name = "Claude Haiku (Latest)", value = "haiku" },
+			{ name = "Default (account recommended)", value = "default" },
+		},
+	},
+	cmd = {
+		"ClaudeCode",
+		"ClaudeCodeFocus",
+		"ClaudeCodeSelectModel",
+		"ClaudeCodeAdd",
+		"ClaudeCodeSend",
+		"ClaudeCodeTreeAdd",
+		"ClaudeCodeStatus",
+		"ClaudeCodeStart",
+		"ClaudeCodeStop",
+		"ClaudeCodeOpen",
+		"ClaudeCodeClose",
+		"ClaudeCodeDiffAccept",
+		"ClaudeCodeDiffDeny",
+		"ClaudeCodeCloseAllDiffs",
+	},
 	keys = {
 		{ "<leader>a", nil, desc = "AI/Claude Code" },
 		{ "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
