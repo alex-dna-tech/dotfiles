@@ -20,7 +20,7 @@ static int tagindicatortype              = INDICATOR_TOP_LEFT_SQUARE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_TOP_LEFT_SQUARE;
 
-static const char *fonts[]          = {"FiraCode Nerd Font,FiraCode Nerd Font Ret:style:medium:size=12" ,"FiraCode Nerd Font Mono:style:medium:size=19" };
+static const char *fonts[]          = {"FiraCode Nerd Font:style:medium:size=12" ,"FiraCode Nerd Font Mono:style:medium:size=19" };
 static const char dmenufont[]            = "FiraCode Nerd Font Mono:size=20:style=Bold";
 
 static char c000000[]                    = "#000000"; // placeholder value
@@ -181,7 +181,7 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #include <X11/XF86keysym.h>
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -203,7 +203,7 @@ static const char *dmenucmd[] = {
 	"-sf", selfgcolor,
 	NULL
 };
-static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 
 static const Key keys[] = {

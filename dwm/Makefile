@@ -25,9 +25,9 @@ build: install-dep $(DST_GIT) $(BLOCK_GIT) $(DWM) $(PREFIX)/bin/dwmblocks
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
-		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev gcc make feh xsetroot xrandr xprop xmodmap curl font-fira-code-nerd flameshot kitty kitty-terminfo; \
+		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev gcc make feh xsetroot xrandr xprop xmodmap curl font-fira-code-nerd flameshot kitty kitty-terminfo dmenu rofi mpv; \
 	elif [ "$(OS)" = "Linux" ]; then \
-		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev gcc make feh x11-xserver-utils curl font-fira-code-nerd flameshot kitty kitty-terminfo; \
+		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev gcc make feh x11-xserver-utils curl font-fira-code-nerd flameshot kitty kitty-terminfo dmenu; \
 	else \
 		echo "Follow build instructions: https://github.com/Andrey0189/dwm-gruvbox"; \
 		exit 1; \
