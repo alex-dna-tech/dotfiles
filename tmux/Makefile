@@ -1,5 +1,5 @@
 $(HOME)/.tmux.conf: 
-	ln -sf $(PWD)/tmux.conf $(HOME)/.tmux.conf
+	ln -sf $(CURDIR)/tmux.conf $(HOME)/.tmux.conf
 
 .PHONY: clean
 clean:
