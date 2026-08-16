@@ -1,4 +1,4 @@
-SUBDIRS = bash git nvim tmux kitty i3wm
+SUBDIRS = bash git nvim tmux
 
 .PHONY: all
 all: $(SUBDIRS)
