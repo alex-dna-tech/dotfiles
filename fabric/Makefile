@@ -1,5 +1,8 @@
 GOPATH = $(shell go env GOPATH)
 
+.PHONY: all
+all: install
+
 .PHONY: update
 uninstall: 
 	rm $(GOPATH)/bin/fabric $(GOPATH)/bin/html2markdown $(GOPATH)/bin/go-readability
