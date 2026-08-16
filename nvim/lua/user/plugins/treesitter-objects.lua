@@ -13,7 +13,7 @@ return {
 		-- vim.g.no_go_maps = true
 	end,
 	config = function()
-		require("nvim-treesitter.configs").setup({
+		require("nvim-treesitter").setup({
 			textobjects = {
 				select = {
 					enable = true,
