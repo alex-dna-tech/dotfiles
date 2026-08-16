@@ -58,4 +58,4 @@ $(BLOCK_GIT):
 
 .PHONY: clean
 clean:
-	rm -rf $(DST_GIT) $(BLOCK_GIT)
+	rm -rf $(DST_GIT) $(BLOCK_GIT) $(PREFIX)/bin/dwmblocks

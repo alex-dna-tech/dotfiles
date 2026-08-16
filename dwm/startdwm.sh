@@ -1,7 +1,7 @@
 #!/bin/sh
 
 feh --bg-scale ~/Downloads/wp.png
-setxkbmap us,ru -option 'grp:caps_toggle'
+setxkbmap -layout us,ua -variant dvorak, -option grp:ctl_shift_toggle
 dwmblocks &
 
 while true; do
