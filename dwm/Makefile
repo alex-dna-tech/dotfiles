@@ -7,13 +7,14 @@ BLOCK_GIT = /tmp/dwmblocks-git
 PATCH = $(SRC)/gruvbox.patch
 SRC = $(CURDIR)
 PREFIX = /usr/local
+CONFIG = $(HOME)/.config
 OS = $(shell uname -s)
 SUDO = $(shell command -v sudo >/dev/null 2>&1 && echo sudo || echo doas)
 # gruvbox fork is based on dwm 6.5 ("bump version to 6.5" commit)
 DWM_65 = 061e9fe
 
-.PHONY: all
-all:
+.PHONY: install
+install:
 	@if [ "$(OS)" = "Linux" ]; then \
 		$(MAKE) build; \
 	else \
@@ -21,11 +22,11 @@ all:
 	fi
 
 .PHONY: build
-build: install-dep $(DST_GIT) $(BLOCK_GIT) $(DWM) $(PREFIX)/bin/dwmblocks
+build: install-dep $(DST_GIT) $(BLOCK_GIT) $(DWM) $(PREFIX)/bin/dwmblocks $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc $(HOME)/.Xresources
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
-		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip curl font-fira-code-nerd flameshot kitty kitty-terminfo dmenu rofi mpv dunst; \
+		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip xrdb curl font-fira-code-nerd flameshot kitty kitty-terminfo dmenu rofi mpv dunst; \
 	elif [ "$(OS)" = "Linux" ]; then \
 		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev gcc make feh x11-xserver-utils curl font-fira-code-nerd flameshot kitty kitty-terminfo dmenu; \
 	else \
@@ -56,6 +57,17 @@ $(DST_GIT):
 $(BLOCK_GIT):
 	git clone --depth=1 https://github.com/torrinfail/dwmblocks $(BLOCK_GIT)
 
+$(CONFIG)/picom/picom.conf:
+	mkdir -p $(CONFIG)/picom
+	ln -s $(CURDIR)/picom.conf $(CONFIG)/picom/picom.conf
+
+$(CONFIG)/dunst/dunstrc:
+	mkdir -p $(CONFIG)/dunst
+	ln -s $(CURDIR)/dunstrc.conf $(CONFIG)/dunst/dunstrc
+
+$(HOME)/.Xresources:
+	ln -s $(CURDIR)/Xresources.conf $(HOME)/.Xresources
+
 .PHONY: clean
 clean:
-	$(SUDO) rm -rf $(DST_GIT) $(BLOCK_GIT) $(PREFIX)/bin/dwmblocks
+	$(SUDO) rm -rf $(DST_GIT) $(BLOCK_GIT) $(PREFIX)/bin/dwmblocks $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc $(HOME)/.Xresources

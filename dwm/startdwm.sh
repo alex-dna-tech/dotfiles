@@ -2,6 +2,8 @@
 
 feh --bg-scale ~/Downloads/wp.png
 setxkbmap -layout us,ua -variant dvorak, -option grp:ctl_shift_toggle
+xrdb merge ~/.Xresources 
+xset r rate 200 50 &
 dwmblocks &
 picom -b
 
