@@ -25,7 +25,7 @@ build: install-dep $(DST_GIT) $(BLOCK_GIT) $(DWM) $(PREFIX)/bin/dwmblocks
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
-		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev gcc make feh xsetroot xrandr xprop xmodmap curl font-fira-code-nerd flameshot kitty kitty-terminfo dmenu rofi mpv; \
+		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip curl font-fira-code-nerd flameshot kitty kitty-terminfo dmenu rofi mpv dunst; \
 	elif [ "$(OS)" = "Linux" ]; then \
 		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev gcc make feh x11-xserver-utils curl font-fira-code-nerd flameshot kitty kitty-terminfo dmenu; \
 	else \
@@ -58,4 +58,4 @@ $(BLOCK_GIT):
 
 .PHONY: clean
 clean:
-	rm -rf $(DST_GIT) $(BLOCK_GIT) $(PREFIX)/bin/dwmblocks
+	$(SUDO) rm -rf $(DST_GIT) $(BLOCK_GIT) $(PREFIX)/bin/dwmblocks

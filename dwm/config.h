@@ -20,7 +20,7 @@ static int tagindicatortype              = INDICATOR_TOP_LEFT_SQUARE;
 static int tiledindicatortype            = INDICATOR_NONE;
 static int floatindicatortype            = INDICATOR_TOP_LEFT_SQUARE;
 
-static const char *fonts[]          = {"FiraCode Nerd Font:style:medium:size=12" ,"FiraCode Nerd Font Mono:style:medium:size=19" };
+static const char *fonts[]               = {"FiraCode Nerd Font:style:medium:size=12" ,"FiraCode Nerd Font Mono:style:medium:size=19" };
 static const char dmenufont[]            = "FiraCode Nerd Font Mono:size=20:style=Bold";
 
 static char c000000[]                    = "#000000"; // placeholder value
@@ -209,7 +209,7 @@ static const char *flameshot[] = { "flameshot", "gui", NULL };
 static const Key keys[] = {
 	/* modifier                     key            function                argument */
 	{ MODKEY,                       XK_p,          spawn,                  {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return,     spawn,                  {.v = termcmd } },
+	{ MODKEY,                       XK_Return,     spawn,                  {.v = termcmd } },
 	{ MODKEY,                       XK_b,          togglebar,              {0} },
 	{ MODKEY,                       XK_j,          focusstack,             {.i = +1 } },
 	{ MODKEY,                       XK_k,          focusstack,             {.i = -1 } },
@@ -217,7 +217,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,          incnmaster,             {.i = -1 } },
 	{ MODKEY,                       XK_h,          setmfact,               {.f = -0.05} },
 	{ MODKEY,                       XK_l,          setmfact,               {.f = +0.05} },
-	{ MODKEY,                       XK_Return,     zoom,                   {0} },
+	{ MODKEY|ShiftMask,             XK_Return,     zoom,                   {0} },
 	{ MODKEY|Mod4Mask,              XK_u,          incrgaps,               {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,          incrgaps,               {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_i,          incrigaps,              {.i = +1 } },
@@ -257,7 +257,7 @@ static const Key keys[] = {
   { 0,                            XF86XK_AudioRaiseVolume,    spawn,          SHCMD("pactl set-sink-volume 0 +3%") },
   { 0,                            XF86XK_MonBrightnessUp,     spawn,          SHCMD("brightnessctl g +5%") },
   { 0,                            XF86XK_MonBrightnessDown,   spawn,          SHCMD("brightnessctl g 5%-") },
-  { 0,                            XK_Print,                   spawn,          {.v = flameshot} },
+  { 0,                            XK_F1,                      spawn,          {.v = flameshot} },
   { 0,                            XK_ISO_Next_Group,          spawn,          SHCMD("pkill -RTMIN+10 dwmblocks") },
 
   TAGKEYS(                        XK_1,                                  0)
