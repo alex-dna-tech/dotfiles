@@ -1,7 +1,10 @@
 SUBDIRS = bash git nvim tmux
 
-.PHONY: all
-all: $(SUBDIRS)
+.PHONY: base
+base: $(SUBDIRS)
+
+.PHONY: dwm
+dwm: base kitty 
 
 .PHONY: $(SUBDIRS)
 $(SUBDIRS):

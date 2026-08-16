@@ -3,8 +3,8 @@
 # status bar: torrinfail/dwmblocks.
 DWM = /usr/local/bin/dwm
 DST_GIT = /tmp/dwm-git
-GRUV_GIT = /tmp/dwm-gruvbox
 BLOCK_GIT = /tmp/dwmblocks-git
+PATCH = $(SRC)/gruvbox.patch
 SRC = $(CURDIR)
 PREFIX = /usr/local
 OS = $(shell uname -s)
@@ -21,7 +21,7 @@ all:
 	fi
 
 .PHONY: build
-build: install-dep $(DST_GIT) $(GRUV_GIT) $(BLOCK_GIT) $(DWM) $(PREFIX)/bin/dwmblocks
+build: install-dep $(DST_GIT) $(BLOCK_GIT) $(DWM) $(PREFIX)/bin/dwmblocks
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
@@ -34,9 +34,9 @@ install-dep:
 	fi
 .PHONY: install-dep
 
-# dwm: suckless 6.5 base + gruvbox patched sources + local config.h
-$(DWM): $(DST_GIT) $(GRUV_GIT) $(SRC)/config.h
-	cp -R $(GRUV_GIT)/dwm/. $(DST_GIT)/
+# dwm: suckless 6.5 base + gruvbox.patch + local config.h
+$(DWM): $(DST_GIT) $(PATCH) $(SRC)/config.h
+	cd $(DST_GIT) && (git apply --reverse --check $(PATCH) 2>/dev/null && echo "gruvbox.patch already applied" || git apply $(PATCH))
 	cp $(SRC)/config.h $(DST_GIT)/config.h
 	cd $(DST_GIT) && $(SUDO) make clean install
 	$(SUDO) cp $(SRC)/startdwm.sh $(PREFIX)/bin/startdwm.sh
@@ -53,13 +53,9 @@ $(DST_GIT):
 	cd $(DST_GIT) && git fetch --unshallow
 	cd $(DST_GIT) && git checkout $(DWM_65)
 
-$(GRUV_GIT):
-	git clone --depth=1 --filter=blob:none --sparse https://github.com/Andrey0189/dwm-gruvbox $(GRUV_GIT)
-	cd $(GRUV_GIT) && git sparse-checkout set dwm
-
 $(BLOCK_GIT):
 	git clone --depth=1 https://github.com/torrinfail/dwmblocks $(BLOCK_GIT)
 
 .PHONY: clean
 clean:
-	rm -rf $(DST_GIT) $(GRUV_GIT) $(BLOCK_GIT)
+	rm -rf $(DST_GIT) $(BLOCK_GIT)
