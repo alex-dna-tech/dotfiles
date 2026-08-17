@@ -22,7 +22,7 @@ install:
 	fi
 
 .PHONY: build
-build: install-dep $(DST_GIT) $(BLOCK_GIT) $(DWM) $(PREFIX)/bin/dwmblocks $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc $(HOME)/.Xresources
+build: install-dep $(DST_GIT) $(BLOCK_GIT) $(DWM) $(PREFIX)/bin/dwmblocks $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
@@ -65,9 +65,6 @@ $(CONFIG)/dunst/dunstrc:
 	mkdir -p $(CONFIG)/dunst
 	ln -s $(CURDIR)/dunstrc.conf $(CONFIG)/dunst/dunstrc
 
-$(HOME)/.Xresources:
-	ln -s $(CURDIR)/Xresources.conf $(HOME)/.Xresources
-
 .PHONY: clean
 clean:
-	$(SUDO) rm -rf $(DST_GIT) $(BLOCK_GIT) $(PREFIX)/bin/dwmblocks $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc $(HOME)/.Xresources
+	$(SUDO) rm -rf $(DST_GIT) $(BLOCK_GIT) $(PREFIX)/bin/dwmblocks $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc
