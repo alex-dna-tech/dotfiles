@@ -1,6 +1,6 @@
 # dwm - dynamic window manager (patched gruvbox build)
 # Base: git.suckless.org/dwm pinned to 6.5, gruvbox patches overlaid,
-# status bar: torrinfail/dwmblocks, terminal: st with ligatures + alpha.
+# status bar: torrinfail/dwmblocks, terminal: st with ligatures.
 DWM = /usr/local/bin/dwm
 DST_GIT = /tmp/dwm-git
 BLOCK_GIT = /tmp/dwmblocks-git
@@ -51,11 +51,11 @@ $(PREFIX)/bin/dwmblocks: $(BLOCK_GIT) $(SRC)/blocks.def.h
 	cp $(SRC)/blocks.def.h $(BLOCK_GIT)/blocks.def.h
 	cd $(BLOCK_GIT) && $(SUDO) make clean install
 
-# st: suckless terminal with scrollback + ligatures + alpha + anysize
-$(PREFIX)/bin/st: $(ST_GIT) $(SRC)/st-patches/st-scrollback-0.9.2.diff $(SRC)/st-patches/st-ligatures-scrollback-0.9.3.diff $(SRC)/st-patches/st-alpha-anysize-altscreen-0.9.3.diff $(SRC)/st/config.h
+# st: suckless terminal with scrollback + ligatures + anysize
+$(PREFIX)/bin/st: $(ST_GIT) $(SRC)/st-patches/st-scrollback-0.9.2.diff $(SRC)/st-patches/st-ligatures-scrollback-0.9.3.diff $(SRC)/st-patches/st-anysize-altscreen-0.9.3.diff $(SRC)/st/config.h
 	cd $(ST_GIT) && (git apply --reverse --check $(SRC)/st-patches/st-scrollback-0.9.2.diff 2>/dev/null && echo "scrollback patch already applied" || git apply $(SRC)/st-patches/st-scrollback-0.9.2.diff)
 	cd $(ST_GIT) && (git apply --reverse --check $(SRC)/st-patches/st-ligatures-scrollback-0.9.3.diff 2>/dev/null && echo "ligatures patch already applied" || git apply $(SRC)/st-patches/st-ligatures-scrollback-0.9.3.diff)
-	cd $(ST_GIT) && (git apply --reverse --check $(SRC)/st-patches/st-alpha-anysize-altscreen-0.9.3.diff 2>/dev/null && echo "alpha-anysize-altscreen patch already applied" || git apply $(SRC)/st-patches/st-alpha-anysize-altscreen-0.9.3.diff)
+	cd $(ST_GIT) && (git apply --reverse --check $(SRC)/st-patches/st-anysize-altscreen-0.9.3.diff 2>/dev/null && echo "anysize-altscreen patch already applied" || git apply $(SRC)/st-patches/st-anysize-altscreen-0.9.3.diff)
 	cp $(SRC)/st/config.h $(ST_GIT)/config.h
 	cd $(ST_GIT) && $(SUDO) make clean install
 
