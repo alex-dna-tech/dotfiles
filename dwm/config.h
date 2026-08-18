@@ -203,7 +203,7 @@ static const char *dmenucmd[] = {
 	"-sf", selfgcolor,
 	NULL
 };
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 static const char *picom_on[] = { "picom", NULL};
 static const char *picom_off[] = { "pkill","picom", NULL};

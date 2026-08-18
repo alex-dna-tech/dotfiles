@@ -4,7 +4,8 @@ feh --bg-scale ~/Downloads/wp.png
 setxkbmap -layout us,ua -variant dvorak, -option grp:ctl_shift_toggle
 xset r rate 200 50 &
 dwmblocks &
-# picom -b
+# ponytail: picom needed for st alpha transparency
+picom -b
 
 while true; do
 	# Log stderror to a file
