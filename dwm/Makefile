@@ -24,7 +24,7 @@ install:
 	fi
 
 .PHONY: build
-build: install-dep $(DST_GIT) $(BLOCK_GIT) $(ST_GIT) $(DWM) $(PREFIX)/bin/dwmblocks $(PREFIX)/bin/st $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc
+build: install-dep $(DST_GIT) $(BLOCK_GIT) $(ST_GIT) $(DWM) $(PREFIX)/bin/dwmblocks $(PREFIX)/bin/st $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc dmenu-scripts
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
@@ -80,6 +80,15 @@ $(CONFIG)/dunst/dunstrc:
 	mkdir -p $(CONFIG)/dunst
 	ln -s $(CURDIR)/dunstrc.conf $(CONFIG)/dunst/dunstrc
 
+# dmenu scripts: symlink each script in dmenu-scripts/ into $(PREFIX)/bin/
+dmenu-scripts:
+	@for f in $(SRC)/dmenu-scripts/*.sh; do \
+		ln -sf "$$f" $(PREFIX)/bin/$$(basename "$$f"); \
+	done
+
 .PHONY: clean
 clean:
-	$(SUDO) rm -rf $(DST_GIT) $(BLOCK_GIT) $(ST_GIT) $(PREFIX)/bin/dwmblocks $(PREFIX)/bin/st $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc
+	$(SUDO) rm -rf $(DST_GIT) $(BLOCK_GIT) $(ST_GIT) $(PREFIX)/bin/dwmblocks $(PREFIX)/bin/st $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc; \
+	for f in $(SRC)/dmenu-scripts/*.sh; do \
+		rm -f $(PREFIX)/bin/$$(basename "$$f"); \
+	done
