@@ -7,9 +7,7 @@ mkdir -p "$CACHE_DIR"
 
 if [ ! -e "$GLYPH_FILE" ]; then
     curl -s https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/glyphnames.json \
-        | sed 's/},/}\n/g' \
-        | grep '"char"' \
-        | sed 's/^"\([^"]*\)":{"char":"\([^"]*\)".*/\1 \2/' \
+        | jq -r 'to_entries[] | select(.value.char) | "\(.key) \(.value.char)"' \
         > "$GLYPH_FILE"
 fi
 
