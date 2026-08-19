@@ -36,7 +36,7 @@ install-dep:
 
 # dwm: suckless base + fullgaps patch + local config.h
 $(DWM): $(DST_GIT) $(SRC)/config.h $(SRC)/dwm-fullgaps-6.4.diff
-	cd $(DST_GIT) && git checkout -- . && git apply $(SRC)/dwm-fullgaps-6.4.diff
+	cd $(DST_GIT) && git checkout -- . && patch -p1 < $(SRC)/dwm-fullgaps-6.4.diff
 	cp $(SRC)/config.h $(DST_GIT)/config.h
 	cd $(DST_GIT) && $(SUDO) make clean install
 	$(SUDO) cp $(SRC)/startdwm.sh $(PREFIX)/bin/startdwm.sh
