@@ -28,9 +28,9 @@ build: install-dep $(DST_GIT) $(BLOCK_GIT) $(ST_GIT) $(DWM) $(PREFIX)/bin/dwmblo
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
-		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev harfbuzz-dev libxrender-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip xrdb curl font-fira-code-nerd flameshot dmenu rofi mpv dunst; \
+		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev harfbuzz-dev libxrender-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip xrdb curl jq font-fira-code-nerd flameshot dmenu rofi mpv dunst; \
 	elif [ "$(OS)" = "Linux" ]; then \
-		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev libharfbuzz-dev libxrender-dev gcc make feh x11-xserver-utils curl font-fira-code-nerd flameshot picom dmenu; \
+		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev libharfbuzz-dev libxrender-dev gcc make feh x11-xserver-utils curl jq font-fira-code-nerd flameshot picom dmenu; \
 	else \
 		echo "Follow build instructions: https://github.com/Andrey0189/dwm-gruvbox"; \
 		exit 1; \
@@ -84,7 +84,6 @@ $(CONFIG)/dunst/dunstrc:
 .PHONY: dmenu-scripts
 dmenu-scripts:
 	@for f in $(SRC)/dmenu-scripts/*.sh; do \
-		chmod u+x "$$f"; \
 		$(SUDO) ln -sf "$$f" $(PREFIX)/bin/$$(basename "$$f"); \
 	done
 
