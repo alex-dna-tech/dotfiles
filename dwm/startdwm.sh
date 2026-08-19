@@ -4,8 +4,6 @@ feh --bg-scale ~/Downloads/wp.png
 setxkbmap -layout us,ua -variant dvorak, -option grp:ctl_shift_toggle
 xset r rate 200 50 &
 dwmblocks &
-# ponytail: picom disabled, was causing xrender issues with st
-# picom -b
 
 while true; do
 	# Log stderror to a file
