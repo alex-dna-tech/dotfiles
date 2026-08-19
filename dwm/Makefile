@@ -84,6 +84,7 @@ $(CONFIG)/dunst/dunstrc:
 .PHONY: dmenu-scripts
 dmenu-scripts:
 	@for f in $(SRC)/dmenu-scripts/*.sh; do \
+		chmod u+x "$$f"; \
 		$(SUDO) ln -sf "$$f" $(PREFIX)/bin/$$(basename "$$f"); \
 	done
 

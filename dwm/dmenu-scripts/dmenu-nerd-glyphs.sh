@@ -1,15 +1,20 @@
 #!/bin/sh
 
+CACHE_DIR="${HOME}/.cache/dmenu-scripts"
+GLYPH_FILE="${CACHE_DIR}/glyph-list.txt"
+
+mkdir -p "$CACHE_DIR"
+
 # Get user selection via dmenu from emoji file.
-if [ -e $(dirname $0)/glyph-list.txt ]
+if [ -e "$GLYPH_FILE" ]
 then
-    chosen=$(cut -d ';' -f1 $(dirname $0)/glyphlist | dmenu -i -l 30 | sed "s/ .*//")
+    chosen=$(cut -d ';' -f1 "$GLYPH_FILE" | dmenu -i -l 30 | sed "s/ .*//")
 else
     echo -en "$(curl https://www.nerdfonts.com/cheat-sheet \
         | grep 'class="class-name">' \
         | sed 's/ *<div class="class-name">//; s/<\/div><div class="codepoint">/ \\u/; s/<\/div>//; s/\(.* \)\(.*\)/\2 \1/' \
-        )" > $(dirname $0)/glyph-list.txt
-    chosen=$(cut -d ';' -f1 $(dirname $0)/glyph-list.txt | dmenu -i -l 30 | sed "s/ .*//")
+        )" > "$GLYPH_FILE"
+    chosen=$(cut -d ';' -f1 "$GLYPH_FILE" | dmenu -i -l 30 | sed "s/ .*//")
 fi
 
 # Exit if none chosen.
