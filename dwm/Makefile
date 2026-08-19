@@ -81,6 +81,7 @@ $(CONFIG)/dunst/dunstrc:
 	ln -s $(CURDIR)/dunstrc.conf $(CONFIG)/dunst/dunstrc
 
 # dmenu scripts: symlink each script in dmenu-scripts/ into $(PREFIX)/bin/
+.PHONY: dmenu-scripts
 dmenu-scripts:
 	@for f in $(SRC)/dmenu-scripts/*.sh; do \
 		ln -sf "$$f" $(PREFIX)/bin/$$(basename "$$f"); \
