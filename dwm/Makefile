@@ -1,18 +1,15 @@
-# dwm - dynamic window manager (patched gruvbox build)
-# Base: git.suckless.org/dwm pinned to 6.5, gruvbox patches overlaid,
+# dwm - dynamic window manager (patched build)
+# Base: suckless dwm, patches applied incrementally,
 # status bar: torrinfail/dwmblocks, terminal: st with ligatures.
 DWM = /usr/local/bin/dwm
 DST_GIT = /tmp/dwm-git
 BLOCK_GIT = /tmp/dwmblocks-git
 ST_GIT = /tmp/st-git
-PATCH = $(SRC)/gruvbox.patch
 SRC = $(CURDIR)
 PREFIX = /usr/local
 CONFIG = $(HOME)/.config
 OS = $(shell uname -s)
 SUDO = $(shell command -v sudo >/dev/null 2>&1 && echo sudo || echo doas)
-# gruvbox fork is based on dwm 6.5 ("bump version to 6.5" commit)
-DWM_65 = 061e9fe
 ST_093 = 0.9.3
 
 .PHONY: install
@@ -37,8 +34,9 @@ install-dep:
 	fi
 .PHONY: install-dep
 
-# dwm: suckless 6.5 base + local config.h (no patches)
-$(DWM): $(DST_GIT) $(SRC)/config.h
+# dwm: suckless base + fullgaps patch + local config.h
+$(DWM): $(DST_GIT) $(SRC)/config.h $(SRC)/dwm-fullgaps-6.4.diff
+	cd $(DST_GIT) && git checkout -- . && git apply $(SRC)/dwm-fullgaps-6.4.diff
 	cp $(SRC)/config.h $(DST_GIT)/config.h
 	cd $(DST_GIT) && $(SUDO) make clean install
 	$(SUDO) cp $(SRC)/startdwm.sh $(PREFIX)/bin/startdwm.sh
@@ -61,7 +59,6 @@ $(PREFIX)/bin/st: $(ST_GIT) $(SRC)/st-patches/st-scrollback-0.9.2.diff $(SRC)/st
 $(DST_GIT):
 	git clone --depth=1 https://git.suckless.org/dwm $(DST_GIT)
 	cd $(DST_GIT) && git fetch --unshallow
-	cd $(DST_GIT) && git checkout $(DWM_65)
 
 $(BLOCK_GIT):
 	git clone --depth=1 https://github.com/torrinfail/dwmblocks $(BLOCK_GIT)
