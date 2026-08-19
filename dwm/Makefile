@@ -37,9 +37,8 @@ install-dep:
 	fi
 .PHONY: install-dep
 
-# dwm: suckless 6.5 base + gruvbox.patch + local config.h
-$(DWM): $(DST_GIT) $(PATCH) $(SRC)/config.h
-	cd $(DST_GIT) && (git apply --reverse --check $(PATCH) 2>/dev/null && echo "gruvbox.patch already applied" || git apply $(PATCH))
+# dwm: suckless 6.5 base + local config.h (no patches)
+$(DWM): $(DST_GIT) $(SRC)/config.h
 	cp $(SRC)/config.h $(DST_GIT)/config.h
 	cd $(DST_GIT) && $(SUDO) make clean install
 	$(SUDO) cp $(SRC)/startdwm.sh $(PREFIX)/bin/startdwm.sh
