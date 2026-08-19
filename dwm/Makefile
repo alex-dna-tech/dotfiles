@@ -84,12 +84,12 @@ $(CONFIG)/dunst/dunstrc:
 .PHONY: dmenu-scripts
 dmenu-scripts:
 	@for f in $(SRC)/dmenu-scripts/*.sh; do \
-		ln -sf "$$f" $(PREFIX)/bin/$$(basename "$$f"); \
+		$(SUDO) ln -sf "$$f" $(PREFIX)/bin/$$(basename "$$f"); \
 	done
 
 .PHONY: clean
 clean:
 	$(SUDO) rm -rf $(DST_GIT) $(BLOCK_GIT) $(ST_GIT) $(PREFIX)/bin/dwmblocks $(PREFIX)/bin/st $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc; \
-	for f in $(SRC)/dmenu-scripts/*.sh; do \
-		rm -f $(PREFIX)/bin/$$(basename "$$f"); \
-	done
+		for f in $(SRC)/dmenu-scripts/*.sh; do \
+			$(SUDO) rm -f $(PREFIX)/bin/$$(basename "$$f"); \
+		done
