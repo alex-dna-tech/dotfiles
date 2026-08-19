@@ -25,18 +25,19 @@ build: install-dep $(DST_GIT) $(BLOCK_GIT) $(ST_GIT) $(DWM) $(PREFIX)/bin/dwmblo
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
-		$(SUDO) apk add patch libx11-dev libxft-dev libxinerama-dev harfbuzz-dev libxrender-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip xrdb curl jq font-fira-code-nerd flameshot dmenu rofi mpv dunst; \
+		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev harfbuzz-dev libxrender-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip xrdb curl jq font-fira-code-nerd flameshot dmenu rofi mpv dunst; \
 	elif [ "$(OS)" = "Linux" ]; then \
-		$(SUDO) apt -y install patch libx11-dev libxft-dev libxinerama-dev libharfbuzz-dev libxrender-dev gcc make feh x11-xserver-utils curl jq font-fira-code-nerd flameshot picom dmenu; \
+		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev libharfbuzz-dev libxrender-dev gcc make feh x11-xserver-utils curl jq font-fira-code-nerd flameshot picom dmenu; \
 	else \
 		echo "Follow build instructions: https://github.com/Andrey0189/dwm-gruvbox"; \
 		exit 1; \
 	fi
 .PHONY: install-dep
 
-# dwm: suckless base + fullgaps patch + local config.h
-$(DWM): $(DST_GIT) $(SRC)/config.h $(SRC)/dwm-fullgaps-6.4.diff
-	cd $(DST_GIT) && git checkout -- . && patch -p1 < $(SRC)/dwm-fullgaps-6.4.diff
+# dwm: suckless base + fullgaps + local config.h
+$(DWM): $(DST_GIT) $(SRC)/config.h $(SRC)/dwm.c
+	cd $(DST_GIT) && git checkout -- .
+	cp $(SRC)/dwm.c $(DST_GIT)/dwm.c
 	cp $(SRC)/config.h $(DST_GIT)/config.h
 	cd $(DST_GIT) && $(SUDO) make clean install
 	$(SUDO) cp $(SRC)/startdwm.sh $(PREFIX)/bin/startdwm.sh
