@@ -6,11 +6,6 @@ return {
 		"ray-x/guihua.lua",
 		"neovim/nvim-lspconfig",
 		"nvim-treesitter/nvim-treesitter",
-		"mfussenegger/nvim-dap",
-		"rcarriga/nvim-dap-ui",
-		"nvim-neotest/nvim-nio",
-		"theHamsta/nvim-dap-virtual-text",
-		"nvim-telescope/telescope-dap.nvim",
 	},
 	config = function()
 		local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
@@ -31,7 +26,6 @@ return {
 			lsp_cfg = true, -- false: use your own lspconfig
 			lsp_gofumpt = true, -- true: set default gofmt in gopls format to gofumpt
 			lsp_on_attach = true, -- use on_attach from go.nvim
-			dap_debug = true,
 		})
 		local gopls_cfg = require("go.lsp").config()
 		-- gopls_cfg.filetypes = { 'go', 'gomod'}, -- override settings
@@ -50,11 +44,5 @@ return {
 		k.set("n", "<leader><leader>r", "<cmd>GoGenReturn<CR>", { desc = "Go Gen Return" })
 		k.set("n", "<leader><leader>m", "<cmd>GoMockGen<CR>", { desc = "Go Mock Gen" })
 		k.set("n", "<leader><leader>c", "<cmd>GoCmt<CR>", { desc = "Go Generate Comment" })
-		k.set("n", "<leader>godt", function()
-			require("dap-go").debug_test()
-		end, { desc = "Go Debug Test" })
-		k.set("n", "<leader>godlt", function()
-			require("dap-go").debug_last_test()
-		end, { desc = "Go Debug Last Test" })
 	end,
 }

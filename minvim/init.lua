@@ -37,14 +37,14 @@ vim.cmd("set completeopt+=noselect")
 
 require("mini.pick").setup()
 require("nvim-treesitter.configs").setup({
-	ensure_installed = { "svelte", "typescript", "javascript" },
+	ensure_installed = { "go", "typescript", "javascript" },
 	highlight = { enable = true },
 })
 require("oil").setup()
 
 vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
 vim.keymap.set("n", "<leader>h", ":Pick help<CR>")
-vim.keymap.set("n", "<leader>e", ":Oil<CR>")
+vim.keymap.set("n", "<leader>o", ":Oil<CR>")
 
 vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
 vim.lsp.enable({ "lua_ls", "biome", "tinymist", "emmetls" })

@@ -48,7 +48,7 @@ return {
 		vim.keymap.set({ "n", "x" }, "go", function()
 			return require("opencode").operator("@this ")
 		end, { desc = "Add range to opencode", expr = true })
-		vim.keymap.set("n", "goo", function()
+		vim.keymap.set("n", "gO", function()
 			return require("opencode").operator("@this ") .. "_"
 		end, { desc = "Add line to opencode", expr = true })
 
