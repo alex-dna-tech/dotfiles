@@ -1,4 +1,4 @@
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+if [[ "$OSTYPE" == "linux"* ]]; then
   source $HOME/dotfiles/bash/linux.sh
 elif [[ "$OSTYPE" == "darwin"* ]]; then
   source $HOME/dotfiles/bash/macos.sh
