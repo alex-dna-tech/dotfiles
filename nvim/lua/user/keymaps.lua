@@ -36,22 +36,22 @@ k.set("n", "<leader>y", 'gg0"+yG', { noremap = true, silent = true, desc = "Yank
 -- Tmux
 k.set("n", "<leader>t", "", { desc = "+Tmux" })
 k.set(
-	"v",
-	"<leader>tc",
-	'y<cr>:call system("tmux load-buffer -", @0)<cr>gv',
-	{ noremap = true, silent = true, desc = "Copy Visual" }
+  "v",
+  "<leader>tc",
+  'y<cr>:call system("tmux load-buffer -", @0)<cr>gv',
+  { noremap = true, silent = true, desc = "Copy Visual" }
 )
 k.set(
-	"n",
-	"<leader>tc",
-	':call system("tmux load-buffer -", @0)',
-	{ noremap = true, silent = true, desc = "Copy Normal" }
+  "n",
+  "<leader>tc",
+  ':call system("tmux load-buffer -", @0)',
+  { noremap = true, silent = true, desc = "Copy Normal" }
 )
 k.set(
-	"n",
-	"<leader>tp",
-	':let @0 = system("tmux save-buffer -")<cr>"0p<cr>g;',
-	{ noremap = true, silent = true, desc = "Paste" }
+  "n",
+  "<leader>tp",
+  ':let @0 = system("tmux save-buffer -")<cr>"0p<cr>g;',
+  { noremap = true, silent = true, desc = "Paste" }
 )
 
 -- Insert --
