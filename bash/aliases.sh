@@ -16,6 +16,7 @@ source $HOME/dotfiles/bash/docker.sh
 source $HOME/dotfiles/bash/git.sh
 source $HOME/dotfiles/bash/golang.sh
 source $HOME/dotfiles/bash/history.sh
+source $HOME/dotfiles/bash/mpv.sh
 source $HOME/dotfiles/bash/nvm.sh
 source $HOME/dotfiles/bash/obsidian.sh
 source $HOME/dotfiles/bash/python.sh
