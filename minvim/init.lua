@@ -74,7 +74,7 @@ k.set("n", "<A-k>", "<Esc>:m .-2<cr>==gi", opts)
 k.set("n", "<leader>y", 'gg0"+yG', { noremap = true, silent = true, desc = "Yank All Buffer" })
 
 -- Tmux
-k.set("n", "<leader>t", nil, { desc = "+Tmux" })
+k.set("n", "<leader>t", "", { desc = "+Tmux" })
 k.set(
   "v",
   "<leader>tc",
@@ -128,45 +128,70 @@ k.set("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- Refresh config
 k.set("n", "<leader>so", ":so $MYVIMRC<cr>", { desc = "Refresh Neovim Config" })
 
+k.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
+k.set("n", "<leader>w", "<cmd>w!<CR>", { desc = "Write" })
+k.set("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
+k.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" })
+
 k.set("c", "w!!", "w !sudo tee % >/dev/null", term_opts)
 
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd("com! W w")
 vim.cmd("com! Wq wq")
 
+
 -- PLUGINS
 vim.pack.add({
-  { src = "https://github.com/vague2k/vague.nvim" },
+  { src = "https://github.com/ellisonleao/gruvbox.nvim" },
   { src = "https://github.com/stevearc/oil.nvim" },
   { src = "https://github.com/echasnovski/mini.pick" },
-  { src = "https://github.com/nvim-treesitter/nvim-treesitter" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
+  { src = "https://github.com/tpope/vim-fugitive" },
+  { src = "https://github.com/tpope/vim-rhubarb" },
 })
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client:supports_method("textDocument/completion") then
-      vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = true })
-    end
-  end,
-})
-vim.cmd("set completeopt+=noselect")
 
 require("mini.pick").setup()
-require("nvim-treesitter.configs").setup({
-  ensure_installed = { "go", "typescript", "javascript" },
-  highlight = { enable = true },
-})
 require("oil").setup()
 
-vim.keymap.set("n", "<leader>f", ":Pick files<CR>")
-vim.keymap.set("n", "<leader>h", ":Pick help<CR>")
-vim.keymap.set("n", "<leader>o", ":Oil<CR>")
+k.set("n", "<leader>g", "", { desc = "+Git" })
+k.set("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Status" })
+k.set("n", "<leader>gr", "<cmd>Gread<cr>", { desc = "Read" })
+k.set("n", "<leader>gw", "<cmd>Gwrite<cr>", { desc = "Write" })
+k.set("n", "<leader>ge", "<cmd>Gedit<cr>", { desc = "Edit" })
+k.set("n", "<leader>gg", "<cmd>GBrowse<cr>", { desc = "Open in Browser" })
+k.set("n", "<leader>gp", "<cmd>Git push<cr>", { desc = "Push" })
+k.set("n", "<leader>gu", "<cmd>Git pull<cr>", { desc = "Pull" })
 
-vim.keymap.set("n", "<leader>lf", vim.lsp.buf.format)
-vim.lsp.enable({ "lua_ls", "biome", "tinymist", "emmetls" })
+k.set("n", "<leader>gd", "", { desc = "+Diff" })
+k.set("n", "<leader>gdd", "<cmd>Gvdiffsplit<cr>", { desc = "Verticaly 3 way" })
+k.set("n", "<leader>gdh", "<cmd>diffget //2<cr>", { desc = "Merge diff left" })
+k.set("n", "<leader>gdl", "<cmd>diffget //3<cr>", { desc = "Merge diff right" })
 
-require("vague").setup({ transparent = true })
-vim.cmd("colorscheme vague")
+k.set("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "+Log" })
+k.set("n", "<leader>gll", "<cmd>Git log<cr>", { desc = "Log" })
+k.set("n", "<leader>glo", "<cmd>Git log --oneline<cr>", { desc = "Log oneline" })
+
+k.set("n", "<leader>f", "", { desc = "+Files" })
+k.set("n", "<leader>ff", ":Pick files<CR>", { desc = "Files" })
+k.set("n", "<leader>o", ":Oil<CR>", { desc = "Explore" })
+
+k.set("n", "<leader>s", "", { desc = "+Search" })
+k.set("n", "<leader>sh", ":Pick help<CR>", { desc = "Help" })
+
+k.set("n", "<leader>l", "", { desc = "+LSP" })
+k.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "Code Action" })
+k.set("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format" })
+k.set("n", "<leader>lq", vim.diagnostic.setloclist, { desc = "Quickfix" })
+
+
+-- Alternative visual block mode: Alt+v
+vim.keymap.set('n', '<A-v>', '<C-v>', { noremap = true })
+
+-- LSP
+vim.lsp.enable({ "lua_ls", "gopls" })
+
+-- Theme
+require("gruvbox").setup({ transparent = true })
+vim.cmd.colorscheme("gruvbox")
+vim.o.background = "dark"
 vim.cmd(":hi statusline guibg=NONE")
