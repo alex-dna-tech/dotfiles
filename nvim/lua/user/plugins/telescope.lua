@@ -41,7 +41,7 @@ return {
     k.set(
       "n",
       "<leader>b",
-      "<cmd>lua require('telescope.builtin').buffers(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+      require('telescope.builtin').buffers(require('telescope.themes').get_dropdown { previewer = false }),
       { desc = "Buffers" }
     )
     k.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
@@ -51,7 +51,7 @@ return {
     k.set(
       "n",
       "<leader>P",
-      "<cmd>lua require('telescope').extensions.projects.projects()<cr>",
+      require('telescope').extensions.projects.projects(),
       { desc = "Projects" }
     )
 
@@ -68,13 +68,13 @@ return {
     k.set(
       "n",
       "<leader>sse",
-      "<cmd>lua require'telescope.builtin'.symbols{ sources = {'emoji'} }<cr>",
+      require 'telescope.builtin'.symbols { sources = { 'emoji' } },
       { desc = "Emoji" }
     )
     k.set(
       "n",
       "<leader>ssg",
-      "<cmd>lua require'telescope.builtin'.symbols{ sources = {'gitmoji'} }<cr>",
+      require 'telescope.builtin'.symbols { sources = { 'gitmoji' } },
       { desc = "Gitmoji" }
     )
   end,

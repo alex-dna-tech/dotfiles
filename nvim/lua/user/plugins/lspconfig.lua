@@ -120,11 +120,11 @@ return {
 
     local k = vim.keymap
     k.set("n", "<leader>l", "", { desc = "+LSP" })
-    k.set("n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", { desc = "Code Action" })
-    k.set("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", { desc = "Format" })
+    k.set("n", "<leader>la", vim.lsp.buf.code_action(), { desc = "Code Action" })
+    k.set("n", "<leader>lf", vim.lsp.buf.format(), { desc = "Format" })
     k.set("n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "Info" })
     k.set("n", "<leader>lm", "<cmd>Mason<cr>", { desc = "Installer Info" })
-    k.set("n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<cr>", { desc = "Quickfix" })
+    k.set("n", "<leader>lq", vim.diagnostic.setloclist(), { desc = "Quickfix" })
     k.set("n", "<leader>ls", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "Document Symbols" })
     k.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "LSP Restart" })
     k.set("n", "<leader>ld", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", { desc = "Workspace Symbols" })
