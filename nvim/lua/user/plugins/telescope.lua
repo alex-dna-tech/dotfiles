@@ -29,31 +29,22 @@ return {
     -- set keymaps
     local k = vim.keymap
     local builtin = require("telescope.builtin")
+    local theme = require("telescope.themes")
 
     k.set("n", "<leader>f", "", { desc = "+Files" })
     k.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
     k.set("n", "<leader>fr", builtin.oldfiles, { desc = "Find Recent Files" })
-    k.set("n", "<leader>fs", function()
-      local ivy = require("telescope.themes").get_ivy()
-      builtin.live_grep(ivy)
-    end, { desc = "Find String" })
+    k.set("n", "<leader>fs",
+      function()
+        builtin.live_grep(theme.get_ivy)
+      end, { desc = "Find String" })
     k.set("n", "<leader>fc", builtin.grep_string, { desc = "Find String Under Cursor" })
-    k.set(
-      "n",
-      "<leader>b",
-      require('telescope.builtin').buffers(require('telescope.themes').get_dropdown { previewer = false }),
-      { desc = "Buffers" }
-    )
+    -- k.set("n", "<leader>b", builtin.buffers(theme.get_dropdown { previewer = false }), { desc = "Buffers" })
     k.set("n", "<leader>c", "<cmd>bdelete<CR>", { desc = "Close Buffer" })
     k.set("n", "<leader>w", "<cmd>w!<CR>", { desc = "Write" })
     k.set("n", "<leader>q", "<cmd>q!<CR>", { desc = "Quit" })
     k.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "No Highlight" })
-    k.set(
-      "n",
-      "<leader>P",
-      require('telescope').extensions.projects.projects(),
-      { desc = "Projects" }
-    )
+    k.set("n", "<leader>P", require("telescope").extensions.projects.projects, { desc = "Projects" })
 
     -- Search
     k.set("n", "<leader>s", "", { desc = "+Search" })
@@ -65,17 +56,9 @@ return {
     k.set("n", "<leader>sC", builtin.colorscheme, { desc = "Colorscheme" })
     -- +Symbols
     k.set("n", "<leader>ss", "", { desc = "+Symbols" })
-    k.set(
-      "n",
-      "<leader>sse",
-      require 'telescope.builtin'.symbols { sources = { 'emoji' } },
-      { desc = "Emoji" }
-    )
-    k.set(
-      "n",
-      "<leader>ssg",
-      require 'telescope.builtin'.symbols { sources = { 'gitmoji' } },
-      { desc = "Gitmoji" }
-    )
+    k.set("n", "<leader>sse", builtin.symbols, { desc = "Emoji" })
+    k.set("n", "<leader>ssg", function()
+      builtin.symbols({ sources = { 'gitmoji' } })
+    end, { desc = "Gitmoji" })
   end,
 }
