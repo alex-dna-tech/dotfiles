@@ -1,7 +1,7 @@
 
 NVIM = /usr/local/bin/nvim
 DST_GIT = /tmp/neovim-git
-SRC = $(HOME)/dotfiles/neovim
+SRC = $(HOME)/dotfiles/minivim
 DST = $(HOME)/.config/nvim
 LNK = ln -sf
 OS = $(shell uname -s)

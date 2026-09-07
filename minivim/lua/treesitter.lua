@@ -1,12 +1,7 @@
-local treesitter = require("nvim-treesitter")
-
-local ensure_installed = {
-    "go", "rust", "typescript", "javascript", "tsx",
-    "html", "css", "json", "bash",
-    "http", "dockerfile",
-}
-
-treesitter.install(ensure_installed)
+require("nvim-treesitter").setup({
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "python" },
+  highlight = { enable = true },
+})
 
 vim.api.nvim_create_autocmd("FileType", {
 	pattern = "*",

@@ -34,7 +34,7 @@ k.set("n", "<A-k>", "<Esc>:m .-2<cr>==gi", opts)
 k.set("n", "<leader>y", 'gg0"+yG', { noremap = true, silent = true, desc = "Yank All Buffer" })
 
 -- Tmux
-k.set("n", "<leader>t", nil, { desc = "+Tmux" })
+k.set("n", "<leader>t", "", { desc = "+Tmux" })
 k.set(
   "v",
   "<leader>tc",
@@ -93,3 +93,4 @@ k.set("c", "w!!", "w !sudo tee % >/dev/null", term_opts)
 vim.cmd("set whichwrap+=<,>,[,],h,l")
 vim.cmd("com! W w")
 vim.cmd("com! Wq wq")
+
