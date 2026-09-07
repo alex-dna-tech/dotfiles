@@ -54,9 +54,39 @@ MiniSnippets.setup({
 
 MiniSnippets.start_lsp_server({ match = false })
 
+require('mini.pairs').setup()
+require('mini.splitjoin').setup()
+require("mini.surround").setup({
+mappings = {
+    add = 'as', -- Add surrounding in Normal and Visual modes
+    delete = 'ds', -- Delete surrounding
+    find = 'fs', -- Find surrounding (to the right)
+    find_left = 'Fs', -- Find surrounding (to the left)
+    highlight = 'hs', -- Highlight surrounding
+    replace = 'cs', -- Replace surrounding
+
+    suffix_last = 'l', -- Suffix to search with "prev" method
+    suffix_next = 'n', -- Suffix to search with "next" method
+  },
+})
+
 --- mini cmdline completion ---
 require("mini.cmdline").setup({
     autocorrect = { enable = false }
+})
+require("mini.icons").setup()
+require('mini.statusline').setup()
+require('mini.tabline').setup({
+  -- Whether to show file icons (requires 'mini.icons')
+  show_icons = true,
+
+  -- Function which formats the tab label
+  -- By default surrounds with space and possibly prepends with icon
+  format = nil,
+
+  -- Where to show tabpage section in case of multiple vim tabpages.
+  -- One of 'left', 'right', 'none'.
+  tabpage_section = 'right',
 })
 
 --- mini picker ---
@@ -93,9 +123,8 @@ MiniDiff.setup({
 })
 
 vim.keymap.set("n", "<leader>g", "", { desc = "+Git" })
-vim.keymap.set("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Status" })
-vim.keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>", { desc = "Branches" })
-vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>", { desc = "Commits" })
+vim.keymap.set("n", "<leader>gs", "<cmd>Git | only<cr>", { desc = "Status" })
+vim.keymap.set("n", "<leader>gb", "<cmd>Git branch<cr>", { desc = "Branches" })
 vim.keymap.set("n", "<leader>gr", "<cmd>Gread<cr>", { desc = "Read" })
 vim.keymap.set("n", "<leader>gw", "<cmd>Gwrite<cr>", { desc = "Write" })
 vim.keymap.set("n", "<leader>ge", "<cmd>Gedit<cr>", { desc = "Edit" })
