@@ -26,10 +26,6 @@ k.set("n", "<S-l>", ":bnext<cr>", opts)
 k.set("n", "<S-h>", ":bprevious<cr>", opts)
 k.set("n", "<leader><leader>o", ":%bd|e#<cr>")
 
--- Move text up and down
-k.set("n", "<A-j>", "<Esc>:m .+1<cr>==gi", opts)
-k.set("n", "<A-k>", "<Esc>:m .-2<cr>==gi", opts)
-
 -- Copy
 k.set("n", "<leader>y", 'gg0"+yG', { noremap = true, silent = true, desc = "Yank All Buffer" })
 
