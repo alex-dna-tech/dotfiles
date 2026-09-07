@@ -31,6 +31,29 @@ require("mini.notify").setup({
     },
 })
 
+local MiniSnippets = require("mini.snippets")
+MiniSnippets.setup({
+    snippets = {
+        MiniSnippets.gen_loader.from_lang(), -- loads friendly-snippets
+    },
+
+    mappings = {
+        expand = '<C-j>',
+        jump_next = '<TAB>',
+        jump_prev = '<S-TAB>',
+        stop = '<C-c>',
+    },
+
+    expand = {
+        prepare = nil,
+        match = nil,
+        select = nil,
+        insert = nil,
+    },
+})
+
+MiniSnippets.start_lsp_server({ match = false })
+
 --- mini cmdline completion ---
 require("mini.cmdline").setup({
     autocorrect = { enable = false }
@@ -62,14 +85,6 @@ require("mini.completion").setup({
     }
 })
 
---- mini snippets ---
-local MiniSnippets = require("mini.snippets")
-MiniSnippets.setup({
-    snippets = {
-        MiniSnippets.gen_loader.from_lang(), -- loads friendly-snippets
-    },
-})
-MiniSnippets.start_lsp_server({ match = false })
 
 --- mini diff and fugitive ---
 local MiniDiff = require("mini.diff")
@@ -96,4 +111,3 @@ vim.keymap.set("n", "<leader>gdl", "<cmd>diffget //3<cr>", { desc = "Merge diff 
 vim.keymap.set("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "Log" })
 vim.keymap.set("n", "<leader>gll", "<cmd>Git log<cr>", { desc = "Log" })
 vim.keymap.set("n", "<leader>glo", "<cmd>Git log --oneline<cr>", { desc = "Log oneline" })
-

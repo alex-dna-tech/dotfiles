@@ -4,7 +4,7 @@ vim.cmd("let g:netrw_liststyle = 3")
 vim.opt.backup = false
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.colorcolumn = "0"
-vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
+vim.opt.completeopt = "menu,menuone,preselect,noinsert,fuzzy,nosort"
 vim.opt.cursorline = true
 vim.opt.expandtab = true
 vim.opt.guicursor = ""
@@ -45,4 +45,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.opt.shell = "bash --login -c"
-
