@@ -1,5 +1,6 @@
 -- OPTIONS
 local options = {
+  autocomplete = true,       -- autocompletion
   backup = false,            -- creates a backup file
   clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 2,             -- more space in the neovim command line for displaying messages
@@ -8,7 +9,6 @@ local options = {
   expandtab = true,          -- convert tabs to spaces
   fileencoding = "utf-8",    -- the encoding written to a file
   guicursor = "",            -- always fat cursor
-  guifont = "monospace:h17", -- the font used in graphical neovim applications
   hlsearch = true,           -- highlight all matches on previous search pattern
   ignorecase = true,         -- ignore case in search patterns
   mouse = "a",               -- allow the mouse to be used in neovim
@@ -31,7 +31,6 @@ local options = {
   termguicolors = true,      -- set term gui colors (most terminals support this)
   timeoutlen = 1000,         -- time to wait for a mapped sequence to complete (in milliseconds)
   undofile = true,           -- enable persistent undo
-  autocomplete = true,       -- autocompletion
   updatetime = 50,           -- faster completion (4000ms default)
   wrap = true,               -- wrap long lines
   writebackup = false,       -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
@@ -144,22 +143,17 @@ vim.cmd("com! Wq wq")
 -- PLUGINS
 vim.pack.add({
   { src = "https://github.com/ellisonleao/gruvbox.nvim" },
-  { src = "https://github.com/stevearc/oil.nvim" },
-  { src = "https://github.com/echasnovski/mini.pick" },
   { src = "https://github.com/neovim/nvim-lspconfig" },
+  { src = "https://github.com/nvim-mini/mini.files" },
+  { src = "https://github.com/nvim-mini/mini.pick" },
   { src = "https://github.com/tpope/vim-fugitive" },
-  { src = "https://github.com/tpope/vim-rhubarb" },
 })
-
-require("mini.pick").setup()
-require("oil").setup()
 
 k.set("n", "<leader>g", "", { desc = "+Git" })
 k.set("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Status" })
 k.set("n", "<leader>gr", "<cmd>Gread<cr>", { desc = "Read" })
 k.set("n", "<leader>gw", "<cmd>Gwrite<cr>", { desc = "Write" })
 k.set("n", "<leader>ge", "<cmd>Gedit<cr>", { desc = "Edit" })
-k.set("n", "<leader>gg", "<cmd>GBrowse<cr>", { desc = "Open in Browser" })
 k.set("n", "<leader>gp", "<cmd>Git push<cr>", { desc = "Push" })
 k.set("n", "<leader>gu", "<cmd>Git pull<cr>", { desc = "Pull" })
 
@@ -168,13 +162,21 @@ k.set("n", "<leader>gdd", "<cmd>Gvdiffsplit<cr>", { desc = "Verticaly 3 way" })
 k.set("n", "<leader>gdh", "<cmd>diffget //2<cr>", { desc = "Merge diff left" })
 k.set("n", "<leader>gdl", "<cmd>diffget //3<cr>", { desc = "Merge diff right" })
 
-k.set("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "+Log" })
+k.set("n", "<leader>gl", "", { desc = "+Log" })
 k.set("n", "<leader>gll", "<cmd>Git log<cr>", { desc = "Log" })
 k.set("n", "<leader>glo", "<cmd>Git log --oneline<cr>", { desc = "Log oneline" })
 
+require("mini.pick").setup()
+local MiniFiles = require("mini.files")
+MiniFiles.setup()
+
 k.set("n", "<leader>f", "", { desc = "+Files" })
 k.set("n", "<leader>ff", ":Pick files<CR>", { desc = "Files" })
-k.set("n", "<leader>o", ":Oil<CR>", { desc = "Explore" })
+k.set("n", "-", MiniFiles.open, { desc = "Toggle mini file explorer" })
+k.set("n", "<leader>o", function()
+    MiniFiles.open(vim.api.nvim_buf_get_name(0), false)
+    MiniFiles.reveal_cwd()
+end, { desc = "Toggle into currently opened file" })
 
 k.set("n", "<leader>s", "", { desc = "+Search" })
 k.set("n", "<leader>sh", ":Pick help<CR>", { desc = "Help" })

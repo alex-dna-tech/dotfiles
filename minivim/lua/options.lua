@@ -1,6 +1,3 @@
-vim.g.netrw_banner = 0
-vim.cmd("let g:netrw_liststyle = 3")
-
 vim.opt.backup = false
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.colorcolumn = "0"
@@ -15,19 +12,19 @@ vim.opt.laststatus = 3
 vim.opt.nu = true
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 8
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 2
 vim.opt.shortmess:append("c")
 vim.opt.signcolumn = "yes"
 vim.opt.smartcase = true
 vim.opt.smartindent = true
-vim.opt.softtabstop = 4
+vim.opt.softtabstop = 2
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.swapfile = false
-vim.opt.tabstop = 4
+vim.opt.tabstop = 2
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undodir"
 vim.opt.undofile = true
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
     callback = function()
@@ -44,4 +41,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     end,
 })
 
+vim.g.netrw_banner = 0
+vim.cmd("let g:netrw_liststyle = 3")
 vim.opt.shell = "bash --login -c"
+
+
+-- Alternative visual block mode: Alt+v
+vim.keymap.set('n', '<A-v>', '<C-v>', { noremap = true })
