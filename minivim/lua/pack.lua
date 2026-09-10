@@ -141,3 +141,19 @@ vim.keymap.set("n", "<leader>gdl", "<cmd>diffget //3<cr>", { desc = "Merge diff 
 vim.keymap.set("n", "<leader>gl", "<cmd>Git log<cr>", { desc = "Log" })
 vim.keymap.set("n", "<leader>gll", "<cmd>Git log<cr>", { desc = "Log" })
 vim.keymap.set("n", "<leader>glo", "<cmd>Git log --oneline<cr>", { desc = "Log oneline" })
+
+
+--- mini highlight ---
+local MiniHipatterns = require('mini.hipatterns')
+MiniHipatterns.setup({
+  highlighters = {
+    -- Highlight standalone 'FIXME', 'HACK', 'TODO', 'NOTE'
+    fixme = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
+    hack  = { pattern = '%f[%w]()HACK()%f[%W]',  group = 'MiniHipatternsHack'  },
+    todo  = { pattern = '%f[%w]()TODO()%f[%W]',  group = 'MiniHipatternsTodo'  },
+    note  = { pattern = '%f[%w]()NOTE()%f[%W]',  group = 'MiniHipatternsNote'  },
+
+    -- Highlight hex color strings (`#rrggbb`) using that color
+    hex_color = MiniHipatterns.gen_highlighter.hex_color(),
+  },
+})
