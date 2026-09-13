@@ -37,6 +37,7 @@ $(DWM): $(DST_GIT) $(SRC)/config.h $(SRC)/dwm.c
 	cd $(DST_GIT) && $(SUDO) make clean install
 	$(SUDO) cp $(SRC)/startdwm.sh $(PREFIX)/bin/startdwm.sh
 	$(SUDO) chmod 755 $(PREFIX)/bin/startdwm.sh
+	$(SUDO) mkdir -p $(PREFIX)/share/xsessions
 	$(SUDO) cp $(SRC)/dwm.desktop $(PREFIX)/share/xsessions/dwm.desktop
 
 $(DST_GIT):
