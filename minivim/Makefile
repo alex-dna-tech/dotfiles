@@ -15,7 +15,7 @@ install-dep:
 	if [ "$(OS)" = "Darwin" ]; then \
 		brew install ninja cmake gettext curl; \
 	elif [ -f /etc/alpine-release ]; then \
-		$(SUDO) apk add linux-headers ninja cmake gettext-tiny-dev libtool g++ pkgconf unzip curl lua-language-server; \
+		$(SUDO) apk add linux-headers ninja cmake gettext-dev libtool g++ pkgconf unzip curl lua-language-server; \
 	elif [ "$(OS)" = "Linux" ]; then \
 		$(SUDO) apt -y install ninja-build gettext libtool-bin cmake g++ pkg-config unzip curl; \
 	else \
