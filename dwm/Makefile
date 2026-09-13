@@ -5,7 +5,7 @@ SRC = $(CURDIR)
 PREFIX = /usr/local
 CONFIG = $(HOME)/.config
 OS = $(shell uname -s)
-SUDO = $(shell command -v sudo >/dev/null 2>&1 && echo sudo || echo doas)
+SUDO = $(shell [ $$(id -u) -eq 0 ] || (command -v sudo >/dev/null 2>&1 && echo sudo || echo doas))
 
 .PHONY: install
 install:
@@ -16,13 +16,13 @@ install:
 	fi
 
 .PHONY: build
-build: install-dep $(DST_GIT) $(DWM) $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc
+build: install-dep $(DST_GIT) $(DWM) $(CONFIG)/picom/picom.conf $(CONFIG)/dunst/dunstrc .xinitrc
 
 install-dep:
 	@if [ -f /etc/alpine-release ]; then \
-		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev harfbuzz-dev libxrender-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip xrdb curl jq font-fira-code-nerd font-noto-emoji flameshot mpv dunst; \
+		$(SUDO) apk add libx11-dev libxft-dev libxinerama-dev harfbuzz-dev libxrender-dev gcc make feh xsetroot xrandr picom xprop xmodmap xclip xrdb curl jq font-fira-code-nerd font-noto-emoji flameshot mpv dunst setxkbmap ncurses; \
 	elif [ "$(OS)" = "Linux" ]; then \
-		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev libharfbuzz-dev libxrender-dev gcc make feh x11-xserver-utils curl jq font-fira-code-nerd font-noto-emoji flameshot picom ; \
+		$(SUDO) apt -y install libx11-dev libxft-dev libxinerama-dev libharfbuzz-dev libxrender-dev gcc make feh x11-xserver-utils curl jq font-fira-code-nerd font-noto-emoji flameshot picom setxkbmap ncurses; \
 	else \
 		echo "Follow build instructions: https://github.com/Andrey0189/dwm-gruvbox"; \
 		exit 1; \
@@ -43,6 +43,9 @@ $(DWM): $(DST_GIT) $(SRC)/config.h $(SRC)/dwm.c
 $(DST_GIT):
 	git clone --depth=1 https://git.suckless.org/dwm $(DST_GIT)
 	cd $(DST_GIT) && git fetch --unshallow
+
+$(CONFIG)/.xinitrc:
+	ln -s $(CURDIR)/xinitrc $(CONFIG)/.xinitrc
 
 $(CONFIG)/picom/picom.conf:
 	mkdir -p $(CONFIG)/picom

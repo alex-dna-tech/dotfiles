@@ -4,7 +4,7 @@ DMENU_RUN = /usr/local/bin/dmenu_run
 DST_GIT = /tmp/dmenu-git
 SRC = $(CURDIR)
 PREFIX = /usr/local
-SUDO = $(shell command -v sudo >/dev/null 2>&1 && echo sudo || echo doas)
+SUDO = $(shell [ $$(id -u) -eq 0 ] || (command -v sudo >/dev/null 2>&1 && echo sudo || echo doas))
 
 .PHONY: install
 install: build

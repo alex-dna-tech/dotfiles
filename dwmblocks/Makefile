@@ -2,7 +2,7 @@
 BLOCK_GIT = /tmp/dwmblocks-git
 SRC = $(CURDIR)
 PREFIX = /usr/local
-SUDO = $(shell command -v sudo >/dev/null 2>&1 && echo sudo || echo doas)
+SUDO = $(shell [ $$(id -u) -eq 0 ] || (command -v sudo >/dev/null 2>&1 && echo sudo || echo doas))
 
 .PHONY: install
 install: build
