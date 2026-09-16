@@ -25,7 +25,7 @@ install-dep:
 .PHONY: install-dep
 
 $(DST):
-	${LNK} ${SRC} ${DST}
+	mkdir -p ${DST} && ${LNK} ${SRC} ${DST}
 
 $(DST_GIT):
 	git clone --depth=1 https://github.com/neovim/neovim $(DST_GIT)
