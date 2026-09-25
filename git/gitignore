@@ -10,5 +10,6 @@ CODEX.md
 bin/console
 launch.json
 node_modules/
+repomix-*
 tags
 vendor/
